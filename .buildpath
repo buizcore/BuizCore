@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path=""/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+	<buildpathentry combineaccessrules="false" kind="prj" path="/WebFrap_Vendor"/>
+	<buildpathentry combineaccessrules="false" kind="prj" path="/WebFrap_Stub"/>
+	<buildpathentry combineaccessrules="false" kind="prj" path="/WebFrap_Vendor_GPL"/>
+	<buildpathentry combineaccessrules="false" kind="prj" path="/WebFrap_Wgt2"/>
+</buildpath>

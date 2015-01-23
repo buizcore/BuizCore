@@ -1,0 +1,129 @@
+<?php
+/*******************************************************************************
+*
+* @author      : Dominik Bonsch <d.bonsch@buizcore.com>
+* @date        :
+* @copyright   : BuizCore GmbH <contact@buizcore.com>
+* @project     : BuizCore the business core
+* @projectUrl  : http://buizcore.net
+*
+* @licence     : BSD License see: LICENCE/BSD Licence.txt
+*
+* @version: @package_version@  Revision: @package_revision@
+*
+* Changes:
+*
+*******************************************************************************/
+
+/**
+ * de:
+ * {
+ *  Diese Klasse wird zum emulieren von benamten parametern verwendet.
+ *
+ *  Dazu werden __get und __set implementiert.
+ *  __get gibt entweder den passenden wert für einen key oder null zurück
+ * }
+ *
+ * @author dominik alexander bonsch <dominik.bonsch@webfrap.net>
+ * @package net.webfrap
+ *
+ */
+class TFlag
+{
+
+  /**
+   * de:
+   * {
+   *   Container zum speichern der key / value paare.
+   * }
+   * @var array
+   */
+  protected $content = [];
+
+/*////////////////////////////////////////////////////////////////////////////*/
+// Magic Functions
+/*////////////////////////////////////////////////////////////////////////////*/
+
+  /**
+   *
+   * @param array $content
+   */
+  public function __construct($content = [])
+  {
+
+    $this->content = $content;
+
+  }// end public function __construct */
+
+  /**
+   * virtual __set
+   * @see http://www.php.net/manual/de/language.oop5.overloading.php
+   *
+   * @param string $key
+   * @param string $value
+   */
+  public function __set($key , $value)
+  {
+    $this->content[$key] = $value;
+  }// end public function __set */
+
+  /**
+   * virtual __get
+   * @see http://www.php.net/manual/de/language.oop5.overloading.php
+   *
+   * @param string $key
+   * @return string
+   */
+  public function __get($key)
+  {
+    return isset($this->content[$key])
+      ? $this->content[$key]
+      : null;
+
+  }// end public function __get */
+  
+  /**
+   * @param string $key
+   * @return boolean
+   */
+  public function __isset($key){
+    return isset($this->content[$key])
+      ? true
+      : false;
+  }
+
+  /**
+   * de:
+   * {
+   *   wenn geprüft werden muss ob ein key tatsächlich existiert, unabhäng davon
+   *   ob der wert null ist, kann das mit exists getan werden
+   *
+   *   @example
+   *   <code>
+   *   if ($params->existingButNull)
+   *     echo "will not be reached when key exists but ist null" // false;
+   *
+   *   if ($params->exists('existingButNull'))
+   *      echo "will be reached when key exists but ist null" // true;
+   *
+   *   </code>
+   * }
+   * @param string $key
+   */
+  public function exists($key)
+  {
+    return array_key_exists($key , $this->content);
+  }//end public function exists */
+  
+  /**
+   * @param array $flags
+   */
+  public function setFlags($flags) 
+  { 
+      
+      $this->content = array_merge($this->content, $flags);
+      
+  }//end public function setFlags */
+
+} // end class TFlag
+

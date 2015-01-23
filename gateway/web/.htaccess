@@ -1,0 +1,78 @@
+RewriteEngine on
+
+# show cms page
+######################################
+
+# domain.tdl/hallo.html
+RewriteRule ^/?([0-9a-zA-Z_-]+).html$ cms.php?c=Static.$1.page&%{QUERY_STRING} [QSA]
+
+# domain.tdl/de/hallo.html
+RewriteRule ^/?([a-z]{2}|[a-z]{2}-[A-Z]{2})/([0-9a-zA-Z_-]+).html$ cms.php?c=Static.$2.page&lang=$1&%{QUERY_STRING} [QSA]
+
+# domain.tdl/hallo/action
+RewriteRule ^/?([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)$ cms.php?c=Static.$1.$2&%{QUERY_STRING} [QSA]
+
+# domain.tdl/de/hallo/action
+RewriteRule ^/?([a-z]{2}|[a-z]{2}-[A-Z]{2})/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)$ cms.php?c=Static.$2.$3&lang=$1&%{QUERY_STRING} [QSA]
+
+# domain.tdl/hallo/action|ajax
+RewriteRule ^/?([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+):([0-9a-zA-Z_-]+)$ $3.php?c=Static.$1.$2&%{QUERY_STRING} [QSA]
+
+# domain.tdl/de/hallo/action|ajax
+RewriteRule ^/?([a-z]{2}|[a-z]{2}-[A-Z]{2})/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+):([0-9a-zA-Z_-]+)$ $4.php?c=Static.$2.$3&lang=$1&%{QUERY_STRING} [QSA]
+
+
+# Liste / Index einer Datenquelle
+######################################
+
+# domain.tdl/hallo/
+RewriteRule ^/?([0-9a-zA-Z_-]+)/$ cms.php?c=Web.$1.list&%{QUERY_STRING} [QSA]
+
+# domain.tdl/de/hallo/
+RewriteRule ^/?([a-z]{2}|[a-z]{2}-[A-Z]{2})/([0-9a-zA-Z_-]+)/$ cms.php?c=Web.$2.list&lang=$1&%{QUERY_STRING} [QSA]
+
+# Liste / Index + Category einer Datenquelle
+######################################
+RewriteRule ^/?([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/$ cms.php?c=Web.$1.list&cat=$2&%{QUERY_STRING} [QSA]
+RewriteRule ^/?([a-z]{2}|[a-z]{2}-[A-Z]{2})/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/$ cms.php?c=Web.$2.list&cat=$3&lang=$1&%{QUERY_STRING} [QSA]
+
+# Ein Eintrag einer Datenquelle
+######################################
+RewriteRule ^/?([0-9a-zA-Z_-]+)/([0-9]+)-([0-9a-zA-Z_-]+).html$ cms.php?c=Web.$1.entry&id=$2&title=$3&%{QUERY_STRING} [QSA]
+RewriteRule ^/?([a-z]{2}|[a-z]{2}-[A-Z]{2})/([0-9a-zA-Z_-]+)/([0-9]+)-([0-9a-zA-Z_-]+).html$ cms.php?c=Web.$2.entry&id=$3&title=$4&lang=$1&%{QUERY_STRING} [QSA]
+
+# einen bestimmten Service aufrufen
+######################################
+RewriteRule ^/?([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+).html$ cms.php?c=Web.$1.$2&%{QUERY_STRING} [QSA]
+RewriteRule ^/?([a-z]{2}|[a-z]{2}-[A-Z]{2})/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+).html$ cms.php?c=Web.$2.$3&lang=$1&%{QUERY_STRING} [QSA]
+
+RewriteRule ^/?([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+).json$ json.php?c=Web.$1.$2&%{QUERY_STRING} [QSA]
+RewriteRule ^/?([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+).xml$ ajax.php?c=Web.$1.$2&%{QUERY_STRING} [QSA]
+
+# einen bestimmten Service mit ID aufrufen
+######################################
+RewriteRule ^/?([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9]+)-([0-9a-zA-Z_-]+).html$ cms.php?c=Web.$1.$2&id=$3&%{QUERY_STRING} [QSA]
+RewriteRule ^/?([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9]+).html$ cms.php?c=Web.$1.$2&id=$3&%{QUERY_STRING} [QSA]
+RewriteRule ^/?([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9]+).xml$ ajax.php?c=Web.$1.$2&id=$3&%{QUERY_STRING} [QSA]
+RewriteRule ^/?([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9]+).json$ json.php?c=Web.$1.$2&id=$3&%{QUERY_STRING} [QSA]
+RewriteRule ^/?([a-z]{2}|[a-z]{2}-[A-Z]{2})/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9]+)-([0-9a-zA-Z_-]+).html$ cms.php?c=Web.$2.$3&id=$4&lang=$1&%{QUERY_STRING} [QSA]
+
+
+RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+).xml$ ajax.php?c=$1.$2.$3&%{QUERY_STRING} [QSA]
+RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+).xls$ service.php?c=$1.$2.$3&%{QUERY_STRING} [QSA]
+RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+).csv$ service.php?c=$1.$2.$3&%{QUERY_STRING} [QSA]
+RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+).img$ image.php?c=$1.$2.$3&%{QUERY_STRING} [QSA]
+
+RewriteRule ^sitemap.xml$ plain.php?c=Cms.Browserfiles.sitemap&%{QUERY_STRING} [L]
+RewriteRule ^humans.txt$ plain.php?c=Cms.Browserfiles.humans&%{QUERY_STRING} [L]
+RewriteRule ^robots.txt$ plain.php?c=Cms.Browserfiles.robots&%{QUERY_STRING} [L]
+
+ErrorDocument 404 /cms.php?c=Static.error_404.page
+ErrorDocument 500 /cms.php?c=Static.error_500.page
+
+#RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+).([0-9a-zA-Z_-]+)$ $4.php?c=$1.$2.$3&%{QUERY_STRING} [QSA]
+#RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+)/([0-9]+)/([0-9a-zA-Z_-]+).([0-9a-zA-Z_-]+)$ $5.php?c=$1.$2.$4&objid=$3&%{QUERY_STRING} [QSA]
+
+RewriteRule ^/min/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+).css$ css.php?l=$1.$2&%{QUERY_STRING} [QSA]
+RewriteRule ^/min/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+).theme$ theme.php?l=$1.$2&%{QUERY_STRING} [QSA]
+RewriteRule ^/min/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+).js$ js.php?l=$1.$2&%{QUERY_STRING} [QSA]

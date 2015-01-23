@@ -1,0 +1,13 @@
+
+RewriteEngine on
+RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+).xml$ ajax.php?c=$1.$2.$3&%{QUERY_STRING} [L]
+RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+).xls$ service.php?c=$1.$2.$3&%{QUERY_STRING} [L]
+RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+).csv$ service.php?c=$1.$2.$3&%{QUERY_STRING} [L]
+RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+).img$ image.php?c=$1.$2.$3&%{QUERY_STRING} [L]
+
+RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+).([0-9a-zA-Z_-]+)$ $4.php?c=$1.$2.$3&%{QUERY_STRING} [L]
+RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+)/([0-9]+)/([0-9a-zA-Z_-]+).([0-9a-zA-Z_-]+)$ $5.php?c=$1.$2.$4&objid=$3&%{QUERY_STRING} [L]
+
+RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+).css$ css.php?l=$1.$2&%{QUERY_STRING} [L]
+RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+).theme$ theme.php?l=$1.$2&%{QUERY_STRING} [L]
+RewriteRule ^/?([0-9a-zA-Z_]+)/([0-9a-zA-Z_-]+).js$ js.php?l=$1.$2&%{QUERY_STRING} [L]

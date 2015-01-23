@@ -1,0 +1,78 @@
+<?php
+/*******************************************************************************
+*
+* @author      : Dominik Bonsch <d.bonsch@buizcore.com>
+* @date        :
+* @copyright   : BuizCore GmbH <contact@buizcore.com>
+* @project     : BuizCore the business core
+* @projectUrl  : http://buizcore.net
+*
+* @licence     : BSD License see: LICENCE/BSD Licence.txt
+*
+* @version: @package_version@  Revision: @package_revision@
+*
+* Changes:
+*
+*******************************************************************************/
+
+/**
+ *
+ * @package net.webfrap
+ */
+class LibMessageLoader
+{
+
+  /**
+   * @var LibDbConnection $db
+   */
+  public $db = null;
+
+  /**
+   * @param LibDbConnection $db
+   */
+  public function __construct( $db, $user )
+  {
+
+    $this->db = $db;
+    $this->user = $user;
+
+  }//end public function __construct */
+
+
+  /**
+   * @param array $list
+   */
+  public function messagesExists( array $list )
+  {
+
+    if (!$list)
+      return [];
+
+    $whereIn = implode( "', '", $list );
+
+    $sql = <<<SQL
+SELECT
+  rowid,
+  message_id
+FROM
+  wbfsys_message_sync
+WHERE
+  message_id IN('{$whereIn}');
+
+SQL;
+
+    $tmp = $this->db->select($sql)->getAll();
+
+    $ids = [];
+
+    foreach ( $tmp as $row ) {
+      $ids[$row['message_id']] = $row['rowid'];
+    }
+
+    return $ids;
+
+  }//end public function messagesExists */
+
+
+} // end LibMessageLoader
+
