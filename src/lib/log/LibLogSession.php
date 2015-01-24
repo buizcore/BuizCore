@@ -18,7 +18,7 @@
 /**
  * Logappender für die Ausgabe der Logmeldung in die Session
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibLogSession
   implements LibLogAdapter

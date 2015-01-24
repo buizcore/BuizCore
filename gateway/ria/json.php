@@ -28,11 +28,11 @@ try {
 
   View::setType(View::JSON);
 
-  $webfrap = BuizCore::init();
-  $webfrap->main();
+  $buiz = BuizCore::init();
+  $buiz->main();
 
-  $errors .= $webfrap->out();
-  $webfrap->shutdown( $errors );
+  $errors .= $buiz->out();
+  $buiz->shutdown( $errors );
 
 } // ENDE TRY
 catch( Exception $exception ) {

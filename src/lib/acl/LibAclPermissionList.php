@@ -41,7 +41,7 @@
  *
  * </code>
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibAclPermissionList extends LibAclPermission
 {

@@ -17,7 +17,7 @@
 
  /**
   * Klasse zum laden von Extensions
-  * @package net.webfrap
+  * @package net.buiz
   */
 class DataContainer extends BaseChild
 {

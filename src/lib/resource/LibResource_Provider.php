@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibResource_Provider extends Provider
 {
@@ -69,7 +69,7 @@ class LibResource_Provider extends Provider
 
       $db = $this->getDb();
       $sql = <<<SQL
-select rowid from wbfsys_security_area where access_key = '{$db->escape($key)}';
+select rowid from buiz_security_area where access_key = '{$db->escape($key)}';
 SQL;
       $areaId = $db->select($sql)->getField('rowid');
 
@@ -123,7 +123,7 @@ SQL;
 
       $db = $this->getDb();
       $sql = <<<SQL
-select rowid from wbfsys_role_group where access_key = '{$db->escape($key)}';
+select rowid from buiz_role_group where access_key = '{$db->escape($key)}';
 SQL;
       $groupId = $db->select($sql)->getField('rowid');
 

@@ -17,7 +17,7 @@
 
 /**
  * Vorlage für alle vorhandenen Datenbank Zugriffsklassen
- * @package net.webfrap
+ * @package net.buiz
  */
 class Dao implements ArrayAccess, Iterator, Countable
 {

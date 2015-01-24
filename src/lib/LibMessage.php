@@ -24,7 +24,7 @@
  * Alle andere Informationen sind direkt im Versandweg oder dem Message Provider
  * zu entnehmen
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibMessage extends PBase
 {
@@ -32,13 +32,13 @@ class LibMessage extends PBase
   /**
    * Die Person welche die Nachricht geschickt hat
    *
-   * @var WbfsysRoleUser_Entity
+   * @var BuizRoleUser_Entity
    */
   public $sender = null;
 
   /**
    * Array mit Empfängern
-   * @var array<WbfsysRoleUser_Entity>
+   * @var array<BuizRoleUser_Entity>
    */
   public $receivers = [];
 
@@ -56,7 +56,7 @@ class LibMessage extends PBase
 
   /**
    * Dateien die der Nachricht angehängt werden sollen
-   * @var array<name:WbfsysFile_Entity>
+   * @var array<name:BuizFile_Entity>
    */
   public $attachments = [];
 

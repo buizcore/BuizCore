@@ -17,9 +17,9 @@
 
 /**
  *
- * @package net.webfrap
+ * @package net.buiz
  *
- * @author domnik alexander bonsch <dominik.bonsch@webfrap.net>
+ * @author domnik alexander bonsch <dominik.bonsch@buiz.net>
  */
 class DomainModule
 {

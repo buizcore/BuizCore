@@ -17,7 +17,7 @@
 
 /**
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibMatrixXml extends LibMatrix
 {

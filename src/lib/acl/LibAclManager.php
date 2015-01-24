@@ -16,9 +16,9 @@
 *******************************************************************************/
 
 /**
- * Webfrap Access Controll
+ * Buiz Access Controll
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibAclManager extends BaseChild
 {

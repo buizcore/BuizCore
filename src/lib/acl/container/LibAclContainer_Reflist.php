@@ -16,8 +16,8 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
- * @author dominik alexander bonsch <dominik.bonsch@webfrap.net>
+ * @package net.buiz
+ * @author dominik alexander bonsch <dominik.bonsch@buiz.net>
  */
 class LibAclContainer_Reflist extends LibAclPermission
 {
@@ -197,15 +197,15 @@ SUB_COND;
 
       $criteria->join(
         <<<SQL
-{$joinType} JOIN webfrap_area_user_level_view  acls ON
+{$joinType} JOIN buiz_area_user_level_view  acls ON
     acls."acl-user" = {$userId}
     AND acls."acl-area" IN({$this->aclQuery})
     AND ( acls."acl-vid" = {$this->srcName}.rowid OR acls."acl-vid" is null )
 
-  LEFT JOIN wbfsys_security_backpath back_path
+  LEFT JOIN buiz_security_backpath back_path
     ON back_path.id_area = {$mainAreaId}
 
-  LEFT JOIN webfrap_area_user_level_view as back_acls ON
+  LEFT JOIN buiz_area_user_level_view as back_acls ON
     back_path.id_target_area = back_acls."acl-id_area"
     AND back_acls."acl-user" = {$userId}
     AND(
@@ -220,7 +220,7 @@ SQL
 
       $criteria->join(
         <<<SQL
-LEFT JOIN webfrap_area_user_level_view  acls ON
+LEFT JOIN buiz_area_user_level_view  acls ON
     acls."acl-user" = {$userId}
     AND acls."acl-area" IN({$this->aclQuery})
     AND ( acls."acl-vid" = {$this->srcName}.rowid OR acls."acl-vid" is null )

@@ -16,10 +16,10 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class InvalidPermission_Exception extends WebfrapSys_Exception
+class InvalidPermission_Exception extends BuizSys_Exception
 {
     protected $defMessage = "You have no permission to execute this request!";
     

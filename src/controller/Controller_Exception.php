@@ -2,11 +2,11 @@
 
 /*******************************************************************************
  *
- * @author      : Dominik Bonsch <dominik.bonsch@webfrap.net>
+ * @author      : Dominik Bonsch <dominik.bonsch@buiz.net>
  * @date        :
- * @copyright   : Webfrap Developer Network <contact@webfrap.net>
- * @project     : Webfrap Web Frame Application
- * @projectUrl  : http://webfrap.net
+ * @copyright   : Buiz Developer Network <contact@buiz.net>
+ * @project     : Buiz Web Frame Application
+ * @projectUrl  : http://buiz.net
  *
  * @licence     : BSD License see: LICENCE/BSD Licence.txt
  *
@@ -22,9 +22,9 @@
  * If you don't catch it it will be catched by the system and you will get an
  * Error Screen Inside the Applikation.
  *
- * @package net.webfrap
+ * @package net.buiz
  */
-class Controller_Exception extends WebfrapSys_Exception
+class Controller_Exception extends BuizSys_Exception
 {
 
 } // end class Controller_Exception

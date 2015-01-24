@@ -17,8 +17,8 @@
 
 /**
  *
- * @package net.webfrap
- * @author Dominik Donsch <dominik.bonsch@webfrap.net>
+ * @package net.buiz
+ * @author Dominik Donsch <dominik.bonsch@buiz.net>
  *
  */
 class LibProcessSlice_Rating extends LibProcessSlice

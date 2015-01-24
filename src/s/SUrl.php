@@ -17,7 +17,7 @@
 
 /**
  * Container für url methoden
- * @package net.webfrap
+ * @package net.buiz
  */
 final class SUrl
 {

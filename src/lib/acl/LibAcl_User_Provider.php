@@ -18,7 +18,7 @@
 /**
  * Standard Query Objekt zum laden der Benutzer anhand der Rolle
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibAcl_User_Provider extends Provider
 {

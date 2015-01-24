@@ -18,7 +18,7 @@
 /**
  * Standard Query Objekt zum laden der Benutzer anhand der Rolle
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibSettings
 {
@@ -103,7 +103,7 @@ class LibSettings
       $className = EUserSettingType::getClass($key);
 
       $sql = <<<SQL
-SELECT rowid, jdata from wbfsys_user_setting where type = {$key} AND id_user is null;
+SELECT rowid, jdata from buiz_user_setting where type = {$key} AND id_user is null;
 SQL;
 
       $data = $this->db->select($sql)->get();
@@ -139,9 +139,9 @@ SQL;
     $orm = $this->db->orm;
 
     if ($id) {
-      $orm->update('WbfsysUserSetting', $id, array('jdata',$jsonString));
+      $orm->update('BuizUserSetting', $id, array('jdata',$jsonString));
     } else {
-      $orm->insert('WbfsysUserSetting', array('jdata',$jsonString));
+      $orm->insert('BuizUserSetting', array('jdata',$jsonString));
     }
 
   }//end public function saveUserSetting */
@@ -172,7 +172,7 @@ SQL;
     if (!isset($this->moduleSettings[$key])) {
 
       $sql = <<<SQL
-SELECT rowid, vid, value from wbfsys_module_setting where upper(access_key) = upper('{$key}')
+SELECT rowid, vid, value from buiz_module_setting where upper(access_key) = upper('{$key}')
 SQL;
       
       if($idUser){
@@ -248,9 +248,9 @@ SQL;
 
     foreach ($this->newModuleSettings as $key => /* @var $setting LibSettingsModNode  */ $setting) {
       if ($setting->id) {
-        $orm->update('WbfsysModuleSetting', $setting->id, $setting->saveValue() );
+        $orm->update('BuizModuleSetting', $setting->id, $setting->saveValue() );
       } else {
-        $orm->insert('WbfsysModuleSetting', $setting->saveValue());
+        $orm->insert('BuizModuleSetting', $setting->saveValue());
       }
     }
 

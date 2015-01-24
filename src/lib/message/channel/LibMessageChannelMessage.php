@@ -17,7 +17,7 @@
 
 /**
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibMessageChannelMessage extends LibMessageChannel
 {

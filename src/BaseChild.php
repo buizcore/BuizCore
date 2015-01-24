@@ -22,7 +22,7 @@
  *
  * Es gibt noch eine 2te Basis Klasse mit nur Public Attributen PBase
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 abstract class BaseChild
 {

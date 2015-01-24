@@ -244,7 +244,7 @@ class LibTask extends BaseChild {
       $taskId = $this->task ['task_id'];
       $taskVid = $this->task ['plan_id'];
       
-      $taskPlan = $orm->get( 'WbfsysTaskPlan', $taskVid );
+      $taskPlan = $orm->get( 'BuizTaskPlan', $taskVid );
       
       $logMessage = array (
             'title' => $taskPlan->title,
@@ -255,9 +255,9 @@ class LibTask extends BaseChild {
             'response' => json_encode( $this->response ) 
       );
       
-      $orm->insert( 'WbfsysTaskLog', $logMessage );
+      $orm->insert( 'BuizTaskLog', $logMessage );
       
-      $orm->update( 'WbfsysPlannedTask', $taskId, array (
+      $orm->update( 'BuizPlannedTask', $taskId, array (
             'status' => $status 
       ) );
    

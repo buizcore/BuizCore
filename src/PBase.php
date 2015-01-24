@@ -18,7 +18,7 @@
 /**
  * Base class for controller, model, module and view
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 abstract class PBase
 {
@@ -101,7 +101,7 @@ abstract class PBase
    * {
    *  das aktive User objekt.
    *  Enthält alle relevanten daten über en aktuell eingeloggten benutzer,
-   *  vor allem die rowid aus seinen wbfsys_role_user datensatz
+   *  vor allem die rowid aus seinen buiz_role_user datensatz
    * }
    * @var User
    */

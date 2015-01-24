@@ -18,7 +18,7 @@
 /**
  * Standard Query Objekt zum laden der Benutzer anhand der Rolle
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibRelationLoader_Query extends LibSqlQuery
 {
@@ -53,41 +53,41 @@ class LibRelationLoader_Query extends LibSqlQuery
     // wenn keine Area übergeben wurde dann brauchen wir nur die
     // globalen assignments
     if ($id) {
-      $areaKeys = " wbfsys_security_area.access_key  IN('".implode("', '",$areas)."') " ;
+      $areaKeys = " buiz_security_area.access_key  IN('".implode("', '",$areas)."') " ;
 
       $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_user = wbfsys_role_user.rowid
+      buiz_group_users.id_user = buiz_role_user.rowid
 
   JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
     (
       CASE WHEN
-       wbfsys_group_users.id_area IS NOT NULL
+       buiz_group_users.id_area IS NOT NULL
        THEN
        (
          CASE WHEN
-          wbfsys_group_users.vid IS NOT NULL
+          buiz_group_users.vid IS NOT NULL
            THEN
-             wbfsys_group_users.id_user = wbfsys_role_user.rowid
-               and wbfsys_group_users.id_area = wbfsys_security_area.rowid
+             buiz_group_users.id_user = buiz_role_user.rowid
+               and buiz_group_users.id_area = buiz_security_area.rowid
                and {$areaKeys}
-               and wbfsys_group_users.vid = {$id}
+               and buiz_group_users.vid = {$id}
            ELSE
-             wbfsys_group_users.id_user = wbfsys_role_user.rowid
-               and wbfsys_group_users.id_area = wbfsys_security_area.rowid
+             buiz_group_users.id_user = buiz_role_user.rowid
+               and buiz_group_users.id_area = buiz_security_area.rowid
                and {$areaKeys}
-               and wbfsys_group_users.vid is null
+               and buiz_group_users.vid is null
          END
        )
        ELSE
-         wbfsys_group_users.id_user = wbfsys_role_user.rowid
-           and wbfsys_group_users.id_area is null
-           and wbfsys_group_users.vid is null
+         buiz_group_users.id_user = buiz_role_user.rowid
+           and buiz_group_users.id_area is null
+           and buiz_group_users.vid is null
        END
     )
 
@@ -95,31 +95,31 @@ SQL;
 
 
     } elseif ($areas) {
-      $areaKeys = " wbfsys_security_area.access_key  IN('".implode($areas,"','")."')" ;
+      $areaKeys = " buiz_security_area.access_key  IN('".implode($areas,"','")."')" ;
 
       $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_user = wbfsys_role_user.rowid
+      buiz_group_users.id_user = buiz_role_user.rowid
 
   JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
     (
       CASE
       WHEN
-       wbfsys_group_users.id_area IS NOT NULL
+       buiz_group_users.id_area IS NOT NULL
         THEN
-          wbfsys_group_users.id_user = wbfsys_role_user.rowid
-            and wbfsys_group_users.id_area = wbfsys_security_area.rowid
+          buiz_group_users.id_user = buiz_role_user.rowid
+            and buiz_group_users.id_area = buiz_security_area.rowid
             and {$areaKeys}
-            and wbfsys_group_users.vid is null
+            and buiz_group_users.vid is null
         ELSE
-         wbfsys_group_users.id_user = wbfsys_role_user.rowid
-           and wbfsys_group_users.id_area is null
-           and wbfsys_group_users.vid is null
+         buiz_group_users.id_user = buiz_role_user.rowid
+           and buiz_group_users.id_area is null
+           and buiz_group_users.vid is null
       END
     )
 
@@ -128,15 +128,15 @@ SQL;
 
     } else {
 
-      // wbfsys_security_area.rowid = wbfsys_role_group.id_area
+      // buiz_security_area.rowid = buiz_role_group.id_area
       $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_user = wbfsys_role_user.rowid
-        and wbfsys_group_users.id_area  is null
-        and wbfsys_group_users.vid      is null
+      buiz_group_users.id_user = buiz_role_user.rowid
+        and buiz_group_users.id_area  is null
+        and buiz_group_users.vid      is null
 SQL;
 
     }
@@ -151,8 +151,8 @@ SQL;
     $query = <<<SQL
 
 SELECT
-  distinct wbfsys_role_user.rowid as userid,
-  wbfsys_role_user.name,
+  distinct buiz_role_user.rowid as userid,
+  buiz_role_user.name,
   core_person.salutation,
   core_person.firstname,
   core_person.second_firstname,
@@ -160,23 +160,23 @@ SELECT
   core_person.academic_title
 
 FROM
-  wbfsys_role_user
+  buiz_role_user
 
 {$joins}
   JOIN
-    wbfsys_role_group
-      ON wbfsys_role_group.rowid = wbfsys_group_users.id_group
+    buiz_role_group
+      ON buiz_role_group.rowid = buiz_group_users.id_group
 
   JOIN
     core_person
     ON
-      wbfsys_role_user.id_person = core_person.rowid
+      buiz_role_user.id_person = core_person.rowid
 
 WHERE
-  wbfsys_role_group.access_key {$groupRoles}
-    AND ( wbfsys_group_users.partial = 0 )
+  buiz_role_group.access_key {$groupRoles}
+    AND ( buiz_group_users.partial = 0 )
     AND
-      NOT wbfsys_role_user.inactive = TRUE
+      NOT buiz_role_user.inactive = TRUE
 
 SQL;
 
@@ -208,19 +208,19 @@ SELECT
   core_person.second_firstname,
   core_person.lastname,
   core_person.academic_title,
-  wbfsys_role_user.name
+  buiz_role_user.name
 
 FROM
   core_person
 
 JOIN
-  wbfsys_role_user
+  buiz_role_user
   ON
-    wbfsys_role_user.id_person = core_person.rowid
+    buiz_role_user.id_person = core_person.rowid
 
 WHERE
-  wbfsys_role_user.rowid = {$user->user}
-  	AND  NOT wbfsys_role_user.inactive = TRUE
+  buiz_role_user.rowid = {$user->user}
+  	AND  NOT buiz_role_user.inactive = TRUE
 
 
 SQL;
@@ -235,19 +235,19 @@ SELECT
   core_person.second_firstname,
   core_person.lastname,
   core_person.academic_title,
-  wbfsys_role_user.name
+  buiz_role_user.name
 
 FROM
   core_person
 
 JOIN
-  wbfsys_role_user
+  buiz_role_user
   ON
-    wbfsys_role_user.id_person = core_person.rowid
+    buiz_role_user.id_person = core_person.rowid
 
 WHERE
-  wbfsys_role_user.rowid = {$user->id}
-  	AND  NOT wbfsys_role_user.inactive = TRUE
+  buiz_role_user.rowid = {$user->id}
+  	AND  NOT buiz_role_user.inactive = TRUE
 
 SQL;
 
@@ -261,19 +261,19 @@ SELECT
   core_person.second_firstname,
   core_person.lastname,
   core_person.academic_title,
-  wbfsys_role_user.name
+  buiz_role_user.name
 
 FROM
   core_person
 
 JOIN
-  wbfsys_role_user
+  buiz_role_user
   ON
-    wbfsys_role_user.id_person = core_person.rowid
+    buiz_role_user.id_person = core_person.rowid
 
 WHERE
-  UPPER(wbfsys_role_user.name) = UPPER('{$user->name}')
-  AND  NOT wbfsys_role_user.inactive = TRUE
+  UPPER(buiz_role_user.name) = UPPER('{$user->name}')
+  AND  NOT buiz_role_user.inactive = TRUE
 
 SQL;
 

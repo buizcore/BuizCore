@@ -22,7 +22,7 @@
  * Diese Exception wird nicht geworfen wenn eine Person nur keinen Zugriff hat,
  * dieser Fall soll über Rückgaben der aufgerufenen Methoden abgehandelt werden!
  *
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class LibAcl_Exception extends Lib_Exception

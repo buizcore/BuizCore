@@ -18,7 +18,7 @@
 include PATH_ROOT.'BuizCore_Vendor/vendor/FirePHPCore/FirePHP.class.php';
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibLogFirephp implements LibLogAdapter
 {

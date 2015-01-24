@@ -19,7 +19,7 @@
 /**
  * Download Klasse für WebFrap
  * 
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibSetup_Postgresql extends BaseChild
 {

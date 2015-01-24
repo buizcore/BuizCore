@@ -1,12 +1,12 @@
 <?php
 /*******************************************************************************
  *
- * @author      : Dominik Bonsch <dominik.bonsch@webfrap.net>
- * @author      : Malte Schirmacher <malte.schirmacher@webfrap.net>
+ * @author      : Dominik Bonsch <dominik.bonsch@buiz.net>
+ * @author      : Malte Schirmacher <malte.schirmacher@buiz.net>
  * @date        :
- * @copyright   : Webfrap Developer Network <contact@webfrap.net>
- * @project     : Webfrap Web Frame Application
- * @projectUrl  : http://webfrap.net
+ * @copyright   : Buiz Developer Network <contact@buiz.net>
+ * @project     : Buiz Web Frame Application
+ * @projectUrl  : http://buiz.net
  *
  * @licence     : BSD License see: LICENCE/BSD Licence.txt
  *
@@ -16,7 +16,7 @@
  *
  *******************************************************************************/
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibSearchDb_EntityIndex
 {
@@ -79,14 +79,14 @@ class LibSearchDb_EntityIndex
                     $indexData[Db::TIME_CREATED] = $keyVal[Db::TIME_CREATED];
                 }
 
-                $sqlString = $this->orm->sqlBuilder->buildInsert($indexData, 'wbfsys_data_index');
+                $sqlString = $this->orm->sqlBuilder->buildInsert($indexData, 'buiz_data_index');
 
-                $this->orm->db->insert($sqlString, 'wbfsys_data_index', 'rowid');
+                $this->orm->db->insert($sqlString, 'buiz_data_index', 'rowid');
             } else {
 
                 $where = "vid={$id} and id_vid_entity={$resourceId}";
 
-                $sqlString = $this->orm->sqlBuilder->buildUpdateSql($indexData, 'wbfsys_data_index', $where);
+                $sqlString = $this->orm->sqlBuilder->buildUpdateSql($indexData, 'buiz_data_index', $where);
                 $res       = $this->orm->db->update($sqlString);
 
                 /* @var $res LibDbPostgresqlResult */
@@ -99,9 +99,9 @@ class LibSearchDb_EntityIndex
                         $indexData[Db::TIME_CREATED] = $keyVal[Db::TIME_CREATED];
                     }
 
-                    $sqlString = $this->orm->sqlBuilder->buildInsert($indexData, 'wbfsys_data_index');
+                    $sqlString = $this->orm->sqlBuilder->buildInsert($indexData, 'buiz_data_index');
 
-                    $this->orm->db->insert($sqlString, 'wbfsys_data_index', 'rowid');
+                    $this->orm->db->insert($sqlString, 'buiz_data_index', 'rowid');
                 }
             }
         } catch (LibDb_Exception $exc) {
@@ -121,7 +121,7 @@ class LibSearchDb_EntityIndex
         $id         = $entity->getId();
 
         $this->orm->db->delete(
-            'DELETE FROM wbfsys_data_index where vid = ' . $id . ' and id_vid_entity = ' . $resourceId
+            'DELETE FROM buiz_data_index where vid = ' . $id . ' and id_vid_entity = ' . $resourceId
         );
     }
 
@@ -133,7 +133,7 @@ class LibSearchDb_EntityIndex
     {
         $resourceId = $this->orm->getResourceId($entityKey);
 
-        $this->orm->db->delete('DELETE FROM wbfsys_data_index where id_vid_entity = ' . $resourceId);
+        $this->orm->db->delete('DELETE FROM buiz_data_index where id_vid_entity = ' . $resourceId);
     }
 
     /**
@@ -176,7 +176,7 @@ class LibSearchDb_EntityIndex
                 $indexData[Db::UUID]         = $keyVal[Db::UUID];
                 $indexData[Db::TIME_CREATED] = $keyVal[Db::TIME_CREATED];
 
-                $sqlstring = $this->orm->sqlBuilder->buildInsert($indexData, 'wbfsys_data_index');
+                $sqlstring = $this->orm->sqlBuilder->buildInsert($indexData, 'buiz_data_index');
 
                 $this->orm->db->create($sqlstring);
             }

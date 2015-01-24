@@ -29,13 +29,13 @@ try {
   View::setType( View::BINARY );
   BuizCore::init();
 
-  $webfrap = BuizCore::init();
+  $buiz = BuizCore::init();
 
   // calling the main main function
-  $webfrap->main();
+  $buiz->main();
 
-  $errors = $webfrap->out();
-  $webfrap->shutdown( $errors );
+  $errors = $buiz->out();
+  $buiz->shutdown( $errors );
 
   // ENDE TRY
 } catch( Exception $exception ) {

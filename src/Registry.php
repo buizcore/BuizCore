@@ -19,7 +19,7 @@
  * Kleine Registry Klasse zum zwischenspeichern von nicht persistenten Daten
  * analog GLOBAL
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class Registry extends TArray
 {

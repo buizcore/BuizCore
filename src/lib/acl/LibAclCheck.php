@@ -20,7 +20,7 @@
  *
  * Basis Klasse zum implementieren von Acl Check Klassen
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibAclCheck extends LibAclPermission
 {

@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibResponseHttp extends LibResponse
 {
@@ -35,7 +35,7 @@ class LibResponseHttp extends LibResponse
   public $viewType = 'html';
 
   /**
-   * Der vereinfachte Status des Webfrap Systems
+   * Der vereinfachte Status des Buiz Systems
    * @var int
    */
   public $wbfState = State::OK;
@@ -334,7 +334,7 @@ class LibResponseHttp extends LibResponse
    *      $response->i18n->l
    *      (
    *        'The requested View not exists',
-   *        'wbfsys.error'
+   *        'buiz.error'
    *      );
    *    );
    *    return false;

@@ -18,7 +18,7 @@
 /**
  * Data Access Object zum laden der Daten aus einer Conf Map
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class DaoModuleLoader extends Dao
 {

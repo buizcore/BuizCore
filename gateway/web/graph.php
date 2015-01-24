@@ -26,7 +26,7 @@ try {
 
   $errors = '';
 
-  $webfrap = BuizCore::init();
+  $buiz = BuizCore::init();
   $request = BuizCore::$env->getRequest();
   $graphKey = $request->param( 'graph', Validator::CKEY );
 

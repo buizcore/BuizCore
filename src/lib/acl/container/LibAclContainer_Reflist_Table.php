@@ -16,8 +16,8 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
- * @author dominik alexander bonsch <dominik.bonsch@webfrap.net>
+ * @package net.buiz
+ * @author dominik alexander bonsch <dominik.bonsch@buiz.net>
  */
 class LibAclContainer_Reflist_Table extends LibAclContainer_Reflist
 {

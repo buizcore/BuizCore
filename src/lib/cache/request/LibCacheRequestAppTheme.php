@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap/cache
+ * @package net.buiz/cache
  */
 class LibCacheRequestAppTheme extends LibCacheRequestCss
 {

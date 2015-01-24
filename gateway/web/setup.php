@@ -27,12 +27,12 @@ try {
   $errors = '';
 
   View::setType('Html');
-  $webfrap = BuizCore::init();
+  $buiz = BuizCore::init();
 
   // calling the main main function
-  $webfrap->redirectByKey('tripple_setup');
-  $errors = $webfrap->out();
-  $webfrap->shutdown( $errors );
+  $buiz->redirectByKey('tripple_setup');
+  $errors = $buiz->out();
+  $buiz->shutdown( $errors );
 
 } // ENDE TRY
 catch( Exception $exception ) {

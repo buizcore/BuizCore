@@ -20,7 +20,7 @@
  *
  * Der Datenbank Adapter für die ACLs
  *
- * @package net.webfrap
+ * @package net.buiz
  *
  * @todo die queries müssen noch in query objekte ausgelagert werden
  *
@@ -34,22 +34,22 @@ class LibAclAdapter_Db extends LibAclAdapter
   /**
    * @var string
    */
-  public $sourceAssigned = 'webfrap_acl_assigned_view';
+  public $sourceAssigned = 'buiz_acl_assigned_view';
 
   /**
    * @var string
    */
-  public $sourceMaxPermission = 'webfrap_acl_max_permission_view';
+  public $sourceMaxPermission = 'buiz_acl_max_permission_view';
 
   /**
    * @var string
    */
-  public $sourceRelation = 'webfrap_area_user_level_view';
+  public $sourceRelation = 'buiz_area_user_level_view';
 
   /**
    * @var string
    */
-  public $roleRelation = 'webfrap_has_arearole_view';
+  public $roleRelation = 'buiz_has_arearole_view';
 
   /**
    * @var LibResource_Provider
@@ -207,7 +207,7 @@ SELECT
   ref_field,
   groups,
   set_groups
-FROM wbfsys_security_backpath
+FROM buiz_security_backpath
 WHERE id_area = {$areaId};
 SQL;
 
@@ -244,7 +244,7 @@ SELECT
   priv_message_level,
   meta_level
 FROM
-  wbfsys_security_backpath
+  buiz_security_backpath
 WHERE
   id_area = {$areaId};
 SQL;
@@ -267,7 +267,7 @@ SQL;
    *
    * wenn die constante WFB_NO_LOGIN auf true definiert wurde gibt diese
    * methode immer true zurück
-   * @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
+   * @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
    *
    * @param string $key
    * {
@@ -278,7 +278,7 @@ SQL;
    *   @example 'mod-area'  single area
    *   @example 'mod-area/mgmt-area/mgmt-area' path like area
    *   @example 'mgmt-area1/mgmt-area2>mgmt-area3' gruppe von masken
-   *   @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=acls.security_areas" >Security areas</a>
+   *   @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=acls.security_areas" >Security areas</a>
    * }
    *
    * @param Entity $entity Das Entity Objekt
@@ -327,7 +327,7 @@ SQL;
    *
    * wenn die constante WFB_NO_LOGIN auf true definiert wurde gibt diese
    * methode immer true zurück
-   * @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
+   * @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
    *
    * @param LibAclPermission $container Der Container in welchen die Daten sollen kann mit übergeben werden
    * @param string $key
@@ -339,7 +339,7 @@ SQL;
    *   @example 'mod-area'  single area
    *   @example 'mod-area/mgmt-area/mgmt-area' path like area
    *   @example 'mgmt-area1/mgmt-area2>mgmt-area3' gruppe von masken
-   *   @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=acls.security_areas" >Security areas</a>
+   *   @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=acls.security_areas" >Security areas</a>
    * }
    *
    * @param Entity $entity Das Entity Objekt
@@ -660,7 +660,7 @@ SQL;
    *
    * wenn die constante WFB_NO_LOGIN auf true definiert wurde gibt diese
    * methode immer true zurück
-   * @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
+   * @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
    *
    * @param string $key
    * {
@@ -671,7 +671,7 @@ SQL;
    *   @example 'mod-area'  single area
    *   @example 'mod-area/mgmt-area/mgmt-area' path like area
    *   @example 'mgmt-area1/mgmt-area2>mgmt-area3' gruppe von masken
-   *   @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=acls.security_areas" >Security areas</a>
+   *   @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=acls.security_areas" >Security areas</a>
    * }
    *
    * @param Entity $entity Das Entity Objekt
@@ -734,7 +734,7 @@ SQL;
    *
    * wenn die constante WFB_NO_LOGIN auf true definiert wurde gibt diese
    * methode immer true zurück
-   * @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
+   * @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
    *
    * @param string $key
    * {
@@ -745,7 +745,7 @@ SQL;
    *   @example 'mod-area'  single area
    *   @example 'mod-area/mgmt-area/mgmt-area' path like area
    *   @example 'mgmt-area1/mgmt-area2>mgmt-area3' gruppe von masken
-   *   @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=acls.security_areas" >Security areas</a>
+   *   @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=acls.security_areas" >Security areas</a>
    * }
    *
    * @param Entity $entity Das Entity Objekt
@@ -814,7 +814,7 @@ SQL;
    *
    * wenn die constante WFB_NO_LOGIN auf true definiert wurde gibt diese
    * methode immer true zurück
-   * @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
+   * @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
    *
    * @param string $key
    * {
@@ -825,7 +825,7 @@ SQL;
    *   @example 'mod-area'  single area
    *   @example 'mod-area/mgmt-area/mgmt-area' path like area
    *   @example 'mgmt-area1/mgmt-area2>mgmt-area3' gruppe von masken
-   *   @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=acls.security_areas" >Security areas</a>
+   *   @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=acls.security_areas" >Security areas</a>
    * }
    *
    * @param Entity $entity Das Entity Objekt
@@ -934,7 +934,7 @@ SQL;
    *
    * wenn die constante WFB_NO_LOGIN auf true definiert wurde gibt diese
    * methode immer true zurück
-   * @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
+   * @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
    *
    * @param string $key
    * {
@@ -945,7 +945,7 @@ SQL;
    *   @example 'mod-area'  single area
    *   @example 'mod-area/mgmt-area/mgmt-area' path like area
    *   @example 'mgmt-area1/mgmt-area2>mgmt-area3' gruppe von masken
-   *   @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=acls.security_areas" >Security areas</a>
+   *   @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=acls.security_areas" >Security areas</a>
    * }
    *
    * @param Entity $entity Das Entity Objekt
@@ -1087,7 +1087,7 @@ SQL;
    *
    * wenn die constante WFB_NO_LOGIN auf true definiert wurde gibt diese
    * methode immer true zurück
-   * @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
+   * @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
    *
    * @param string $key
    * {
@@ -1098,7 +1098,7 @@ SQL;
    *   @example 'mod-area'  single area
    *   @example 'mod-area/mgmt-area/mgmt-area' path like area
    *   @example 'mgmt-area1/mgmt-area2/mgmt-area3' gruppe von masken
-   *   @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=acls.security_areas" >Security Areas</a>
+   *   @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=acls.security_areas" >Security Areas</a>
    * }
    *
    *
@@ -1238,7 +1238,7 @@ SQL;
    *
    * wenn die constante WFB_NO_LOGIN auf true definiert wurde gibt diese
    * methode immer true zurück
-   * @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
+   * @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=debug.constants" >Debug Flags</a>
    *
    * @param string $key
    * {
@@ -1249,7 +1249,7 @@ SQL;
    *   @example 'mod-area'  single area
    *   @example 'mod-area/mgmt-area/mgmt-area' path like area
    *   @example 'mgmt-area1/mgmt-area2/mgmt-area3' gruppe von masken
-   *   @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=acls.security_areas" >Security Areas</a>
+   *   @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=acls.security_areas" >Security Areas</a>
    * }
    *
    *
@@ -1589,7 +1589,7 @@ SQL;
    *   @example 'mod-area'  single area
    *   @example 'mod-area/mgmt-area/mgmt-area' path like area
    *   @example 'mgmt-area1/mgmt-area2/mgmt-area3' gruppe von masken
-   *   @tutorial <a href="http://webfrap.net/doc/{{version}}/index.php?page=acls.security_areas" >Security Areas</a>
+   *   @tutorial <a href="http://buiz.net/doc/{{version}}/index.php?page=acls.security_areas" >Security Areas</a>
    * }
    *
    * @param int/Entity $entity def: null,
@@ -1942,7 +1942,7 @@ SQL;
     if ($extend)
       $joinSql = ' LEFT ';
 
-    $sourceRelation = 'webfrap_area_user_level_view';
+    $sourceRelation = 'buiz_area_user_level_view';
 
     $joinSql .= <<<SQL
   JOIN

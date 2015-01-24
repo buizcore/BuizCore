@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class SFiles
 {
@@ -29,7 +29,7 @@ class SFiles
    *
    * @param string $oldPos Oldpos Die alte Position des Ordners
    * @param string $newPos Newpos Die neue Position des Ordners
-   * @throws Webfrap_Exception
+   * @throws Buiz_Exception
    * @return array
    */
   public static function move($oldPos , $newPos)
@@ -43,7 +43,7 @@ class SFiles
    *
    * @param string Oldpos Die alte Position des Ordners
    * @param string Newpos Die neue Position des Ordners
-   * @throws Webfrap_Exception
+   * @throws Buiz_Exception
    * @return array
    */
   public static function copy($oldPos ,$newPos)
@@ -54,7 +54,7 @@ class SFiles
   /** Delete a File
    *
    * @param string $path Todel Löschen eines Ordners
-   * @throws Webfrap_Exception
+   * @throws Buiz_Exception
    * @return array
    */
   public static function delete($path)
@@ -79,7 +79,7 @@ class SFiles
   /** get the filety
    *
    * @param string $fileName name of the file
-   * @throws Webfrap_Exception
+   * @throws Buiz_Exception
    * @return array
    */
   public static function getMimeType($fileName)
@@ -100,7 +100,7 @@ class SFiles
    * @param string  $fileName Todel Löschen eines Ordners
    * @param string  $ending Endung der Dateien die gelöscht werden sollen
    *
-   * @throws Webfrap_Exception
+   * @throws Buiz_Exception
    * @return array
    */
   public static function checkExtention($fileName, $ending)
@@ -129,7 +129,7 @@ class SFiles
    * @param string $filename
    * @param string $oldData
    * @param string $newData
-   * @throws Webfrap_Exception
+   * @throws Buiz_Exception
    * @return void
    */
   public static function replaceInFile($fileName ,$oldData ,$newData)

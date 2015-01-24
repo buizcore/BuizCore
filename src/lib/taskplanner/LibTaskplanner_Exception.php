@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class LibTaskplanner_Exception extends Lib_Exception

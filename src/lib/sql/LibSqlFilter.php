@@ -20,7 +20,7 @@
  * Klasse zum erstellen von speziellen Filtern die in eine Criteria injected
  * werden können
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibSqlFilter extends BaseChild
 {

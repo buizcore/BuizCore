@@ -18,7 +18,7 @@
 /**
  * Basisklasse für Imports in das System
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibImport
 {

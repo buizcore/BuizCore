@@ -17,7 +17,7 @@
 
 /**
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibRelationContainer_Group implements LibRelationContainer
 {
@@ -26,7 +26,7 @@ class LibRelationContainer_Group implements LibRelationContainer
 /*////////////////////////////////////////////////////////////////////////////*/
 
   /**
-   * @var WbfsysRoleGroup_Entity
+   * @var BuizRoleGroup_Entity
    */
   public $group = null;
 

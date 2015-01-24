@@ -1,12 +1,12 @@
 <?php
 
 // view: assign_user_area_vid_idx
-if ($this->viewExists($dbName, $schemaName, 'webfrap_acl_max_permission_view'  )) {
-  $this->dropView($dbName, $schemaName, 'webfrap_acl_max_permission_view'  );
+if ($this->viewExists($dbName, $schemaName, 'buiz_acl_max_permission_view'  )) {
+  $this->dropView($dbName, $schemaName, 'buiz_acl_max_permission_view'  );
 }
 
 $sql = <<<SQL
-CREATE VIEW {$schemaName}.webfrap_acl_max_permission_view
+CREATE VIEW {$schemaName}.buiz_acl_max_permission_view
 AS
   SELECT
     max(acl_access.access_level)  as "acl-level",
@@ -16,15 +16,15 @@ AS
     acl_gu.vid                    as "acl-vid",
     min(acl_gu.partial)           as "assign-partial"
   FROM
-    {$schemaName}.wbfsys_group_users acl_gu
+    {$schemaName}.buiz_group_users acl_gu
   JOIN
-    {$schemaName}.wbfsys_security_access acl_access
+    {$schemaName}.buiz_security_access acl_access
     ON
       acl_gu.id_group = acl_access.id_group
       AND acl_gu.id_area = acl_access.id_area
       AND (acl_access.partial = 0 OR acl_access.partial IS NULL)
   JOIN
-    {$schemaName}.wbfsys_security_area acl_area
+    {$schemaName}.buiz_security_area acl_area
     ON
       acl_gu.id_area = acl_area.rowid
   GROUP BY
@@ -36,14 +36,14 @@ AS
 ;
 SQL;
 $this->ddl($sql);
-$this->chownView( $dbName, $schemaName, 'webfrap_acl_max_permission_view', $owner);
+$this->chownView( $dbName, $schemaName, 'buiz_acl_max_permission_view', $owner);
 
 // view: assign_user_area_vid_idx
-if ($this->viewExists($dbName, $schemaName, 'webfrap_acl_assigned_view'  )) {
-  $this->dropView($dbName, $schemaName, 'webfrap_acl_assigned_view'  );
+if ($this->viewExists($dbName, $schemaName, 'buiz_acl_assigned_view'  )) {
+  $this->dropView($dbName, $schemaName, 'buiz_acl_assigned_view'  );
 }
 $sql = <<<SQL
-CREATE  OR REPLACE VIEW {$schemaName}.webfrap_acl_assigned_view
+CREATE  OR REPLACE VIEW {$schemaName}.buiz_acl_assigned_view
 AS
   SELECT
     max(acl_gu.partial)           as "assign-has-partial",
@@ -54,15 +54,15 @@ AS
     acl_gu.vid                    as "acl-vid"
 
   FROM
-    {$schemaName}.wbfsys_group_users acl_gu
+    {$schemaName}.buiz_group_users acl_gu
 
   JOIN
-    {$schemaName}.wbfsys_security_area acl_area
+    {$schemaName}.buiz_security_area acl_area
     ON
       acl_gu.id_area = acl_area.rowid
 
   JOIN
-    {$schemaName}.wbfsys_security_access acl_access
+    {$schemaName}.buiz_security_access acl_access
     ON
       acl_gu.id_group = acl_access.id_group
       AND acl_gu.id_area = acl_access.id_area
@@ -78,16 +78,16 @@ AS
 
 SQL;
 $this->ddl($sql);
-$this->chownView( $dbName, $schemaName, 'webfrap_acl_assigned_view', $owner);
+$this->chownView( $dbName, $schemaName, 'buiz_acl_assigned_view', $owner);
 
 // view: assign_user_area_vid_idx
-if ($this->viewExists($dbName, $schemaName, 'webfrap_area_user_level_view'  )) {
-  $this->dropView($dbName, $schemaName, 'webfrap_area_user_level_view'  );
+if ($this->viewExists($dbName, $schemaName, 'buiz_area_user_level_view'  )) {
+  $this->dropView($dbName, $schemaName, 'buiz_area_user_level_view'  );
 }
 
 $sql = <<<SQL
 
-CREATE OR REPLACE VIEW {$schemaName}.webfrap_area_user_level_view
+CREATE OR REPLACE VIEW {$schemaName}.buiz_area_user_level_view
   AS
   SELECT distinct
     max(acl_access.access_level)  as "acl-level",
@@ -98,16 +98,16 @@ CREATE OR REPLACE VIEW {$schemaName}.webfrap_area_user_level_view
     acl_gu.id_group               as "acl-group"
 
   FROM
-    {$schemaName}.wbfsys_security_area acl_area
+    {$schemaName}.buiz_security_area acl_area
 
   JOIN
-    {$schemaName}.wbfsys_security_access acl_access
+    {$schemaName}.buiz_security_access acl_access
     ON
       acl_area.rowid = acl_access.id_area
       AND acl_access.partial = 0
 
   left JOIN
-    {$schemaName}.wbfsys_group_users acl_gu
+    {$schemaName}.buiz_group_users acl_gu
     ON
       acl_gu.partial = 0
 
@@ -138,16 +138,16 @@ CREATE OR REPLACE VIEW {$schemaName}.webfrap_area_user_level_view
 
 SQL;
 $this->ddl($sql);
-$this->chownView( $dbName, $schemaName, 'webfrap_area_user_level_view', $owner);
+$this->chownView( $dbName, $schemaName, 'buiz_area_user_level_view', $owner);
 
 // view: assign_user_area_vid_idx
-if ($this->viewExists($dbName, $schemaName, 'webfrap_has_arearole_view'  )) {
-  $this->dropView($dbName, $schemaName, 'webfrap_has_arearole_view'  );
+if ($this->viewExists($dbName, $schemaName, 'buiz_has_arearole_view'  )) {
+  $this->dropView($dbName, $schemaName, 'buiz_has_arearole_view'  );
 }
 
 $sql = <<<SQL
 
-CREATE  OR REPLACE VIEW {$schemaName}.webfrap_has_arearole_view
+CREATE  OR REPLACE VIEW {$schemaName}.buiz_has_arearole_view
   AS
   SELECT
     acl_area.access_key           as "acl-area",
@@ -157,19 +157,19 @@ CREATE  OR REPLACE VIEW {$schemaName}.webfrap_has_arearole_view
     acl_gu.id_group               as "acl-id_group",
     group_role.access_key         as "acl-group"
   FROM
-    {$schemaName}.wbfsys_security_area acl_area
+    {$schemaName}.buiz_security_area acl_area
   JOIN
-    {$schemaName}.wbfsys_security_access acl_access
+    {$schemaName}.buiz_security_access acl_access
     ON
       acl_access.id_area = acl_area.rowid
         and (acl_access.partial = 0 or acl_access.partial is null)
   JOIN
-    {$schemaName}.wbfsys_group_users acl_gu
+    {$schemaName}.buiz_group_users acl_gu
     ON
       acl_gu.partial = 0
 
   JOIN
-    {$schemaName}.wbfsys_role_group group_role
+    {$schemaName}.buiz_role_group group_role
     ON
       acl_gu.id_group = group_role.rowid
 
@@ -191,11 +191,11 @@ CREATE  OR REPLACE VIEW {$schemaName}.webfrap_has_arearole_view
 
 SQL;
 $this->ddl($sql);
-$this->chownView( $dbName, $schemaName, 'webfrap_has_arearole_view', $owner);
+$this->chownView( $dbName, $schemaName, 'buiz_has_arearole_view', $owner);
 
 // view: assign_user_area_vid_idx
-if ($this->viewExists($dbName, $schemaName, 'webfrap_acl_level_global_asgd_view'  )) {
-  $this->dropView($dbName, $schemaName, 'webfrap_acl_level_global_asgd_view'  );
+if ($this->viewExists($dbName, $schemaName, 'buiz_acl_level_global_asgd_view'  )) {
+  $this->dropView($dbName, $schemaName, 'buiz_acl_level_global_asgd_view'  );
 }
 
 /*
@@ -205,7 +205,7 @@ if ($this->viewExists($dbName, $schemaName, 'webfrap_acl_level_global_asgd_view'
  */
 
 $sql = <<<SQL
-CREATE  OR REPLACE VIEW {$schemaName}.webfrap_acl_level_global_asgd_view
+CREATE  OR REPLACE VIEW {$schemaName}.buiz_acl_level_global_asgd_view
 AS
   SELECT
     max(acl_access.access_level)  as "acl-level",
@@ -213,9 +213,9 @@ AS
     acl_area.rowid                as "acl-id_area",
     acl_gu.id_user                as "acl-user"
   FROM
-    {$schemaName}.wbfsys_group_users acl_gu
+    {$schemaName}.buiz_group_users acl_gu
   JOIN
-    {$schemaName}.wbfsys_security_access acl_access
+    {$schemaName}.buiz_security_access acl_access
     ON
       acl_gu.id_group = acl_access.id_group
       AND
@@ -224,7 +224,7 @@ AS
           OR acl_access.partial IS NULL
        )
   JOIN
-    {$schemaName}.wbfsys_security_area acl_area
+    {$schemaName}.buiz_security_area acl_area
     ON
       acl_access.id_area = acl_area.rowid
   WHERE
@@ -239,5 +239,5 @@ AS
 
 SQL;
 $this->ddl($sql);
-$this->chownView( $dbName, $schemaName, 'webfrap_acl_level_global_asgd_view', $owner);
+$this->chownView( $dbName, $schemaName, 'buiz_acl_level_global_asgd_view', $owner);
 

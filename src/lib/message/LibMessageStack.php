@@ -24,7 +24,7 @@
  * Alle andere Informationen sind direkt im Versandweg oder dem Message Provider
  * zu entnehmen
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibMessageStack extends PBase
 {
@@ -32,7 +32,7 @@ class LibMessageStack extends PBase
   /**
    * Die Person welche die Nachricht geschickt hat
    *
-   * @var WbfsysRoleUser_Entity
+   * @var BuizRoleUser_Entity
    */
   public $sender = null;
 
@@ -51,7 +51,7 @@ class LibMessageStack extends PBase
 
   /**
    * Array mit Gruppen an welche die Nachricht gehen soll
-   * @var array<WbfsysRoleGroup_Entity>
+   * @var array<BuizRoleGroup_Entity>
    */
   public $receiverGroups = [];
 
@@ -76,7 +76,7 @@ class LibMessageStack extends PBase
 
   /**
    * Dateien die der Nachricht angehängt werden sollen
-   * @var array<name:WbfsysFile_Entity>
+   * @var array<name:BuizFile_Entity>
    */
   public $attachments = [];
 
@@ -215,7 +215,7 @@ class LibMessageStack extends PBase
   public $serverAddress = null;
 
   /**
-   * @var WebfrapInfo
+   * @var BuizInfo
    */
   public $info = null;
 
@@ -242,7 +242,7 @@ class LibMessageStack extends PBase
   public function __construct()
   {
 
-    $this->info = WebfrapInfo::getDefault();
+    $this->info = BuizInfo::getDefault();
 
     $this->stackId = BuizCore::uuid();
 
@@ -259,7 +259,7 @@ class LibMessageStack extends PBase
   public function setSender($sender)
   {
 
-    if ($sender instanceof WbfsysRoleUser_Entity)
+    if ($sender instanceof BuizRoleUser_Entity)
       $this->sender = new LibMessageSender($sender);
     else
       $this->sender = $sender;
@@ -454,7 +454,7 @@ class LibMessageStack extends PBase
   }//end public function getAttachments */
 
   /**
-   * @param WbfsysFile_Entity
+   * @param BuizFile_Entity
    */
   public function addAttachment($attachment)
   {

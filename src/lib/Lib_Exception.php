@@ -16,10 +16,10 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class Lib_Exception extends WebfrapSys_Exception
+class Lib_Exception extends BuizSys_Exception
 {
 
 }

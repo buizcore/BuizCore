@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibRichtextNode_Node extends LibRichtextNode
 {
@@ -43,7 +43,7 @@ SELECT
   rowid,
   title
   FROM
-    wbfsys_know_how_node
+    buiz_know_how_node
   WHERE access_key = upper('{$db->escape($this->value)}');
 SQL;
 
@@ -54,14 +54,14 @@ SQL;
     $compiled = <<<HTML
 <a
   class="wcm wcm_req_ajax"
-  href="maintab.php?c=Webfrap.KnowhowNode.show&amp;objid={$data['rowid']}" >{$data['title']}</a>
+  href="maintab.php?c=Buiz.KnowhowNode.show&amp;objid={$data['rowid']}" >{$data['title']}</a>
 HTML;
 
     } else {
       $compiled = <<<HTML
 <a
   class="wcm wcm_req_ajax not_exists"
-  href="maintab.php?c=Webfrap.KnowhowNode.open&amp;node={$this->value}" >{$this->value}</a>
+  href="maintab.php?c=Buiz.KnowhowNode.open&amp;node={$this->value}" >{$this->value}</a>
 HTML;
 
     }

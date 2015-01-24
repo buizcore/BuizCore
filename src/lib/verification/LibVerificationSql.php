@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibVerificationSql extends LibVerificationAdapter
 {
@@ -50,7 +50,7 @@ class LibVerificationSql extends LibVerificationAdapter
       $orm = $this->dataSource;
 
     try {
-      if (!$role = $orm->get('WbfsysRoleUser', " upper(name) = upper('".$login."') ")) {
+      if (!$role = $orm->get('BuizRoleUser', " upper(name) = upper('".$login."') ")) {
         Message::addError(I18n::s('No User with that name', 'wbf.message'));
 
         return false;

@@ -12,15 +12,15 @@ AS
     acl_gu.id_user as "acl-user",
     acl_gu.vid as "acl-vid"
   FROM
-    wbfsys_group_users acl_gu
+    buiz_group_users acl_gu
   JOIN
-    wbfsys_security_access acl_access
+    buiz_security_access acl_access
     ON
       acl_gu.id_group = acl_access.id_group
       AND acl_gu.id_area = acl_access.id_area
       AND ( acl_access.partial = 0 OR acl_access.partial IS NULL )
   JOIN
-    wbfsys_security_area acl_area
+    buiz_security_area acl_area
     ON
       acl_gu.id_area = acl_area.rowid
   GROUP BY
@@ -42,15 +42,15 @@ AS
     acl_gu.vid                    as "acl-vid"
     
   FROM
-    wbfsys_group_users_r acl_gu
+    buiz_group_users_r acl_gu
     
   JOIN
-    wbfsys_security_area acl_area
+    buiz_security_area acl_area
     ON
       acl_gu.id_area = acl_area.rowid
       
   JOIN
-    wbfsys_security_access acl_access
+    buiz_security_access acl_access
     ON
       acl_gu.id_group = acl_access.id_group
       AND acl_gu.id_area = acl_access.id_area
@@ -77,16 +77,16 @@ CREATE OR REPLACE VIEW webfrap_inject_acls_view
     acl_gu.id_group               as "acl-group"
     
   FROM
-    wbfsys_security_area acl_area
+    buiz_security_area acl_area
     
   JOIN
-    wbfsys_security_access acl_access
+    buiz_security_access acl_access
     ON
       acl_area.rowid = acl_access.id_area
       AND acl_access.partial = 0
     
   left JOIN
-    wbfsys_group_users acl_gu
+    buiz_group_users acl_gu
     ON
       acl_gu.partial = 0
 
@@ -124,19 +124,19 @@ CREATE  OR REPLACE VIEW webfrap_has_arearole_view
     acl_gu.id_group               as "acl-id_group",
     group_role.access_key         as "acl-group"
   FROM
-    wbfsys_security_area acl_area
+    buiz_security_area acl_area
   JOIN
-    wbfsys_security_access acl_access
+    buiz_security_access acl_access
     ON
       acl_access.id_area = acl_area.rowid
         and ( acl_access.partial = 0 or acl_access.partial is null )
   JOIN
-    wbfsys_group_users acl_gu
+    buiz_group_users acl_gu
     ON
       acl_gu.partial = 0
 
   JOIN
-    wbfsys_role_group group_role
+    buiz_role_group group_role
     ON
       acl_gu.id_group = group_role.rowid
       
@@ -168,14 +168,14 @@ AS
     acl_area.rowid                as "acl-id_area",
     acl_gu.id_user                as "acl-user"
   FROM
-    wbfsys_group_users acl_gu
+    buiz_group_users acl_gu
   JOIN
-    wbfsys_security_access acl_access
+    buiz_security_access acl_access
     ON
       acl_gu.id_group = acl_access.id_group
       AND acl_access.partial = 0
   JOIN
-    wbfsys_security_area acl_area
+    buiz_security_area acl_area
     ON
       acl_access.id_area = acl_area.rowid
   WHERE
@@ -197,9 +197,9 @@ AS
 	  acl_area.rowid AS id_area, 
 	  acl_access.id_group AS id_group, 
 	  acl_group.access_key AS group_key
-  FROM wbfsys_security_access acl_access 
-  JOIN wbfsys_security_area acl_area ON acl_access.id_area = acl_area.rowid
-  JOIN wbfsys_role_group acl_group ON acl_access.id_group = acl_group.rowid
+  FROM buiz_security_access acl_access 
+  JOIN buiz_security_area acl_area ON acl_access.id_area = acl_area.rowid
+  JOIN buiz_role_group acl_group ON acl_access.id_group = acl_group.rowid
   WHERE
 	  acl_access.partial = 0
   GROUP BY 
@@ -220,16 +220,16 @@ CREATE OR REPLACE VIEW webfrap_area_user_level_view
     acl_gu.id_group               as "acl-group"
     
   FROM
-    wbfsys_security_area acl_area
+    buiz_security_area acl_area
     
   JOIN
-    wbfsys_security_access acl_access
+    buiz_security_access acl_access
     ON
       acl_area.rowid = acl_access.id_area
       AND acl_access.partial = 0
     
   left JOIN
-    wbfsys_group_users acl_gu
+    buiz_group_users acl_gu
     ON
       acl_gu.partial = 0
 
@@ -268,21 +268,21 @@ CREATE OR REPLACE VIEW webfrap_area_gruser_level_view
     acl_group.access_key          as "acl-group_key"
     
   FROM
-    wbfsys_security_area acl_area
+    buiz_security_area acl_area
     
   JOIN
-    wbfsys_security_access acl_access
+    buiz_security_access acl_access
     ON
       acl_area.rowid = acl_access.id_area
       AND acl_access.partial = 0
     
   left JOIN
-    wbfsys_group_users acl_gu
+    buiz_group_users acl_gu
     ON
       acl_gu.partial = 0
     
   JOIN
-    wbfsys_role_group acl_group
+    buiz_role_group acl_group
     ON
       acl_group.rowid = acl_gu.id_group
 
@@ -322,16 +322,16 @@ CREATE OR REPLACE VIEW webfrap_area_level_by_user_view
     acl_gu.id_group as id_group
     
   FROM
-    wbfsys_security_area acl_area
+    buiz_security_area acl_area
     
   JOIN
-    wbfsys_security_access acl_access
+    buiz_security_access acl_access
     ON
       acl_area.rowid = acl_access.id_area
       AND acl_access.partial = 0
     
   left JOIN
-    wbfsys_group_users acl_gu
+    buiz_group_users acl_gu
     ON
       acl_gu.partial = 0
 

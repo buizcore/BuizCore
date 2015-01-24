@@ -18,7 +18,7 @@
 /** class LibLogFile
  * Die Extention des Logsystem um Lodateien schreiben zu können,
  * sowie um Logdatei verwalten zu können
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class LibLogFile implements LibLogAdapter
@@ -378,7 +378,7 @@ class LibLogFile implements LibLogAdapter
     /*
       'singel' => 'true',
       'logfolder' => 'log/',
-      'logfile' => 'webfrap.log',
+      'logfile' => 'buiz.log',
       'logroll' =>  false ,
       'logrotate' => '10',
       'maxsize' => '10000',

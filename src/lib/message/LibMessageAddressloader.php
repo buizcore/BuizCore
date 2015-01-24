@@ -18,7 +18,7 @@
 /**
  * Klasse zum laden der Benutzer die den Gruppen die Adressiert wurde angehören
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibMessageAddressloader extends PBase
 {

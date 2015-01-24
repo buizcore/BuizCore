@@ -19,10 +19,10 @@
  * Exception die im Controller geworfen wird um das bearbeiten einer Anfrage
  * des Benutzers entgültig ab zu brechen
  *
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class InternalError_Exception extends WebfrapSys_Exception
+class InternalError_Exception extends BuizSys_Exception
 {
 
   /**

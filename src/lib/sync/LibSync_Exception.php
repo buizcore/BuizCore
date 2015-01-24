@@ -16,9 +16,9 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
-class LibSync_Exception extends WebfrapService_Exception
+class LibSync_Exception extends BuizService_Exception
 {
 
 }//end class LibSync_Exception

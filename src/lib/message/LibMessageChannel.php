@@ -21,7 +21,7 @@
  * Der Channel legt den Versandweg fest über den Nachrichten an Personen oder
  * sonstige Empfänger weiter geleitet werden.
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 abstract class LibMessageChannel
 {

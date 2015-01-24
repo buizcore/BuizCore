@@ -17,7 +17,7 @@
 
 /**
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibRelationContainer_User implements LibRelationContainer
 {
@@ -26,7 +26,7 @@ class LibRelationContainer_User implements LibRelationContainer
 /*////////////////////////////////////////////////////////////////////////////*/
 
   /**
-   * @var WbfsysRoleUser_Entity
+   * @var BuizRoleUser_Entity
    */
   public $user = null;
 

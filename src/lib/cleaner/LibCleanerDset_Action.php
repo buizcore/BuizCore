@@ -16,9 +16,9 @@
 *******************************************************************************/
 
 /**
- * @author Dominik Bonsch <dominik.bonsch@webfrap.net>
- * @copyright Webfrap Developer Network <contact@webfrap.net>
- * @package net.webfrap
+ * @author Dominik Bonsch <dominik.bonsch@buiz.net>
+ * @copyright Buiz Developer Network <contact@buiz.net>
+ * @package net.buiz
  */
 class LibCleanerDset_Action extends Action
 {
@@ -45,7 +45,7 @@ That should not happen. You need to check if you got a valid ID before you
 use it to clean reference datasets.
 ERRMSG;
 
-      throw new WebfrapSys_Exception
+      throw new BuizSys_Exception
       (
         $devMsg,
         Error::INTERNAL_ERROR_MSG,
@@ -60,58 +60,58 @@ ERRMSG;
 
     // bookmarks
     $sql[] = <<<SQL
-DELETE FROM wbfsys_bookmark where vid = {$id};
+DELETE FROM buiz_bookmark where vid = {$id};
 SQL;
 
     //// TAGGING löschen
 
     // Tags auf einen Datensatz
     $sql[] = <<<SQL
-DELETE FROM wbfsys_tag_reference where vid = {$id};
+DELETE FROM buiz_tag_reference where vid = {$id};
 SQL;
 
     //// COMMENT daten löschen
 
     // comment ratings löschen
     $sql[] = <<<SQL
-DELETE FROM wbfsys_comment_rating where id_comment IN(
-  SELECT rowid from wbfsys_comment where vid =  {$id}
+DELETE FROM buiz_comment_rating where id_comment IN(
+  SELECT rowid from buiz_comment where vid =  {$id}
 );
 SQL;
 
     // comments
     $sql[] = <<<SQL
-DELETE FROM wbfsys_comment where vid = {$id};
+DELETE FROM buiz_comment where vid = {$id};
 SQL;
 
     //// PROZESS bezogenen Daten löschen
     // Prozess history leeren
     $sql[] = <<<SQL
-DELETE FROM wbfsys_process_step where id_process_instance IN(
-  SELECT rowid from wbfsys_process_status where vid =  {$id}
+DELETE FROM buiz_process_step where id_process_instance IN(
+  SELECT rowid from buiz_process_status where vid =  {$id}
 );
 SQL;
 
     // Prozess status leeren
     $sql[] = <<<SQL
-DELETE FROM wbfsys_process_status where vid = {$id};
+DELETE FROM buiz_process_status where vid = {$id};
 SQL;
 
     //// ACCESS / GROUP USERS
     // Group Users mit der VID löschen
     $sql[] = <<<SQL
-DELETE FROM wbfsys_group_users where vid = {$id};
+DELETE FROM buiz_group_users where vid = {$id};
 SQL;
 
     //// INDEX
     /*
     // links auf Datensätze löschen
     $sql[] = <<<SQL
-DELETE FROM wbfsys_data_link where id_link = {$id};
+DELETE FROM buiz_data_link where id_link = {$id};
 SQL;
     // Datensätze aus dem Index Löschen
     $sql[] = <<<SQL
-DELETE FROM wbfsys_data_index where vid = {$id};
+DELETE FROM buiz_data_index where vid = {$id};
 SQL;
     */
 

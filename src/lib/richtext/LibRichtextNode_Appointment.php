@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibRichtextNode_Appointment extends LibRichtextNode
 {

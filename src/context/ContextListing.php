@@ -24,8 +24,8 @@
  * __get gibt entweder den passenden wert für einen key oder null zurück
  * }
  *
- * @author dominik alexander bonsch <dominik.bonsch@webfrap.net>
- * @package net.webfrap
+ * @author dominik alexander bonsch <dominik.bonsch@buiz.net>
+ * @package net.buiz
  * 
  * @property string $publish the publish type, like selectbox, tree, table..
  * @property string $ltype über den ltype können verschiedene listenvarianten gewählt werden diese müssen jedoch vorhanden / implementiert sein

@@ -17,7 +17,7 @@
 
 /**
  * Die Basis Connection Klasse für alle Datenbankverbindungen
- * @package net.webfrap
+ * @package net.buiz
  */
 abstract class LibDbConnection
 {

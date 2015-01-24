@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class Protocol extends BaseChild
 {
@@ -85,7 +85,7 @@ class Protocol extends BaseChild
 
     $sql = <<<SQL
 
-UPDATE wbfsys_protocol_access
+UPDATE buiz_protocol_access
 SET
   counter = counter +1,
    m_time_created = '{$createDate}',
@@ -103,7 +103,7 @@ SQL;
     if (!$db->getAffectedRows()) {
       $sql = <<<SQL
 
-INSERT INTO wbfsys_protocol_access
+INSERT INTO buiz_protocol_access
 (
   id_mask,
   counter,
@@ -150,7 +150,7 @@ SQL;
         return $mId;
     }
 
-    $id = $orm->getIdByKey('WbfsysMask', $maskKey);
+    $id = $orm->getIdByKey('BuizMask', $maskKey);
 
     if ($id) {
 
@@ -161,7 +161,7 @@ SQL;
       return $id;
     }
 
-    $mask = $orm->newEntity('WbfsysMask');
+    $mask = $orm->newEntity('BuizMask');
     $mask->access_key = $maskKey;
     $mask->name = SParserString::subToName($maskKey);
     $orm->insert($mask);

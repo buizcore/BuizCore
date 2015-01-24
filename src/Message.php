@@ -19,8 +19,8 @@
  * Das Messaging System
  * Statische Wrapperklasse für einen einfachen Zugriff auf den Messagepool
  *
- * @author Dominik Bonsch <dominik.bonsch@webfrap.net>
- * @package net.webfrap
+ * @author Dominik Bonsch <dominik.bonsch@buiz.net>
+ * @package net.buiz
  */
 class Message
 {

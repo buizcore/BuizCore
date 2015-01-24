@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  * @todo implement me
  */
 class LibLogMail implements LibLogAdapter

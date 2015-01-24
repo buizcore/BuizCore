@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibUser extends BaseChild
 {
@@ -62,13 +62,13 @@ class LibUser extends BaseChild
 
     $orm = $this->getOrm();
 
-    $userObj = $orm->get('WbfsysRoleUser', "UPPER(name)=UPPER('{$user->userName}')");
+    $userObj = $orm->get('BuizRoleUser', "UPPER(name)=UPPER('{$user->userName}')");
 
     if ($userObj) {
       return null;
     }
 
-    $userObj = $orm->newEntity('WbfsysRoleUser');
+    $userObj = $orm->newEntity('BuizRoleUser');
     $personObj = $orm->newEntity('CorePerson');
     $userObj->id_person = $personObj;
 
@@ -89,13 +89,13 @@ class LibUser extends BaseChild
     // groups
     foreach ($user->roles as $role) {
 
-      $group = $orm->getByKey('WbfsysRoleGroup', $role);
+      $group = $orm->getByKey('BuizRoleGroup', $role);
       if (!$group)
         continue;
 
-      $userGroupObj = $orm->newEntity('WbfsysGroupUsers', "id_user={$userObj} and id_group={$group}");
+      $userGroupObj = $orm->newEntity('BuizGroupUsers', "id_user={$userObj} and id_group={$group}");
       if (!$userGroupObj) {
-        $userGroupObj = $orm->newEntity('WbfsysGroupUsers');
+        $userGroupObj = $orm->newEntity('BuizGroupUsers');
         $userGroupObj->id_user = $userObj;
         $userGroupObj->id_group = $group;
         $userGroupObj->partial = 0;
@@ -107,13 +107,13 @@ class LibUser extends BaseChild
     // profiles
     foreach ($user->profiles as $profile) {
 
-      $profileNode = $orm->getByKey('WbfsysProfile', $profile);
+      $profileNode = $orm->getByKey('BuizProfile', $profile);
       if (!$profileNode)
         continue;
 
-      $userGroupProfile = $orm->newEntity('WbfsysUserProfiles', "id_user={$userObj} and id_profile={$profile}");
+      $userGroupProfile = $orm->newEntity('BuizUserProfiles', "id_user={$userObj} and id_profile={$profile}");
       if (!$userGroupProfile) {
-        $userGroupProfile = $orm->newEntity('WbfsysUserProfiles');
+        $userGroupProfile = $orm->newEntity('BuizUserProfiles');
         $userGroupProfile->id_user = $userObj;
         $userGroupProfile->id_profile = $profile;
         $orm->save($userGroupProfile);
@@ -124,14 +124,14 @@ class LibUser extends BaseChild
     // address items
     foreach ($user->addressItems as $addressItem) {
 
-      $type = $orm->getByKey('WbfsysAddressItemType', $addressItem[0]);
+      $type = $orm->getByKey('BuizAddressItemType', $addressItem[0]);
 
       if (!$type)
         continue;
 
-      $addrItem = $orm->newEntity('WbfsysAddressItem', "id_user={$userObj} and id_type={$type}");
+      $addrItem = $orm->newEntity('BuizAddressItem', "id_user={$userObj} and id_type={$type}");
       if (!$addrItem) {
-        $addrItem = $orm->newEntity('WbfsysAddressItem');
+        $addrItem = $orm->newEntity('BuizAddressItem');
         $addrItem->id_user = $userObj;
         $addrItem->id_profile = $type;
         $addrItem->address_value = $addressItem[1];
@@ -141,12 +141,12 @@ class LibUser extends BaseChild
     }
 
     // msg type
-    $type = $orm->getByKey('WbfsysAddressItemType', 'message');
+    $type = $orm->getByKey('BuizAddressItemType', 'message');
 
     if (!$type) {
-      $addrItem = $orm->newEntity('WbfsysAddressItem', "id_user={$userObj} and id_type={$type}");
+      $addrItem = $orm->newEntity('BuizAddressItem', "id_user={$userObj} and id_type={$type}");
       if (!$addrItem) {
-        $addrItem = $orm->newEntity('WbfsysAddressItem');
+        $addrItem = $orm->newEntity('BuizAddressItem');
         $addrItem->id_user = $userObj;
         $addrItem->id_profile = $type;
         $addrItem->address_value = $userObj->getId();
@@ -166,7 +166,7 @@ class LibUser extends BaseChild
     $orm = $this->getOrm();
 
     $envelop = new LibEnvelopUser();
-    $userObj = $orm->get('WbfsysRoleUser', $id);
+    $userObj = $orm->get('BuizRoleUser', $id);
 
     if (!$userObj)
       return null;

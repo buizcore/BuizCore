@@ -18,7 +18,7 @@
 /**
  * class Controller
  * Extention zum verwalten und erstellen von neuen Menus in der Applikation
- * @package net.webfrap
+ * @package net.buiz
  * @deprecated use MvcController
  */
 abstract class Controller extends BaseChild
@@ -431,7 +431,7 @@ abstract class Controller extends BaseChild
    * @param LibRequestHttp $request
    * @param LibResponseHttp $response
    *
-   * @throws Webfrap_Exception
+   * @throws Buiz_Exception
    */
   public function routeToSubcontroller($conKey, $do, $request, $response)
   {
@@ -448,7 +448,7 @@ abstract class Controller extends BaseChild
 
       // Initialisieren der Extention
       if (!$controller->initController())
-        throw new Webfrap_Exception('Failed to initialize Controller');
+        throw new Buiz_Exception('Failed to initialize Controller');
       
 
       // Run the mainpart
@@ -636,7 +636,7 @@ abstract class Controller extends BaseChild
 
            $this->$methodeName($request, $response);
 
-         } catch (Webfrap_Exception $error) {
+         } catch (Buiz_Exception $error) {
              
            $this->errorPage(
              $error
@@ -923,7 +923,7 @@ abstract class Controller extends BaseChild
    *      $response->i18n->l
    *      (
    *        'The requested View not exists',
-   *        'wbfsys.error'
+   *        'buiz.error'
    *      );
    *    );
    *    return false;
@@ -1122,7 +1122,7 @@ abstract class Controller extends BaseChild
    *      $response->i18n->l
    *      (
    *        'The requested View not exists',
-   *        'wbfsys.error'
+   *        'buiz.error'
    *      );
    *    );
    *    return false;
@@ -1248,7 +1248,7 @@ abstract class Controller extends BaseChild
 
       try {
 
-        $authRole = $orm->get('WbfsysRoleUser', "lower(name) = lower('{$userName}')");
+        $authRole = $orm->get('BuizRoleUser', "lower(name) = lower('{$userName}')");
         
         if (!$authRole) {
           $response->addError('User '.$userName.' not exists ');

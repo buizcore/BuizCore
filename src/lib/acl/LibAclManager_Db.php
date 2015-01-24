@@ -18,7 +18,7 @@
 /**
  * Manager Class zum bearbeiten der ACLs
  *
- * @package net.webfrap
+ * @package net.buiz
  * @todo die queries müssen noch in query objekte ausgelagert werden
  *
  */
@@ -72,7 +72,7 @@ class LibAclManager_Db extends LibAclManager
   /**
    * Erstellen eines neuen Gruppen / Secarea assignment
    *
-   * @param WbfsysSecurityAccess_Entity $entityAccess
+   * @param BuizSecurityAccess_Entity $entityAccess
    * @param array $parents liste mit parent security areas, wird expliziet übergeben
    * @param boolean $syncMode im syncmode ist es kein fehler wenn ein assigment bereits existiert
    *
@@ -119,8 +119,8 @@ class LibAclManager_Db extends LibAclManager
     foreach ($parents as $parent) {
 
       // partielle zuweisung zu den parents
-      $partial = new WbfsysSecurityAccess_Entity(null, [], $this->getDb());
-      $partial->id_area = $orm->getByKey('WbfsysSecurityArea', $parent);
+      $partial = new BuizSecurityAccess_Entity(null, [], $this->getDb());
+      $partial->id_area = $orm->getByKey('BuizSecurityArea', $parent);
       $partial->id_group = $entityAccess->id_group;
       $partial->partial = 1;
       $partial->access_level = Acl::LISTING;
@@ -138,7 +138,7 @@ class LibAclManager_Db extends LibAclManager
   /**
    * Weißt einen User einer Gruppe korrekt zu
    *
-   * @param WbfsysGroupUsers_Entity $entityGUser
+   * @param BuizGroupUsers_Entity $entityGUser
    *
    * @return void Wirft im Fehlerfall eine Exception, keine Rückgabe nötig
    *
@@ -162,16 +162,16 @@ class LibAclManager_Db extends LibAclManager
     }
 
     // wenn nur ein User übergeben wird, muss das assignment selbst zusammen gebaut werden
-    if (is_numeric($entityGUser) || $entityGUser instanceof  WbfsysRoleUser_Entity   ) {
+    if (is_numeric($entityGUser) || $entityGUser instanceof  BuizRoleUser_Entity   ) {
 
       $entityUser = $entityGUser;
 
-      $entityGUser = new WbfsysGroupUsers_Entity(null,[],$this->getDb());
+      $entityGUser = new BuizGroupUsers_Entity(null,[],$this->getDb());
       $entityGUser->id_user = $entityUser;
 
       if ($groupName) {
         if (is_string($groupName)) {
-          $entityGUser->id_group = $orm->getByKey('WbfsysRoleGroup', $groupName);
+          $entityGUser->id_group = $orm->getByKey('BuizRoleGroup', $groupName);
         } else {
           $entityGUser->id_group = $groupName;
         }
@@ -179,7 +179,7 @@ class LibAclManager_Db extends LibAclManager
 
       if ($areaName) {
 
-        $area = $orm->getByKey('WbfsysSecurityArea', $areaName  );
+        $area = $orm->getByKey('BuizSecurityArea', $areaName  );
 
         if (!$area) {
           throw new LibAcl_Exception(
@@ -222,7 +222,7 @@ class LibAclManager_Db extends LibAclManager
     // zu entscheiden in welcher form die alcs ausgelesen werden müssen
     if ($entityGUser->id_area) {
 
-      $partUser = new WbfsysGroupUsers_Entity(null, [], $db);
+      $partUser = new BuizGroupUsers_Entity(null, [], $db);
       $partUser->id_user = $entityGUser->id_user;
       $partUser->id_group = $entityGUser->id_group;
       $partUser->partial = 1;
@@ -230,7 +230,7 @@ class LibAclManager_Db extends LibAclManager
 
       // ohne area kein vid
       if ($entityGUser->vid) {
-        $partUser = new WbfsysGroupUsers_Entity(null, [], $db);
+        $partUser = new BuizGroupUsers_Entity(null, [], $db);
         $partUser->id_user = $entityGUser->id_user;
         $partUser->id_group = $entityGUser->id_group;
         $partUser->id_area = $entityGUser->id_area;
@@ -245,7 +245,7 @@ class LibAclManager_Db extends LibAclManager
   /**
    * Zählen wieviele Assignments es aktuell zu einer Gruppe gibt
    *
-   * @param WbfsysGroupUsers_Entity $entityGUser
+   * @param BuizGroupUsers_Entity $entityGUser
    *
    * @return void Wirft im Fehlerfall eine Exception, keine Rückgabe nötig
    *
@@ -274,7 +274,7 @@ class LibAclManager_Db extends LibAclManager
   /**
    * Die Zuweisung zu einer Gruppe sauber auflösen
    *
-   * @param WbfsysGroupUsers_Entity $entityGUser
+   * @param BuizGroupUsers_Entity $entityGUser
    *
    * @return void Wirft im Fehlerfall eine Exception, keine Rückgabe nötig
    *
@@ -298,7 +298,7 @@ class LibAclManager_Db extends LibAclManager
     $areaId = null;
     $dsetId = null;
 
-    if ($entityGUser instanceof WbfsysGroupUsers_Entity) {
+    if ($entityGUser instanceof BuizGroupUsers_Entity) {
 
       $userId = $entityGUser->id_user;
       $groupId = $entityGUser->id_group;
@@ -307,7 +307,7 @@ class LibAclManager_Db extends LibAclManager
 
       $orm->delete($entityGUser);
 
-    } elseif ($entityGUser instanceof  WbfsysRoleUser_Entity || is_numeric($entityGUser)) {
+    } elseif ($entityGUser instanceof  BuizRoleUser_Entity || is_numeric($entityGUser)) {
 
       $userId = (string) $entityGUser;
       $groupId = null;
@@ -316,7 +316,7 @@ class LibAclManager_Db extends LibAclManager
 
       if ($groupName) {
         if (is_string($groupName)) {
-          $groupId= $orm->getByKey('WbfsysRoleGroup', $groupName  );
+          $groupId= $orm->getByKey('BuizRoleGroup', $groupName  );
         } else {
           $groupId = $groupName;
         }
@@ -324,7 +324,7 @@ class LibAclManager_Db extends LibAclManager
 
       if ($areaName) {
 
-        $area = $orm->getByKey('WbfsysSecurityArea', $areaName  );
+        $area = $orm->getByKey('BuizSecurityArea', $areaName  );
 
         if (!$area) {
           throw new LibAcl_Exception
@@ -361,7 +361,7 @@ class LibAclManager_Db extends LibAclManager
         $whereDelete .=" and vid is null";
       }
 
-      $orm->deleteWhere('WbfsysGroupUsers', $whereDelete);
+      $orm->deleteWhere('BuizGroupUsers', $whereDelete);
 
     }
 
@@ -379,8 +379,8 @@ class LibAclManager_Db extends LibAclManager
         ." and vid = {$dsetId} "
         ." and partial = 1";
 
-      if (!$orm->countRows('WbfsysGroupUsers', $whereCount))
-        $orm->deleteWhere('WbfsysGroupUsers', $whereDelete);
+      if (!$orm->countRows('BuizGroupUsers', $whereCount))
+        $orm->deleteWhere('BuizGroupUsers', $whereDelete);
     }
 
     if ($areaId) {
@@ -395,8 +395,8 @@ class LibAclManager_Db extends LibAclManager
         ." and id_user = {$userId}"
         ." and partial = 1";
 
-      if (!$orm->countRows('WbfsysGroupUsers', $whereCount))
-        $orm->deleteWhere('WbfsysGroupUsers', $whereDelete);
+      if (!$orm->countRows('BuizGroupUsers', $whereCount))
+        $orm->deleteWhere('BuizGroupUsers', $whereDelete);
     }
 
     $whereCount = "id_group = {$groupId}"
@@ -407,8 +407,8 @@ class LibAclManager_Db extends LibAclManager
       ." and id_user = {$userId}"
       ." and partial = 1";
 
-    if (!$orm->countRows('WbfsysGroupUsers', $whereCount))
-      $orm->deleteWhere('WbfsysGroupUsers', $whereDelete);
+    if (!$orm->countRows('BuizGroupUsers', $whereCount))
+      $orm->deleteWhere('BuizGroupUsers', $whereDelete);
 
   }//end public function createGroupAssignment */
 
@@ -433,7 +433,7 @@ class LibAclManager_Db extends LibAclManager
       $entity = $relId;
       $relId = $entity->getId();
     } else {
-      $entity = $orm->get('WbfsysGroupUsers', $relId  );
+      $entity = $orm->get('BuizGroupUsers', $relId  );
     }
 
     if (!$entity) {
@@ -562,7 +562,7 @@ class LibAclManager_Db extends LibAclManager
       throw new LibAcl_Exception("Tried to clean Relations with an invalid ID ".$dsetId);
     }
 
-    $orm->deleteWhere('WbfsysGroupUsers', " vid = {$dsetId}");
+    $orm->deleteWhere('BuizGroupUsers', " vid = {$dsetId}");
 
   }//end public function cleanDatasetRelations */
 
@@ -593,16 +593,16 @@ class LibAclManager_Db extends LibAclManager
       throw new LibAcl_Exception("Tried to clean Relations with an invalid ID ".$userId);
     }
 
-    $orm->deleteWhere('WbfsysGroupUsers', " id_user = {$userId}");
+    $orm->deleteWhere('BuizGroupUsers', " id_user = {$userId}");
 
   }//end public function cleanUserRelations */
 
   /**
    * Weißt einen User einer Gruppe korrekt zu
    *
-   * @param WbfsysUserProfile_Entity $entityUserProfile
-   * @param WbfsysProfile_Entity $entityProfile
-   * @param WbfsysRoleUser_Entity $entityUser
+   * @param BuizUserProfile_Entity $entityUserProfile
+   * @param BuizProfile_Entity $entityProfile
+   * @param BuizRoleUser_Entity $entityUser
    *
    * @return void Wirft im Fehlerfall eine Exception, keine Rückgabe nötig
    *
@@ -627,16 +627,16 @@ class LibAclManager_Db extends LibAclManager
     }
 
     // wenn nur ein User übergeben wird, muss das assignment selbst zusammen gebaut werden
-    if ($entityUserProfile instanceof  WbfsysRoleProfile_Entity || is_numeric($entityUserProfile)) {
+    if ($entityUserProfile instanceof  BuizRoleProfile_Entity || is_numeric($entityUserProfile)) {
 
       $entityUser = $entityUserProfile;
 
-      $entityUserProfile = new WbfsysRoleProfile_Entity(null,[],$this->getDb());
+      $entityUserProfile = new BuizRoleProfile_Entity(null,[],$this->getDb());
       $entityUserProfile->id_user = $entityUser;
 
       if ($entityProfile) {
         if (is_string($entityProfile)) {
-          $entityUserProfile->id_profile = $orm->getByKey('WbfsysProfile', $entityProfile  );
+          $entityUserProfile->id_profile = $orm->getByKey('BuizProfile', $entityProfile  );
         } else {
           $entityUserProfile->id_profile = $entityProfile;
         }
@@ -668,9 +668,9 @@ class LibAclManager_Db extends LibAclManager
   /**
    * Die Zuweisung von einem User zu einem Profile sauber lösen
    *
-   * @param WbfsysUserProfile_Entity $entityUserProfile
-   * @param WbfsysProfile_Entity $entityProfile
-   * @param WbfsysRoleUser_Entity $entityUser
+   * @param BuizUserProfile_Entity $entityUserProfile
+   * @param BuizProfile_Entity $entityProfile
+   * @param BuizRoleUser_Entity $entityUser
    *
    * @return void Wirft im Fehlerfall eine Exception, keine Rückgabe nötig
    *
@@ -693,21 +693,21 @@ class LibAclManager_Db extends LibAclManager
     $userId = null;
     $profileId = null;
 
-    if ($entityUserProfile instanceof WbfsysUserProfile_Entity) {
+    if ($entityUserProfile instanceof BuizUserProfile_Entity) {
 
       $userId = $entityUserProfile->id_user;
       $profileId = $entityUserProfile->id_group;
 
       $orm->delete($entityUserProfile);
 
-    } elseif ($entityUserProfile instanceof  WbfsysRoleUser_Entity || is_numeric($entityUserProfile)) {
+    } elseif ($entityUserProfile instanceof  BuizRoleUser_Entity || is_numeric($entityUserProfile)) {
 
       $userId = $entityUserProfile->getId();
       $profileId = null;
 
       if ($entityProfile) {
         if (is_string($entityProfile)) {
-          $profileId = $orm->getByKey('WbfsysProfile', $entityProfile  );
+          $profileId = $orm->getByKey('BuizProfile', $entityProfile  );
         } else {
           $profileId = $entityProfile;
         }
@@ -718,7 +718,7 @@ class LibAclManager_Db extends LibAclManager
       $whereDelete = "id_profile = {$profileId}"
         ." and id_user = {$userId}";
 
-      $orm->deleteWhere('WbfsysUserProfile', $whereDelete);
+      $orm->deleteWhere('BuizUserProfile', $whereDelete);
 
     } else {
       throw new LibAcl_Exception("Invalid parameter for removeUserProfile");

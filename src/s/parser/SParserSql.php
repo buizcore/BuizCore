@@ -15,7 +15,7 @@
 *
 *******************************************************************************/
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 final class SParserSql
 {

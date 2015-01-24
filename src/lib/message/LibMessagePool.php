@@ -17,7 +17,7 @@
 
 /**
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibMessagePool
 {
@@ -363,7 +363,7 @@ class LibMessagePool
       $entityId = null;
     }
 
-    $protocol = new WbfsysProtocolMessage_Entity();
+    $protocol = new BuizProtocolMessage_Entity();
     $protocol->message = $message;
     $protocol->context = $context;
     $protocol->vid = $entityId;

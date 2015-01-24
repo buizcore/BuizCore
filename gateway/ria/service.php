@@ -30,15 +30,15 @@ try {
 
   View::setType( View::SERVICE );
 
-  $webfrap = BuizCore::init();
+  $buiz = BuizCore::init();
 
   // calling the main main function
 
-  $webfrap->main();
+  $buiz->main();
 
-  $errors .= $webfrap->out();
+  $errors .= $buiz->out();
 
-  $webfrap->shutdown( $errors );
+  $buiz->shutdown( $errors );
 
 } // ENDE TRY
 catch( Exception $exception ) {

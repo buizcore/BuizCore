@@ -17,7 +17,7 @@
 
 /**
   * Hauptklasse für die Internationalisierung
-  * @package net.webfrap
+  * @package net.buiz
   */
 class I18n
 {

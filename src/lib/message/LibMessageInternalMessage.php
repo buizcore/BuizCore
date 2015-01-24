@@ -42,7 +42,7 @@
 */
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  *
  * @todo Festlegen was passiert wenn sowohl mehrere Empfänger als auch
  * BBC und CC angegeben werden
@@ -84,7 +84,7 @@ class LibMessageInternalMessage extends LibMessageAdapter
       $db = $this->getDb();
       $orm = $db->getOrm();
 
-      $this->sender = $orm->get('WbfsysRoleUser', BuizCore::$env->getUser()->getid());
+      $this->sender = $orm->get('BuizRoleUser', BuizCore::$env->getUser()->getid());
     }
 
   }//end public function __construct */
@@ -114,8 +114,8 @@ class LibMessageInternalMessage extends LibMessageAdapter
       throw new LibMessage_Exception('Missing a receiver!');
     }
 
-    $messageObj = $orm->newEntity('WbfsysMessage');
-    $msgReceiver = $orm->newEntity('WbfsysMessageReceiver');
+    $messageObj = $orm->newEntity('BuizMessage');
+    $msgReceiver = $orm->newEntity('BuizMessageReceiver');
 
     $messageObj->title = $envelop->subject;
 
@@ -158,14 +158,14 @@ class LibMessageInternalMessage extends LibMessageAdapter
     /* Auswerten der Aspekte */
     foreach ($envelop->stack->aspects as $aspect) {
       
-      $msgAspect = $orm->newEntity('WbfsysMessageAspect');
+      $msgAspect = $orm->newEntity('BuizMessageAspect');
       $msgAspect->id_receiver = $envelop->receiver->id;
       $msgAspect->id_message = $messageObj;
       $msgAspect->aspect = $aspect;
       $orm->save($msgAspect);
       
       // dem versender die gleichen aspekte zuweisen
-      $msgAspect = $orm->newEntity('WbfsysMessageAspect');
+      $msgAspect = $orm->newEntity('BuizMessageAspect');
       $msgAspect->id_receiver = $envelop->stack->sender->userId;
       $msgAspect->id_message = $messageObj;
       $msgAspect->aspect = $aspect;
@@ -173,12 +173,12 @@ class LibMessageInternalMessage extends LibMessageAdapter
     }
 
     if ($this->attachment || $this->embedded) {
-      $entityObj = $orm->getByKey('WbfsysEntity', 'wbfsys_message');
+      $entityObj = $orm->getByKey('BuizEntity', 'buiz_message');
     }
 
     foreach ($this->attachment as $attachment) {
       
-      $attachmentObj = $orm->newEntity('WbfsysEntityAttachment');
+      $attachmentObj = $orm->newEntity('BuizEntityAttachment');
 
       $attachmentObj->vid = $messageObj;
       $attachmentObj->id_file = $attachment;
@@ -196,7 +196,7 @@ class LibMessageInternalMessage extends LibMessageAdapter
       
       foreach ($envelop->stack->aspects as $aspect) {
       
-        $msgAspect = $orm->newEntity('WbfsysMessageAspect');
+        $msgAspect = $orm->newEntity('BuizMessageAspect');
         $msgAspect->id_message = $messageObj;
         $msgAspect->id_receiver = $sendAlsoCC;
         $msgAspect->aspect = $aspect;
@@ -214,7 +214,7 @@ class LibMessageInternalMessage extends LibMessageAdapter
       
       foreach ($envelop->stack->aspects as $aspect) {
       
-        $msgAspect = $orm->newEntity('WbfsysMessageAspect');
+        $msgAspect = $orm->newEntity('BuizMessageAspect');
         $msgAspect->id_message = $messageObj;
         $msgAspect->id_receiver = $sendAlsoBBC;
         $msgAspect->aspect = $aspect;

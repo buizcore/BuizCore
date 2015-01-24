@@ -28,17 +28,17 @@ try {
 
   View::setType( View::AJAX );
 
-  $webfrap = BuizCore::init();
+  $buiz = BuizCore::init();
 
   View::getActive()->setIndex('ajax');
 
   // calling the main main function
 
-  $webfrap->main();
+  $buiz->main();
 
-  $errors .= $webfrap->out();
+  $errors .= $buiz->out();
 
-  $webfrap->shutdown( $errors );
+  $buiz->shutdown( $errors );
 
 } // ENDE TRY
 catch( Exception $exception ) {

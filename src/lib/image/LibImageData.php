@@ -17,7 +17,7 @@ use Predis\Command\PubSubPublish;
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibImageData
 {

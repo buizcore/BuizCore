@@ -19,7 +19,7 @@
 /**
  * Download Klasse für WebFrap
  * 
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibDownload
 {
@@ -28,7 +28,7 @@ class LibDownload
      * Name der Tabelle auf welchen sich der Datensatz bezieht
      * @var string
      */
-    public $table = 'wbfsys_file';
+    public $table = 'buiz_file';
     
     /**
      * Name des Attributes wo sich die Datei befindet

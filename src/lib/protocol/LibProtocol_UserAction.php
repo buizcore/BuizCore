@@ -17,7 +17,7 @@
 
 /**
  * Ausgeführte Aktionen protokollieren
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class LibProtocol_UserAction
@@ -48,7 +48,7 @@ class LibProtocol_UserAction
     $idEntity = null;
 
     $this->orm->insert(
-      'WbfsysActionLog',
+      'BuizActionLog',
       array(
         'content' => $message,
         'vid' => $vid,

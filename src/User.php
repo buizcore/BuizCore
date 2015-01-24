@@ -30,8 +30,8 @@
  * Das Objekt dieser Klasse lande in der Session
  * Diese Klasse ist Teil des Bootstraps, daher wird eine static init methode implementiert
  *
- * @package net.webfrap
- * @author dominik alexander bonsch <dominik.bonsch@webfrap.net>
+ * @package net.buiz
+ * @author dominik alexander bonsch <dominik.bonsch@buiz.net>
  *
  */
 class User extends BaseChild
@@ -285,7 +285,7 @@ class User extends BaseChild
 
   /**
    *
-   * @var WbfsysRoleUser_Entity
+   * @var BuizRoleUser_Entity
    */
   public $entity = null;
 
@@ -380,13 +380,13 @@ class User extends BaseChild
   }
 
   /**
-   * @return WebfrapAuth_Model
+   * @return BuizAuth_Model
    */
   public function getAuthModel()
   {
 
     if (!$this->model)
-      $this->model = new WebfrapAuth_Model($this);
+      $this->model = new BuizAuth_Model($this);
 
     return $this->model;
 
@@ -411,7 +411,7 @@ class User extends BaseChild
 
   /**
    * Erfragen der Entity für den User
-   * @return WbfsysRoleUser_Entity
+   * @return BuizRoleUser_Entity
    */
   public function getEntity()
   {
@@ -419,7 +419,7 @@ class User extends BaseChild
     if ($this->entity)
       return $this->entity;
 
-    $this->entity = $this->getOrm()->get('WbfsysRoleUser', $this->userId);
+    $this->entity = $this->getOrm()->get('BuizRoleUser', $this->userId);
 
     return $this->entity;
 
@@ -484,8 +484,8 @@ class User extends BaseChild
       return false;
 
     $db = $this->getDb();
-    /* @var $query WebfrapEntityRoles_Query */
-    $query = $db->newQuery('WebfrapEntityRoles');
+    /* @var $query BuizEntityRoles_Query */
+    $query = $db->newQuery('BuizEntityRoles');
 
     if (is_object($entity))
       $entityKey = $entity->getEntityName();
@@ -820,7 +820,7 @@ class User extends BaseChild
     if ($userId) {
 
       try {
-        if (!$authRole = $orm->get('WbfsysRoleUser', $userId)) {
+        if (!$authRole = $orm->get('BuizRoleUser', $userId)) {
           $response->addError('UserID '.$userId.' not exists');
 
           return false;
@@ -840,7 +840,7 @@ class User extends BaseChild
         $authRole = $username;
       } else {
         try {
-          if (!$authRole = $orm->getWhere('WbfsysRoleUser', "upper(name) = upper('{$username}')")) {
+          if (!$authRole = $orm->getWhere('BuizRoleUser', "upper(name) = upper('{$username}')")) {
             $response->addError('User name '.$username.' not exists');
 
             return false;
@@ -861,7 +861,7 @@ class User extends BaseChild
 
     // setzen der Mandant ID
     // master muss vorhanden sein
-    $this->mandantId = $this->userData['id_mandant']?$this->userData['id_mandant']:$orm->getIdByKey('WbfsysRoleMandant','master');
+    $this->mandantId = $this->userData['id_mandant']?$this->userData['id_mandant']:$orm->getIdByKey('BuizRoleMandant','master');
 
     if ($authRole->profile) {
       $this->profileName = $authRole->profile;
@@ -907,19 +907,19 @@ class User extends BaseChild
     /// TODO add this in an external datasource
     // Load User Rights
     $sql = 'SELECT
-        wbfsys_role_group.rowid,
-        wbfsys_role_group.m_parent,
-        wbfsys_role_group.name ,
-        wbfsys_role_group.access_key ,
-        wbfsys_role_group.level
+        buiz_role_group.rowid,
+        buiz_role_group.m_parent,
+        buiz_role_group.name ,
+        buiz_role_group.access_key ,
+        buiz_role_group.level
       from
-        wbfsys_role_group
+        buiz_role_group
       join
-        wbfsys_group_users on wbfsys_role_group.rowid = wbfsys_group_users.id_group
+        buiz_group_users on buiz_role_group.rowid = buiz_group_users.id_group
       where
-        wbfsys_group_users.id_user = '.$this->userId.'
-          and wbfsys_group_users.id_area is null
-          and wbfsys_group_users.vid is null
+        buiz_group_users.id_user = '.$this->userId.'
+          and buiz_group_users.id_area is null
+          and buiz_group_users.vid is null
         ';
 
     $roles = $db->select($sql);
@@ -951,17 +951,17 @@ class User extends BaseChild
     /// TODO add this in an external datasource
     // Load User Rights
     $sql = 'SELECT
-        wbfsys_profile.name,
-        wbfsys_profile.access_key
+        buiz_profile.name,
+        buiz_profile.access_key
       FROM
-        wbfsys_profile
+        buiz_profile
       JOIN
-        wbfsys_user_profiles
-        ON wbfsys_profile.rowid = wbfsys_user_profiles.id_profile
+        buiz_user_profiles
+        ON buiz_profile.rowid = buiz_user_profiles.id_profile
       WHERE
-        wbfsys_user_profiles.id_user = '.$this->userId.'
+        buiz_user_profiles.id_user = '.$this->userId.'
       ORDER BY
-        wbfsys_profile.name';
+        buiz_profile.name';
 
     $roles = $db->select($sql);
 
@@ -984,14 +984,14 @@ class User extends BaseChild
     /// TODO add this in an external datasource
     // Load User Rights
     $sql = 'SELECT
-        wbfsys_profile.name ,
-        wbfsys_profile.access_key
+        buiz_profile.name ,
+        buiz_profile.access_key
       from
-        wbfsys_profile
+        buiz_profile
       join
-        wbfsys_group_profiles on wbfsys_profile.rowid = wbfsys_group_profiles.id_profile
+        buiz_group_profiles on buiz_profile.rowid = buiz_group_profiles.id_profile
       where
-        wbfsys_group_profiles.id_group IN('.implode(', ',$this->groupRoles).') ';
+        buiz_group_profiles.id_group IN('.implode(', ',$this->groupRoles).') ';
 
     $roles = $db->select($sql);
 
@@ -1023,7 +1023,7 @@ class User extends BaseChild
         access_key,
         level
       from
-        wbfsys_role_group
+        buiz_role_group
       where
         rowid = '.$idParent;
 
@@ -1252,7 +1252,7 @@ class User extends BaseChild
     $orm = $this->getOrm();
 
     return $orm->update(
-      'WbfsysRoleUser',
+      'BuizRoleUser',
       $id,
       array(
         'password' =>  SEncrypt::passwordHash($pwd),

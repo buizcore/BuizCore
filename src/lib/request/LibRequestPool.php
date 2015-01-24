@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  * @deprecated use subrequest or stack request
  */
 class LibRequestPool extends LibRequestAbstract

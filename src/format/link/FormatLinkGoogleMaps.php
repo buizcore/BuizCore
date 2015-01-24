@@ -18,7 +18,7 @@
 /**
  * Ein Link auf Google Maps
  * 
- * @package net.webfrap
+ * @package net.buiz
  */
 class FormatLinkGoogleMaps
 {

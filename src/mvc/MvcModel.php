@@ -18,7 +18,7 @@
 /**
  * class Controller
  * Extention zum verwalten und erstellen von neuen Menus in der Applikation
- * @package net.webfrap
+ * @package net.buiz
  *
  * @statefull
  */

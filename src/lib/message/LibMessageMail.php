@@ -42,7 +42,7 @@
 */
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  *
  * @todo Festlegen was passiert wenn sowohl mehrere Empfänger als auch
  * BBC und CC angegeben werden

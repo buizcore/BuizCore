@@ -1,12 +1,12 @@
 <?php
 /*******************************************************************************
 *
-* @author      : Dominik Bonsch <dominik.bonsch@webfrap.net>
-* @author      : Malte Schirmacher <malte.schirmacher@webfrap.net>
+* @author      : Dominik Bonsch <dominik.bonsch@buiz.net>
+* @author      : Malte Schirmacher <malte.schirmacher@buiz.net>
 * @date        :
-* @copyright   : Webfrap Developer Network <contact@webfrap.net>
-* @project     : Webfrap Web Frame Application
-* @projectUrl  : http://webfrap.net
+* @copyright   : Buiz Developer Network <contact@buiz.net>
+* @project     : Buiz Web Frame Application
+* @projectUrl  : http://buiz.net
 *
 * @licence     : BSD License see: LICENCE/BSD Licence.txt
 *
@@ -17,7 +17,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibDbOrm
 {
@@ -770,7 +770,7 @@ class LibDbOrm
 
     $meta = $this->getMetadata($entityKey);
 
-    $entity = new WbfsysEntity_Entity(null, [], $this);
+    $entity = new BuizEntity_Entity(null, [], $this);
     $entity->name = $entityKey;
     $entity->description = $meta->description();
     $entity->access_key = $meta->getTable();
@@ -790,7 +790,7 @@ class LibDbOrm
 
     $tabKey = $this->getTableName($entityKey);
 
-    $sql = "select rowid from wbfsys_entity where access_key = '".$tabKey."'";
+    $sql = "select rowid from buiz_entity where access_key = '".$tabKey."'";
 
     if (!$result = $this->db->select($sql)->get())
       return null;
@@ -960,7 +960,7 @@ class LibDbOrm
       if (isset($this->langIds[$langKey])) {
         $lang = $this->langIds[$langKey];
       } else {
-        $lang = $this->getIdByKey('WbfsysLanguage' , $lang);
+        $lang = $this->getIdByKey('BuizLanguage' , $lang);
 
         if ($lang)
           $this->langIds[$langKey] = $lang;
@@ -1618,7 +1618,7 @@ SQL;
       if (isset($this->langIds[$langKey])) {
         $lang = $this->langIds[$langKey];
       } else {
-        $lang = $this->getIdByKey('WbfsysLanguage' , $lang);
+        $lang = $this->getIdByKey('BuizLanguage' , $lang);
 
         if ($lang)
           $this->langIds[$langKey] = $lang;
@@ -1661,7 +1661,7 @@ SQL;
       if (isset($this->langIds[$langKey])) {
         $lang = $this->langIds[$langKey];
       } else {
-        $lang = $this->getIdByKey('WbfsysLanguage' , $lang);
+        $lang = $this->getIdByKey('BuizLanguage' , $lang);
 
         if ($lang)
           $this->langIds[$langKey] = $lang;

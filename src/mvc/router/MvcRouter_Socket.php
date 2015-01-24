@@ -17,10 +17,10 @@
 
 /**
  * class ControllerSocket
- * Der Supercontroller für den Serverbetrieb von Webfrapd
+ * Der Supercontroller für den Serverbetrieb von Buizd
  *
- * @author Dominik Bonsch <dominik.bonsch@webfrap.net>
- * @package net.webfrap
+ * @author Dominik Bonsch <dominik.bonsch@buiz.net>
+ * @package net.buiz
  */
 class MvcRouter_Socket extends LibFlowApachemod
 {
@@ -209,14 +209,14 @@ class MvcRouter_Socket extends LibFlowApachemod
   * Socket erstellen und an passende Adresse binden
   *
   * @return void
-  * @throws WebfrapService_Exception
+  * @throws BuizService_Exception
   */
   public function connectServer()
   {
 
     if (!$this->defaultSocket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) {
 
-      throw new WebfrapService_Exception("Konnte keine Verbindung erstellen");
+      throw new BuizService_Exception("Konnte keine Verbindung erstellen");
     }// Ende If
 
     if
@@ -229,19 +229,19 @@ class MvcRouter_Socket extends LibFlowApachemod
     )
     {
 
-      throw new WebfrapService_Exception("Konnte Socket nicht an Ip und Port binden");
+      throw new BuizService_Exception("Konnte Socket nicht an Ip und Port binden");
     }// Ende if
 
     if ((!socket_listen($this->defaultSocket, $this->queueLength))) {
 
-      throw new WebfrapService_Exception("Konnte nicht an Socket lauschen");
+      throw new BuizService_Exception("Konnte nicht an Socket lauschen");
 
     }
 
     socket_set_option($this->defaultSocket, SOL_SOCKET, SO_REUSEADDR, 1);
 
     if (!is_writeable($this->pidFolder)) {
-      throw new WebfrapService_Exception();
+      throw new BuizService_Exception();
     }
 
     SFiles::write($this->pidFolder."/".$this->pidFile , posix_getpid());
@@ -269,7 +269,7 @@ class MvcRouter_Socket extends LibFlowApachemod
   public function runServer()
   {
     if (!is_resource($this->defaultSocket)) {
-      throw new WebfrapService_Exception("Habe keine Connection bekommen");
+      throw new BuizService_Exception("Habe keine Connection bekommen");
     }
 
     while ($this->serverStatus) {
@@ -281,9 +281,9 @@ class MvcRouter_Socket extends LibFlowApachemod
       }
 
       $HtmlBody = "<html>\n"
-        ."<head><title>Webfrapd 404 Not Found</title></head>\n"
+        ."<head><title>Buizd 404 Not Found</title></head>\n"
         ."<body>\n"
-        ."<h1>Webfrapd alpha 0.01</h1>\n"
+        ."<h1>Buizd alpha 0.01</h1>\n"
         ."<h2>Sorry, die Seite konnte nicht gefunden werden</h2>\n"
         ."<p>Ok keine Seite kann gefunden werden, aber ich arbeite dran!</p>"
         ."</body>\n"
@@ -316,7 +316,7 @@ class MvcRouter_Socket extends LibFlowApachemod
   {
 
     if (!is_resource($this->defaultSocket)) {
-      throw new WebfrapService_Exception("Habe keine Connection bekommen");
+      throw new BuizService_Exception("Habe keine Connection bekommen");
     }
 
     while ($this->serverStatus) {
@@ -361,7 +361,7 @@ class MvcRouter_Socket extends LibFlowApachemod
 //
 //             $serverHeader = "HTTP/1.0 200 OK\r\n"
 //               . "Date: " . gmstrftime("%a, %d %h %Y %H:%M:%S GMT") . "\r\n"
-//               . "Server: Webfrapd aplha 0.1\r\n"
+//               . "Server: Buizd aplha 0.1\r\n"
 //               . "Content-Length: $fsize\r\n"
 //               . "Connection: close\r\n"
 //               . "Content-Type: $ftype\r\n\r\n";
@@ -438,8 +438,8 @@ class MvcRouter_Socket extends LibFlowApachemod
   } // end public function main()
 
  /**
-  * Funktion zum beenden von Webfrap falls ein Fataler Fehler auftritt der das
-  * Ausführen von Webfrap verhindert
+  * Funktion zum beenden von Buiz falls ein Fataler Fehler auftritt der das
+  * Ausführen von Buiz verhindert
   *
   * @since 0.1
   * @return array
@@ -458,8 +458,8 @@ class MvcRouter_Socket extends LibFlowApachemod
   } // end protected function isFlag($data)
 
  /**
-  * Funktion zum beenden von Webfrap falls ein Fataler Fehler auftritt der das
-  * Ausführen von Webfrap verhindert
+  * Funktion zum beenden von Buiz falls ein Fataler Fehler auftritt der das
+  * Ausführen von Buiz verhindert
   *
   * @since 0.1
   * @return int
@@ -478,8 +478,8 @@ class MvcRouter_Socket extends LibFlowApachemod
   } // end protected function setAktion($data)
 
  /**
-  * Funktion zum beenden von Webfrap falls ein Fataler Fehler auftritt der das
-  * Ausführen von Webfrap verhindert
+  * Funktion zum beenden von Buiz falls ein Fataler Fehler auftritt der das
+  * Ausführen von Buiz verhindert
   *
   * @return array
   * @override

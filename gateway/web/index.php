@@ -22,7 +22,7 @@ header("HTTP/1.0 200 OK");
 $indexFile = isset($_GET['request'])?strtolower($_GET['request']):'cms';
 
 $index = [
-  'webfrap' => 'html',
+  'buiz' => 'html',
   'html'    => 'html',
   'cms' => 'cms',
   'ajax' => 'ajax',

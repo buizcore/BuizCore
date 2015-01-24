@@ -20,9 +20,9 @@
  * lesend oder schreibend zugegriffen werden konnte,
  * sie / er nicht existiert oder sonstige Ein / Ausgabefehler
  *
- * @package net.webfrap
+ * @package net.buiz
  */
-class Io_Exception extends WebfrapService_Exception
+class Io_Exception extends BuizService_Exception
 {
 
 }

@@ -18,9 +18,9 @@
 /**
  * Exception to handle errors that orrure during the routing
  *
- * @package net.webfrap
+ * @package net.buiz
  */
-class Mvc_Exception extends Webfrap_Exception
+class Mvc_Exception extends Buiz_Exception
 {
 
 /*////////////////////////////////////////////////////////////////////////////*/

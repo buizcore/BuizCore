@@ -18,8 +18,8 @@
 /**
  * Bibliothek zum reinigen von potentiell gefährlichem Userinhalt
  *
- * @author Dominik Bonsch <dominik.bonsch@webfrap.net>
- * @package net.webfrap
+ * @author Dominik Bonsch <dominik.bonsch@buiz.net>
+ * @package net.buiz
  */
 class LibSanitizer
 {

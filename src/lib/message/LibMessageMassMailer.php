@@ -20,7 +20,7 @@
  * Der Massmailer ist dazu da um personalisierte E-Mails an Empfänger listen 
  * schicken zu können
  * 
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class LibMessageMassMailer
@@ -114,7 +114,7 @@ class LibMessageMassMailer
   /**
    * @var string
    */
-  public $userAgent = 'Webfrap';
+  public $userAgent = 'Buiz';
 
   /**
    * @var string

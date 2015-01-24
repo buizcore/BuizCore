@@ -2,11 +2,11 @@
 
 /*******************************************************************************
  *
- * @author      : Dominik Bonsch <dominik.bonsch@webfrap.net>
+ * @author      : Dominik Bonsch <dominik.bonsch@buiz.net>
  * @date        :
- * @copyright   : Webfrap Developer Network <contact@webfrap.net>
- * @project     : Webfrap Web Frame Application
- * @projectUrl  : http://webfrap.net
+ * @copyright   : Buiz Developer Network <contact@buiz.net>
+ * @project     : Buiz Web Frame Application
+ * @projectUrl  : http://buiz.net
  *
  * @licence     : BSD License see: LICENCE/BSD Licence.txt
  *
@@ -20,10 +20,10 @@
  * Exception die im Controller geworfen wird um das bearbeiten einer Anfrage
  * des Benutzers entgültig ab zu brechen
  *
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class Consistency_Exception extends WebfrapUser_Exception
+class Consistency_Exception extends BuizUser_Exception
 {
 
 /*////////////////////////////////////////////////////////////////////////////*/

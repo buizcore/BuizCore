@@ -19,9 +19,9 @@
  * Simple helper node for subdomain keys
  * like names of elements
  *
- * @package net.webfrap
+ * @package net.buiz
  *
- * @author domnik bonsch <dominik.bonsch@webfrap.net>
+ * @author domnik bonsch <dominik.bonsch@buiz.net>
  */
 class DomainSimpleSubNode
 {

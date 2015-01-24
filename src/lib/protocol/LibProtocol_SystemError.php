@@ -17,7 +17,7 @@
 
 /**
  * Ausgeführte Aktionen protokollieren
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class LibProtocol_SystemError
@@ -77,13 +77,13 @@ class LibProtocol_SystemError
     $idEntity = null;
 
     $msgHash = md5($message.$trace);
-    $errNode = $this->orm->getId('WbfsysProtocolError', "message_hash='{$msgHash}'"  );
+    $errNode = $this->orm->getId('BuizProtocolError', "message_hash='{$msgHash}'"  );
 
     if ($errNode) {
-      $this->orm->db->update('UPDATE wbfsys_protocol_error set counter = counter + 1 where rowid =  '.$errNode);
+      $this->orm->db->update('UPDATE buiz_protocol_error set counter = counter + 1 where rowid =  '.$errNode);
     } else {
       $this->orm->insert(
-        'WbfsysProtocolError',
+        'BuizProtocolError',
         array(
           'message' => $message,
           'trace' => $trace,

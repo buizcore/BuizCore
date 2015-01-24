@@ -18,7 +18,7 @@
 /**
  * Standard Query Objekt zum laden der Benutzer anhand der Rolle
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibAcl_Db_Maintainer_Model extends LibAcl_Db_Model
 {
@@ -48,20 +48,20 @@ class LibAcl_Db_Maintainer_Model extends LibAcl_Db_Model
     if ($areaId) {
 
       $condition .= <<<SQL
-      AND wbfsys_group_users.id_area = {$areaId}
+      AND buiz_group_users.id_area = {$areaId}
 SQL;
 
     }
 
     $query = <<<SQL
   SELECT
-    count(wbfsys_group_users.rowid) as num
+    count(buiz_group_users.rowid) as num
   FROM
-    wbfsys_group_users
+    buiz_group_users
   WHERE
-    wbfsys_group_users.id_user = {$userId}
-      AND wbfsys_group_users.id_group = {$groupId}
-      AND (wbfsys_group_users.partial = 0)
+    buiz_group_users.id_user = {$userId}
+      AND buiz_group_users.id_group = {$groupId}
+      AND (buiz_group_users.partial = 0)
 {$condition}
 
 SQL;
@@ -87,7 +87,7 @@ SQL;
 
     $this->getOrm()->deleteWhere
     (
-      'WbfsysGroupUsers',
+      'BuizGroupUsers',
       " id_user={$userId} and id_group = {$groupId} ".($areaId ? " and id_area = {$areaId} ":'')
     );
 
@@ -108,7 +108,7 @@ SQL;
 
     $this->getOrm()->deleteWhere
     (
-      'WbfsysGroupUsers',
+      'BuizGroupUsers',
       " id_user={$userId} and vid = {$dsetId} ".($areaId ? " and id_area = {$areaId} ":'')
     );
 
@@ -129,7 +129,7 @@ SQL;
 
     $this->getOrm()->deleteWhere
     (
-      'WbfsysGroupUsers',
+      'BuizGroupUsers',
       " id_user={$userId} ".($areaId ? " and id_area = {$areaId} ":'')
     );
 
@@ -150,7 +150,7 @@ SQL;
 
     $this->getOrm()->deleteWhere
     (
-      'WbfsysGroupUsers',
+      'BuizGroupUsers',
       " id_group={$groupId} ".($areaId ? " and id_area = {$areaId} ":'')
     );
 
@@ -166,7 +166,7 @@ SQL;
   public function deleteRoleAssignmentById($objid)
   {
 
-    $this->getOrm()->delete('WbfsysGroupUsers', $objid);
+    $this->getOrm()->delete('BuizGroupUsers', $objid);
 
   }//end public function deleteRoleAssignmentById */
 

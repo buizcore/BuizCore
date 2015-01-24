@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  * 
  * Datastructure ist eine Erweiterung für Entity
  *

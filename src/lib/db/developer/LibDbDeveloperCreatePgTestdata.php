@@ -18,7 +18,7 @@
 /**
  * Klasse zum erstellen von generischen Tesdaten in einer PG Datenbank
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibDbDeveloperCreatePgTestdata
 {

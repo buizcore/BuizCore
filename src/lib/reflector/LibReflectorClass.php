@@ -19,7 +19,7 @@
  *
  * A layer above the Base Reflection Class of PHP
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibReflectorClass extends ReflectionClass
 {

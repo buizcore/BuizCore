@@ -17,10 +17,10 @@
 
 /**
  * Always Thrown If A Class Not Exists
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class NotYetImplemented_Exception extends WebfrapSys_Exception
+class NotYetImplemented_Exception extends BuizSys_Exception
 {
 
 }

@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class EUserType
 {
@@ -87,7 +87,7 @@ class EUserType
         $i18n = BuizCore::$env->getI18n();
 
         return isset(self::$labels[$key])
-          ? $i18n->l(self::$labels[$key],'wbfsys.base')
+          ? $i18n->l(self::$labels[$key],'buiz.base')
           : null; // sollte nicht passieren
     
     }//end public static function label */

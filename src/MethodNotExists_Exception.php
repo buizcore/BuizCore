@@ -19,10 +19,10 @@
  * Wird geworfen wenn eine nicht existierende Methode auf einer Classe 
  * mit __call / mapping aufgerufen wird
  * 
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class MethodNotExists_Exception extends WebfrapSys_Exception
+class MethodNotExists_Exception extends BuizSys_Exception
 {
 
   /**

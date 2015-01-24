@@ -16,10 +16,10 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class OutOfBound_Exception extends WebfrapSys_Exception
+class OutOfBound_Exception extends BuizSys_Exception
 {
 
 }

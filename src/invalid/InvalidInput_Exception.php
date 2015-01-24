@@ -18,10 +18,10 @@
 /**
  * Die Eingaben des Benuters war ganz klar invalide
  *
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class InvalidInput_Exception extends WebfrapUser_Exception
+class InvalidInput_Exception extends BuizUser_Exception
 {
 
 }

@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap/cache
+ * @package net.buiz/cache
  */
 class LibCacheFile extends LibCacheAdapter
 {

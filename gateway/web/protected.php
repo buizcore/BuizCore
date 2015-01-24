@@ -25,7 +25,7 @@ try {
     ob_start();
 
   $errors = '';
-  $webfrap = BuizCore::init();
+  $buiz = BuizCore::init();
 
   $request  = Request::getInstance();
   $fileRequest = $request->param( 'file',Validator::FULLNAME );

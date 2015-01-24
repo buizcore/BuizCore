@@ -2,11 +2,11 @@
 
 /*******************************************************************************
  *
- * @author      : Dominik Bonsch <dominik.bonsch@webfrap.net>
+ * @author      : Dominik Bonsch <dominik.bonsch@buiz.net>
  * @date        :
- * @copyright   : Webfrap Developer Network <contact@webfrap.net>
- * @project     : Webfrap Web Frame Application
- * @projectUrl  : http://webfrap.net
+ * @copyright   : Buiz Developer Network <contact@buiz.net>
+ * @project     : Buiz Web Frame Application
+ * @projectUrl  : http://buiz.net
  *
  * @licence     : BSD License see: LICENCE/BSD Licence.txt
  *
@@ -18,8 +18,8 @@
 
 /**
  *
- * @package net.webfrap
- * @author dominik alexander bonsch <dominik.bonsch@webfrap.net>
+ * @package net.buiz
+ * @author dominik alexander bonsch <dominik.bonsch@buiz.net>
  *
  */
 class ControllerService extends Controller
@@ -49,9 +49,9 @@ class ControllerService extends Controller
           $this->errorPage($error);
         }
 
-      } catch (Webfrap_Exception $error) {
+      } catch (Buiz_Exception $error) {
         $this->errorPage($error);
-      } catch (Webfrap $error) {
+      } catch (Buiz $error) {
         $this->errorPage($error->getMessage(), Response::INTERNAL_ERROR);
       }
 

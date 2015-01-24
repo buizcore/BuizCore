@@ -17,7 +17,7 @@
 
 /**
  * Logappender der einfach die Logmeldungen sammelt
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibLogConsole implements LibLogAdapter
 {

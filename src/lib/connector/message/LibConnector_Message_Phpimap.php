@@ -1,11 +1,11 @@
 <?php
 /*******************************************************************************
 *
-* @author      : Malte Schirmacher <malte.schirmacher@webfrap.net>
+* @author      : Malte Schirmacher <malte.schirmacher@buiz.net>
 * @date        :
-* @copyright   : Webfrap Developer Network <contact@webfrap.net>
-* @project     : Webfrap Web Frame Application
-* @projectUrl  : http://webfrap.net
+* @copyright   : Buiz Developer Network <contact@buiz.net>
+* @project     : Buiz Web Frame Application
+* @projectUrl  : http://buiz.net
 *
 * @licence     : BSD License see: LICENCE/BSD Licence.txt
 *
@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibConnector_Message_Phpimap extends LibConnector_Adapter
 {

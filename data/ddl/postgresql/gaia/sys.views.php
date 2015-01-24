@@ -14,14 +14,14 @@ CREATE VIEW {$schemaName}.view_person_role AS
   core_person.second_firstname AS core_person_second_firstname,
   core_person.lastname AS core_person_lastname,
   core_person.academic_title AS core_person_academic_title,
-  wbfsys_role_user.rowid AS wbfsys_role_user_rowid,
-  wbfsys_role_user.name AS wbfsys_role_user_name
+  buiz_role_user.rowid AS buiz_role_user_rowid,
+  buiz_role_user.name AS buiz_role_user_name
    FROM
-    {$schemaName}.wbfsys_role_user
+    {$schemaName}.buiz_role_user
    JOIN
     {$schemaName}.core_person
-      ON core_person.rowid = wbfsys_role_user.id_person
-  WHERE (wbfsys_role_user.inactive = FALSE OR wbfsys_role_user.inactive IS NULL);
+      ON core_person.rowid = buiz_role_user.id_person
+  WHERE (buiz_role_user.inactive = FALSE OR buiz_role_user.inactive IS NULL);
 
 SQL;
 $this->ddl($sql);
@@ -39,15 +39,15 @@ select
   core_person.rowid     as person_rowid,
   core_person.firstname as firstname,
   core_person.lastname  as lastname,
-  wbfsys_role_user.rowid as role_rowid,
-  wbfsys_role_user.name  as role_name,
-  wbfsys_role_user.email as email
+  buiz_role_user.rowid as role_rowid,
+  buiz_role_user.name  as role_name,
+  buiz_role_user.email as email
 
 from
-  {$schemaName}.wbfsys_role_user
+  {$schemaName}.buiz_role_user
 join
   {$schemaName}.core_person
-    on  core_person.rowid = wbfsys_role_user.id_person
+    on  core_person.rowid = buiz_role_user.id_person
 join
   {$schemaName}.hr_employee
     on  core_person.rowid = hr_employee.id_person;
@@ -69,23 +69,23 @@ CREATE VIEW {$schemaName}.view_user_role_contact_item AS
   core_person.second_firstname AS core_person_second_firstname,
   core_person.lastname AS core_person_lastname,
   core_person.academic_title AS core_person_academic_title,
-  wbfsys_role_user.rowid AS wbfsys_role_user_rowid,
-  wbfsys_role_user.name AS wbfsys_role_user_name,
-  wbfsys_address_item.address_value AS wbfsys_address_item_address_value,
-  wbfsys_address_item_type.name AS wbfsys_address_item_type_name
+  buiz_role_user.rowid AS buiz_role_user_rowid,
+  buiz_role_user.name AS buiz_role_user_name,
+  buiz_address_item.address_value AS buiz_address_item_address_value,
+  buiz_address_item_type.name AS buiz_address_item_type_name
   FROM
-    {$schemaName}.wbfsys_role_user
+    {$schemaName}.buiz_role_user
   JOIN
     {$schemaName}.core_person
-      ON core_person.rowid = wbfsys_role_user.id_person
+      ON core_person.rowid = buiz_role_user.id_person
   JOIN
-    {$schemaName}.wbfsys_address_item
-      ON wbfsys_role_user.rowid = wbfsys_address_item.id_user
+    {$schemaName}.buiz_address_item
+      ON buiz_role_user.rowid = buiz_address_item.id_user
   JOIN
-    {$schemaName}.wbfsys_address_item_type
-      ON wbfsys_address_item_type.rowid = wbfsys_address_item.id_type
+    {$schemaName}.buiz_address_item_type
+      ON buiz_address_item_type.rowid = buiz_address_item.id_type
   WHERE
-    wbfsys_address_item.use_for_contact = true
+    buiz_address_item.use_for_contact = true
 
 SQL;
 $this->ddl($sql);

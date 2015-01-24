@@ -23,8 +23,8 @@
  *
  * @statefull
  *
- * @package net.webfrap
- * @author Dominik Donsch <dominik.bonsch@webfrap.net>
+ * @package net.buiz
+ * @author Dominik Donsch <dominik.bonsch@buiz.net>
  *
  */
 class LibProcess_Model extends PBase
@@ -35,7 +35,7 @@ class LibProcess_Model extends PBase
 
   /**
    * Der aktuell aktive Status eines Prozesses
-   * @var WbfsysProcessStatus_Entity
+   * @var BuizProcessStatus_Entity
    */
   public $activStatus = null;
 
@@ -47,7 +47,7 @@ class LibProcess_Model extends PBase
 
   /**
    * Node Objekt für den aktuellen Prozessstatus
-   * @var WbfsysProcessNode_Entity
+   * @var BuizProcessNode_Entity
    */
   public $activNode = null;
 
@@ -177,7 +177,7 @@ class LibProcess_Model extends PBase
 
     $this->activStatus = $this->db->orm->get
     (
-      'WbfsysProcessStatus',
+      'BuizProcessStatus',
       "id_process={$this->processId} and vid={$this->entity}"
     );
 
@@ -216,7 +216,7 @@ class LibProcess_Model extends PBase
 
     $this->activStatus = $orm->get
     (
-      'WbfsysProcessStatus',
+      'BuizProcessStatus',
       $statusId
     );
 
@@ -302,7 +302,7 @@ class LibProcess_Model extends PBase
       throw new LibProcess_Exception('It\'s not possible to initialize a Process without a valid Entity');
     }
 
-    $this->activStatus = $this->db->orm->newEntity('WbfsysProcessStatus');
+    $this->activStatus = $this->db->orm->newEntity('BuizProcessStatus');
 
     // orm laden
     $this->activStatus->id_process = $this->processId;
@@ -334,7 +334,7 @@ class LibProcess_Model extends PBase
       Debug::console("GOT NO STATUS ATTRIBUTE?!");
     }
 
-    $step = $this->db->orm->newEntity('WbfsysProcessStep');
+    $step = $this->db->orm->newEntity('BuizProcessStep');
     $step->id_to = $this->activStatus->id_actual_node;
 
     $step->id_process_instance = $this->activStatus;
@@ -351,7 +351,7 @@ class LibProcess_Model extends PBase
    * @param string $startNodeName Der Name des Startnodes
    * @param TFlag $params, Kommentar zum Wechsel des Status
    *
-   * @return WbfsysProcessNode_Entity den neuen Knoten zurückgeben
+   * @return BuizProcessNode_Entity den neuen Knoten zurückgeben
    */
   public function closeProcess($closeNodeName, $params)
   {
@@ -377,7 +377,7 @@ class LibProcess_Model extends PBase
    * @param TFlag $params
    * @param boolean $closeProcess Soll der Projekt geschlossen werden
    *
-   * @return WbfsysProcessNode_Entity den neuen Knoten zurückgeben
+   * @return BuizProcessNode_Entity den neuen Knoten zurückgeben
    *
    * @throws LibProcess_Exception
    *  Wenn nötige Informationen fehlen oder nicht geladen werden können
@@ -397,7 +397,7 @@ class LibProcess_Model extends PBase
     // zuerst wird der step, also der prozessschritt erstellt
     $newNode = $this->getNodeByName($newNodeName);
 
-    $step = $this->db->orm->newEntity('WbfsysProcessStep');
+    $step = $this->db->orm->newEntity('BuizProcessStep');
     $step->id_from = $this->activStatus->id_actual_node;
     $step->id_to = $newNode;
 
@@ -417,7 +417,7 @@ class LibProcess_Model extends PBase
     }
 
     if ($newNode->id_phase) {
-      $phaseNode = $orm->get('WbfsysProcessPhase', $newNode->id_phase);
+      $phaseNode = $orm->get('BuizProcessPhase', $newNode->id_phase);
       $this->activStatus->id_phase = $phaseNode;
       $this->activStatus->phase_key = $phaseNode->access_key;
     } else {
@@ -489,7 +489,7 @@ class LibProcess_Model extends PBase
       throw new LibProcess_Exception('Failed to load Processid, the Process / Processname is missing');
     }
 
-    $this->processId = $this->db->orm->getId('WbfsysProcess', "access_key='{$this->process->name}'");
+    $this->processId = $this->db->orm->getId('BuizProcess', "access_key='{$this->process->name}'");
 
     if (!$this->processId) {
 
@@ -510,13 +510,13 @@ class LibProcess_Model extends PBase
    * Erfragen eines ProzessKnotens über den Namen
    *
    * @param string $name
-   * @return WbfsysProcessNode_Entity
+   * @return BuizProcessNode_Entity
    */
   public function getNodeByName($name)
   {
 
     $node = $this->db->orm->get(
-      'WbfsysProcessNode',
+      'BuizProcessNode',
       "access_key='{$name}' and id_process={$this->processId}"
     );
 
@@ -543,7 +543,7 @@ class LibProcess_Model extends PBase
 
     $orm = $this->getOrm();
 
-    $processEntity = $orm->newEntity('WbfsysProcess');
+    $processEntity = $orm->newEntity('BuizProcess');
     $processEntity->name = SParserString::subToName($this->process->name);
     $processEntity->access_key = $this->process->name;
     $processEntity->description = $this->process->description;
@@ -551,7 +551,7 @@ class LibProcess_Model extends PBase
     $orm->insert($processEntity);
 
     foreach ($this->process->nodes as $key => $node) {
-      $processNode = $orm->newEntity('WbfsysProcessNode');
+      $processNode = $orm->newEntity('BuizProcessNode');
       $processNode->access_key = $key;
       $processNode->label = $node['label'];
       $processNode->description = isset($node['description'])?$node['description']:'';
@@ -574,7 +574,7 @@ class LibProcess_Model extends PBase
    *  Wenn die Datenbank nicht den Erwartungen der hier verwedeten Struktur
    *  entspricht
    *
-   * @return WbfsysProcessNode_Entity
+   * @return BuizProcessNode_Entity
    */
   protected function createProcessNode($key)
   {
@@ -582,7 +582,7 @@ class LibProcess_Model extends PBase
     $orm = $this->getOrm();
     $node = $this->process->nodes[$key];
 
-    $processNode = $orm->newEntity('WbfsysProcessNode');
+    $processNode = $orm->newEntity('BuizProcessNode');
     $processNode->access_key = $key;
     $processNode->label = $node['label'];
     $processNode->description = isset($node['description'])?$node['description']:'';

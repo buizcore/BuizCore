@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class SFolders
 {
@@ -25,7 +25,7 @@ class SFolders
    *
    * @param string $oldPos Die alte Position des Ordners
    * @param string $newPos Die neue Position des Ordners
-   * @throws Webfrap_Exception
+   * @throws Buiz_Exception
    * @return array
    */
   public static function move($oldPos, $newPos)
@@ -45,7 +45,7 @@ class SFolders
 
     } else {
 
-      throw new WebfrapSys_Exception('Diese Aktion wird für '.'dieser Betriebsystem nicht unterstützt!');
+      throw new BuizSys_Exception('Diese Aktion wird für '.'dieser Betriebsystem nicht unterstützt!');
     }
 
   } // end of member function Move
@@ -54,7 +54,7 @@ class SFolders
    *
    * @param string Oldpos Die alte Position des Ordners
    * @param string Newpos Die neue Position des Ordners
-   * @throws Webfrap_Exception
+   * @throws Buiz_Exception
    * @return array
    */
   public static function copy($oldPos, $newPos)
@@ -68,7 +68,7 @@ class SFolders
     if (class_exists($cname)) {
       call_user_func (array($cname  , 'copy') , $oldPos , $newPos);
     } else {
-      throw new WebfrapSys_Exception('Diese Aktion wird für '.
+      throw new BuizSys_Exception('Diese Aktion wird für '.
         'dieser Betriebsystem nicht unterstützt!');
     }
 
@@ -77,7 +77,7 @@ class SFolders
   /** Funktion zum löschen eines Ordners
    *
    * @param string Todel Löschen eines Ordners
-   * @throws Webfrap_Exception
+   * @throws Buiz_Exception
    * @return array
    */
   public static function delete($todel)
@@ -90,7 +90,7 @@ class SFolders
   /** Funktion zum löschen eines Ordners
    *
    * @param string Todel Löschen eines Ordners
-   * @throws Webfrap_Exception
+   * @throws Buiz_Exception
    * @return array
    */
   public static function rekReplaceStrings

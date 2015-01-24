@@ -17,8 +17,8 @@
 
 /**
  *
- * @package net.webfrap
- * @author Dominik Donsch <dominik.bonsch@webfrap.net>
+ * @package net.buiz
+ * @author Dominik Donsch <dominik.bonsch@buiz.net>
  *
  */
 class LibPeriodManager extends BaseChild
@@ -62,7 +62,7 @@ class LibPeriodManager extends BaseChild
 
     $orm = $this->getOrm();
 
-    $period = $orm->getByKey('WbfsysPeriodType', $key);
+    $period = $orm->getByKey('BuizPeriodType', $key);
 
     if (!$period)
       throw new LibPeriod_Exception('period type not exists','wbf.period',array('type',$key));
@@ -87,10 +87,10 @@ class LibPeriodManager extends BaseChild
 
     if (ctype_digit($key)) {
 
-      $pType = $orm->get('WbfsysPeriodType', $key);
+      $pType = $orm->get('BuizPeriodType', $key);
     } else {
 
-      $pType = $orm->getByKey('WbfsysPeriodType', $key);
+      $pType = $orm->getByKey('BuizPeriodType', $key);
     }
 
     if (!$pType)
@@ -120,7 +120,7 @@ class LibPeriodManager extends BaseChild
       return $this->actPeriod[$key]['rowid'];
 
     if (!$status)
-      $status = array(EWbfsysPeriodStatus::FROZEN, EWbfsysPeriodStatus::ACTIVE) ;
+      $status = array(EBuizPeriodStatus::FROZEN, EBuizPeriodStatus::ACTIVE) ;
 
     if ( is_array($status) ) {
       $whereStatus = " IN(".implode(', ',$status).") ";
@@ -133,7 +133,7 @@ class LibPeriodManager extends BaseChild
       $sql = <<<SQL
 SELECT
   period.rowid
-FROM wbfsys_period period
+FROM buiz_period period
 WHERE
   period.id_type = {$key}
     and period.status {$whereStatus};
@@ -146,8 +146,8 @@ SELECT
   period.rowid,
   period.status,
   period.planned_end
-FROM wbfsys_period period
-  JOIN wbfsys_period_type type
+FROM buiz_period period
+  JOIN buiz_period_type type
     ON type.rowid = period.id_type
 WHERE
   type.access_key = '{$key}'
@@ -170,7 +170,7 @@ SQL;
    * Die Actions für einen bestimmten Periodenübergang auslesen
    *
    * @param string $key
-   * @param int EWbfsysPeriodStatus $type
+   * @param int EBuizPeriodStatus $type
    *
    * @return array
    */
@@ -182,7 +182,7 @@ SQL;
       $sql = <<<SQL
 SELECT
   task.actions
-FROM wbfsys_period_task task
+FROM buiz_period_task task
 WHERE
   task.id_type = {$key}
   AND task.event_type = {$type};
@@ -193,8 +193,8 @@ SQL;
       $sql = <<<SQL
 SELECT
   task.actions
-FROM wbfsys_period_task task
-  JOIN wbfsys_period_type type
+FROM buiz_period_task task
+  JOIN buiz_period_type type
     ON type.rowid = task.id_type
 WHERE
   type.access_key = '{$key}'
@@ -213,7 +213,7 @@ SQL;
    * @constraint Kann erst nach getActivePeriod aufgerufen werden
    *
    * @param string $key
-   * @param int EWbfsysPeriodStatus $type
+   * @param int EBuizPeriodStatus $type
    *
    * @return array
    */
@@ -231,7 +231,7 @@ SQL;
    * @constraint Kann erst nach getActivePeriod aufgerufen werden
    *
    * @param string $key
-   * @param int EWbfsysPeriodStatus $type
+   * @param int EBuizPeriodStatus $type
    *
    * @return array
    *
@@ -256,18 +256,18 @@ SQL;
   {
 
     // valide Perionden sind entweder in Planung oder in Preparation
-    $prep = EWbfsysPeriodStatus::PREPARATION;
-    $planned = EWbfsysPeriodStatus::PLANNED;
+    $prep = EBuizPeriodStatus::PREPARATION;
+    $planned = EBuizPeriodStatus::PLANNED;
 
     $sql = <<<SQL
 SELECT
   rowid
 FROM
-  wbfsys_period
+  buiz_period
 WHERE
   date_start IN(
     SELECT min(date_start)
-    FROM wbfsys_period
+    FROM buiz_period
     WHERE
       status IN({$prep}, {$planned})
         AND id_type = {$pType}
@@ -290,13 +290,13 @@ SQL;
   {
 
     // valide Perionden sind entweder in Planung oder in Preparation
-    $status = EWbfsysPeriodStatus::CLOSED;
+    $status = EBuizPeriodStatus::CLOSED;
 
     $sql = <<<SQL
 SELECT
   period.rowid
 FROM
-  wbfsys_period
+  buiz_period
 WHERE
   status = {$status}
 HAVING
@@ -315,7 +315,7 @@ SQL;
 
     $orm = $this->getOrm();
 
-    $period = $orm->getByKey('WbfsysPeriodType', $key);
+    $period = $orm->getByKey('BuizPeriodType', $key);
 
     if (!$period)
       throw new LibPeriod_Exception('Got key '.$key.' to initialize, however this period type does not exist.' );
@@ -338,7 +338,7 @@ SQL;
 
     $orm = $this->getOrm();
 
-    $period = new WbfsysPeriod_Entity();
+    $period = new BuizPeriod_Entity();
     $period->title = $pType->name.' '.date('Y-m-d');
     $period->access_key = $pType->access_key.'_'.date('Y_m_d');
     $period->date_start = date('Y-m-d');
@@ -360,7 +360,7 @@ SQL;
   {
   
     $orm = $this->getOrm();
-    return (boolean)$orm->countRows('WbfsysPeriod', 'id_type = '.$pTypeId);
+    return (boolean)$orm->countRows('BuizPeriod', 'id_type = '.$pTypeId);
   
   }//end public function isFrozen */
   
@@ -373,7 +373,7 @@ SQL;
   {
     
     $orm = $this->getOrm();
-    return (boolean)$orm->countRows('WbfsysPeriod', 'id_type = '.$pTypeId.' and status = '.EWbfsysPeriodStatus::FROZEN);
+    return (boolean)$orm->countRows('BuizPeriod', 'id_type = '.$pTypeId.' and status = '.EBuizPeriodStatus::FROZEN);
     
   }//end public function isFrozen */
   
@@ -386,7 +386,7 @@ SQL;
   {
   
     $orm = $this->getOrm();
-    return !(boolean)$orm->countRows('WbfsysPeriod', 'id_type = '.$pTypeId.' and status = '.EWbfsysPeriodStatus::FROZEN);
+    return !(boolean)$orm->countRows('BuizPeriod', 'id_type = '.$pTypeId.' and status = '.EBuizPeriodStatus::FROZEN);
   
   }//end public function isFrozen */
   
@@ -402,17 +402,17 @@ SQL;
 
     $pType = $this->getPeriodType($key);
 
-    if ($pType->status >= EWbfsysPeriodTypeStatus::ACTIVE){
+    if ($pType->status >= EBuizPeriodTypeStatus::ACTIVE){
       throw new LibPeriod_Exception('period type allready initialized', 'wbf.period');
     }
 
     $activePeriod = $this->createNext(
       $pType,
-      EWbfsysPeriodStatus::ACTIVE
+      EBuizPeriodStatus::ACTIVE
     );
 
 
-    $this->triggerAction($pType, $activePeriod, EWbfsysPeriodEventType::INITIALIZE );
+    $this->triggerAction($pType, $activePeriod, EBuizPeriodEventType::INITIALIZE );
 
   }//end public function initialize */
 
@@ -430,14 +430,14 @@ SQL;
     $activePeriod = $this->getActivePeriod($key);
     $pType = $this->getPeriodType($key);
 
-    $this->createNext($pType, EWbfsysPeriodStatus::PREPARATION);
+    $this->createNext($pType, EBuizPeriodStatus::PREPARATION);
 
-    $this->updatePeriodStatus($activePeriod, EWbfsysPeriodStatus::FROZEN);
+    $this->updatePeriodStatus($activePeriod, EBuizPeriodStatus::FROZEN);
 
     $this->triggerAction(
       $pType,
       $activePeriod,
-      EWbfsysPeriodEventType::FREEZE,
+      EBuizPeriodEventType::FREEZE,
       true
     );
 
@@ -456,8 +456,8 @@ SQL;
     $pType = $this->getPeriodType($key);
 
     // die aktive periode finden
-    $activePeriod = $this->getActivePeriod($pType, array(EWbfsysPeriodStatus::ACTIVE, EWbfsysPeriodStatus::FROZEN));
-    $this->closePeriod($activePeriod, EWbfsysPeriodStatus::CLOSED);
+    $activePeriod = $this->getActivePeriod($pType, array(EBuizPeriodStatus::ACTIVE, EBuizPeriodStatus::FROZEN));
+    $this->closePeriod($activePeriod, EBuizPeriodStatus::CLOSED);
 
 
     // die nächste Periode laden
@@ -466,17 +466,17 @@ SQL;
     // wenn keine vorhanden ist eine erstellen
     if (!$nextPeriod) {
 
-      $this->createNext($pType, EWbfsysPeriodStatus::ACTIVE);
+      $this->createNext($pType, EBuizPeriodStatus::ACTIVE);
     } else {
 
       // die nächste periode aktiv setzen
-      $this->updatePeriodStatus($nextPeriod, EWbfsysPeriodStatus::ACTIVE);
+      $this->updatePeriodStatus($nextPeriod, EBuizPeriodStatus::ACTIVE);
     }
 
     $this->triggerAction(
       $pType,
       array($activePeriod,$nextPeriod),
-      EWbfsysPeriodEventType::SWITCH_NEXT,
+      EBuizPeriodEventType::SWITCH_NEXT,
       true
     );
 
@@ -521,7 +521,7 @@ SQL;
 
     // periode auf freeze setzen
     $sql = <<<SQL
-UPDATE wbfsys_period set status = {$status} where rowid = {$activePeriod};
+UPDATE buiz_period set status = {$status} where rowid = {$activePeriod};
 SQL;
 
     $db->update($sql);
@@ -546,7 +546,7 @@ SQL;
 
     // periode auf freeze setzen
     $sql = <<<SQL
-UPDATE wbfsys_period set status = {$status}, date_end = '{$today}' where rowid = {$activePeriod};
+UPDATE buiz_period set status = {$status}, date_end = '{$today}' where rowid = {$activePeriod};
 SQL;
 
     $db->update($sql);
@@ -563,7 +563,7 @@ SQL;
 
     $db = $this->getDb();
 
-    $status = EWbfsysPeriodStatus::PREPARATION;
+    $status = EBuizPeriodStatus::PREPARATION;
     $startDate = date('Y-m-d');
 
     if (ctype_digit($key)) {
@@ -573,7 +573,7 @@ SQL;
 SELECT
   COUNT(period.rowid) as num
 FROM
-   wbfsys_period period
+   buiz_period period
 WHERE
   period.id_type = {$key}
     AND period.status <= {$status}
@@ -588,11 +588,11 @@ SQL;
 SELECT
   COUNT(period.rowid) as num
 FROM
-   wbfsys_period period
+   buiz_period period
 JOIN
-    wbfsys_period_type type ON type.rowid = period.id_type
+    buiz_period_type type ON type.rowid = period.id_type
 WHERE
-  wbfsys_period_type.access_key = '{$key}'
+  buiz_period_type.access_key = '{$key}'
     AND status <= {$status}
     AND date_start < '{$startDate}';
 

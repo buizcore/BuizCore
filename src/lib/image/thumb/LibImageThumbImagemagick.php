@@ -18,7 +18,7 @@
 /**
  * class LibmageThumbImagemagick
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibmageThumbImagemagick extends LibImageThumbAdapter
 {

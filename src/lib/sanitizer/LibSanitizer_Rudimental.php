@@ -15,7 +15,7 @@
 *
 *******************************************************************************/
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibSanitizer_Rudimental
   implements LibSanitizerAdapter

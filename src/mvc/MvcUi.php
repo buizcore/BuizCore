@@ -21,7 +21,7 @@
   *
   * Is a subclass of the view
   *
- * @package net.webfrap
+ * @package net.buiz
   */
 class MvcUi extends BaseChild
 {

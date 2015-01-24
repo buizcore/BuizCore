@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap/cache
+ * @package net.buiz/cache
  */
 class LibCache_Exception extends Lib_Exception
 {

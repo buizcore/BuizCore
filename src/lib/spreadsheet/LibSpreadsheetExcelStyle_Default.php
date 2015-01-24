@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibSpreadsheetExcelStyle_Default extends LibSpreadsheetExcelStyle
 {

@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class ERelevance
 {
@@ -58,8 +58,8 @@ class ERelevance
         $i18n = BuizCore::$env->getI18n();
         
         return isset(self::$labels[$key])
-            ? $i18n->l(self::$labels[$key],'wbfsys.base')
-            : $i18n->l(self::$labels[self::AVERAGE],'wbfsys.base');
+            ? $i18n->l(self::$labels[$key],'buiz.base')
+            : $i18n->l(self::$labels[self::AVERAGE],'buiz.base');
     
     }//end public static function label */
 

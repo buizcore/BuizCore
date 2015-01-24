@@ -13,9 +13,9 @@ CREATE  OR REPLACE VIEW webfrap_process_status_view
     status.value_highest_node  as "highest_node",
     status.vid              as "dataset_id"
   FROM
-    wbfsys_process process
+    buiz_process process
   JOIN
-    wbfsys_process_status status
+    buiz_process_status status
     ON
       status.id_process = process.rowid
 
@@ -23,7 +23,7 @@ CREATE  OR REPLACE VIEW webfrap_process_status_view
 
 -- index für das schnelle updaten eines Prozesstatus
 CREATE INDEX update_process_status_idx 
-  ON wbfsys_process_status 
+  ON buiz_process_status 
   (
     vid,
     id_process

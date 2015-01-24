@@ -30,41 +30,41 @@ try {
   if ( isset($_GET['rqt']) ) {
 
     View::setType( View::OVERLAY );
-    $webfrap = BuizCore::init();
+    $buiz = BuizCore::init();
     View::getActive()->setIndex( 'ajax' );
 
     $request = Request::getInstance();
 
     // only allow get,put,post and delete
     if ( !$request->inMethod( array('GET','POST','PUT','DELETE') ) ) {
-      $webfrap->httpError(405,$request->method());
-      $errors = $webfrap->out();
-      $webfrap->shutdown( $errors );
+      $buiz->httpError(405,$request->method());
+      $errors = $buiz->out();
+      $buiz->shutdown( $errors );
     } else {
-      $webfrap->main();
-      $errors = $webfrap->out();
-      $webfrap->shutdown( $errors );
+      $buiz->main();
+      $errors = $buiz->out();
+      $buiz->shutdown( $errors );
     }
 
   } else {
     View::setType( 'Html' );
-    $webfrap = BuizCore::init();
+    $buiz = BuizCore::init();
     $request = Request::getInstance();
 
     // only allow get,post
     if ( !$request->inMethod(array('GET','POST','PUT','DELETE')) ) {
-      $webfrap->httpError(405,$request->method());
-      $errors = $webfrap->out();
-      $webfrap->shutdown( $errors );
+      $buiz->httpError(405,$request->method());
+      $errors = $buiz->out();
+      $buiz->shutdown( $errors );
     } else {
       // works only with desktop
-      $webfrap->redirectByKey( 'tripple_desktop' );
+      $buiz->redirectByKey( 'tripple_desktop' );
 
       $view = View::getActive();
       $view->openWindow( 'overlay.php?'.$request->getResource() );
 
-      $errors = $webfrap->out();
-      $webfrap->shutdown( $errors );
+      $errors = $buiz->out();
+      $buiz->shutdown( $errors );
     }
   }
 

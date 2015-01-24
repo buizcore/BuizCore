@@ -20,7 +20,7 @@
  * magic __get und __set sind Elemente
  * indexoperator [] greift auf Attribute der Elemente zu
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class TNode
   implements ITObject, Iterator, Countable

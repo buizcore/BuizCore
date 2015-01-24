@@ -17,7 +17,7 @@
 
 /**
  * Klasse zum bauen persistenter Views aus den wichtigsten Acls
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibAclPersistentViewManager extends DataContainer
 {

@@ -17,7 +17,7 @@
 
 /**
  * Abstrakte Klasse für Datenbankverbindungen
- * @package net.webfrap
+ * @package net.buiz
  */
 abstract class LibDbResult implements Iterator, Countable
 {

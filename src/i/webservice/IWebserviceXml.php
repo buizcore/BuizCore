@@ -18,7 +18,7 @@
 /**
  * Abstract Class For SysExtention Controllers
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 interface IWebserviceXml extends IWebservice
 {

@@ -19,7 +19,7 @@
  * Dao Class to Load the Menus from wherever.
  * This Class should be used instead of a loading method
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class DaoMenu extends Dao
 {

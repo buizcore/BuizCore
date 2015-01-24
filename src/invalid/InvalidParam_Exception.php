@@ -21,10 +21,10 @@
  *
  * Daher ganz klar ein Programmierfehler
  *
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class InvalidParam_Exception extends WebfrapSys_Exception
+class InvalidParam_Exception extends BuizSys_Exception
 {
 
 }

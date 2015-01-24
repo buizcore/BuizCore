@@ -18,7 +18,7 @@
 /**
  * Standard Query Objekt zum laden der Benutzer anhand der Rolle
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibUserSettings extends LibSettings
 {
@@ -59,7 +59,7 @@ class LibUserSettings extends LibSettings
       $className = EUserSettingType::getClass($key);
 
       $sql = <<<SQL
-SELECT rowid, jdata from wbfsys_user_setting where id_user = {$userId} AND type = {$key};
+SELECT rowid, jdata from buiz_user_setting where id_user = {$userId} AND type = {$key};
 SQL;
 
       $data = $this->db->select($sql)->get();
@@ -93,9 +93,9 @@ SQL;
     $id = $data->getId();
 
     if ($id) {
-      $this->db->getOrm()->update('WbfsysUserSetting', $id, array('jdata'=>$jsonString,'type'=>$key));
+      $this->db->getOrm()->update('BuizUserSetting', $id, array('jdata'=>$jsonString,'type'=>$key));
     } else {
-      $this->db->getOrm()->insert('WbfsysUserSetting', array(
+      $this->db->getOrm()->insert('BuizUserSetting', array(
       	'jdata' => $jsonString,
       	'type' => $key,
       	'id_user' => $this->user->getId()
@@ -123,14 +123,14 @@ SQL;
     $whereVid = is_null($id)?' IS NULL ':' = '.$id;
     
     $sNode = $orm->get(
-      'WbfsysUserSetting',
+      'BuizUserSetting',
       "id_user=".$this->user->getId()." AND type=".$key.' and vid '.$whereVid
      );
   
     if ($id) {
-      $this->db->getOrm()->update('WbfsysUserSetting', $id, array('jdata'=>$jsonString,'type'=>$key));
+      $this->db->getOrm()->update('BuizUserSetting', $id, array('jdata'=>$jsonString,'type'=>$key));
     } else {
-      $this->db->getOrm()->insert('WbfsysUserSetting', array(
+      $this->db->getOrm()->insert('BuizUserSetting', array(
           'jdata' => $jsonString,
           'type' => $key,
           'id_user' => $this->user->getId()

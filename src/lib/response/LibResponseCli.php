@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibResponseCli extends LibResponse
 {
@@ -170,7 +170,7 @@ class LibResponseCli extends LibResponse
    *      $response->i18n->l
    *      (
    *        'The requested View not exists',
-   *        'wbfsys.error'
+   *        'buiz.error'
    *      );
    *    );
    *    return false;

@@ -17,7 +17,7 @@
 
 /**
  * Logappender für die Ausgabe der Logmeldung in die Console
- * @package net.webfrap
+ * @package net.buiz
  */
 class LobLogCli implements LibLogAdapter
 {

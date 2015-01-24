@@ -18,7 +18,7 @@
 
 /**
  *
- * @package net.webfrap/cache
+ * @package net.buiz/cache
  */
 class LibCacheRequest
 {

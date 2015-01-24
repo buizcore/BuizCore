@@ -19,7 +19,7 @@
  * Login aus der Url Auslesen
  * Nicht unbedingt schön, aber manchmal nicht zu vermeiden
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibAuthHttpget extends LibAuthApdapter
 {

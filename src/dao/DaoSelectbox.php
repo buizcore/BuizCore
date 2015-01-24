@@ -17,7 +17,7 @@
 
 /**
  * Dato zum laden con PHP Maps
- * @package net.webfrap
+ * @package net.buiz
  */
 class DaoSelectbox extends Dao
 {

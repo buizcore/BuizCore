@@ -18,7 +18,7 @@
 /**
  * Always Thrown If A Class Not Exists
  *
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class LibUploadException extends Io_Exception

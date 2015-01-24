@@ -29,8 +29,8 @@ if (!defined('WBF_CONTROLLER_TYPE'))
  * Kompletten Systems speichert und die Benutzereingaben verarbeite.
  * Weiter liest der Supercontroller bei Systemstart die Systemkonfiguration aus.
  *
- * @author Dominik Bonsch <dominik.bonsch@webfrap.net>
- * @package net.webfrap
+ * @author Dominik Bonsch <dominik.bonsch@buiz.net>
+ * @package net.buiz
  */
 class LibFlowApachemod extends Base
 {
@@ -324,7 +324,7 @@ class LibFlowApachemod extends Base
 
         // Initialisieren der Extention
         if (!$this->controller->initController())
-          throw new WebfrapSys_Exception('Failed to initialize Controller');
+          throw new BuizSys_Exception('Failed to initialize Controller');
 
         // Run the mainpart
         $this->controller->run($action  );
@@ -335,7 +335,7 @@ class LibFlowApachemod extends Base
 
       } else {
 
-        throw new WebfrapUser_Exception('Resource '.$classname.' not exists!');
+        throw new BuizUser_Exception('Resource '.$classname.' not exists!');
       }
 
     } catch (Exception $exc) {
@@ -372,7 +372,7 @@ class LibFlowApachemod extends Base
   {
 
     if (View::$published)
-      throw new Webfrap_Exception("Allready published!!");
+      throw new Buiz_Exception("Allready published!!");
 
     View::$published = true;
 
@@ -459,8 +459,8 @@ class LibFlowApachemod extends Base
   }//end public function shutdown */
 
  /**
-  * Funktion zum beenden von Webfrap falls ein Fataler Fehler auftritt der das
-  * Ausführen von Webfrap verhindert
+  * Funktion zum beenden von Buiz falls ein Fataler Fehler auftritt der das
+  * Ausführen von Buiz verhindert
   *
   * @param string $file
   * @param int $line
@@ -618,7 +618,7 @@ class LibFlowApachemod extends Base
         $status = $conf->getStatus('tripple_user');
         $tmp = explode('.',$status);
       } else {
-        $status = 'Webfrap.Desktop.display';
+        $status = 'Buiz.Desktop.display';
         $tmp = explode('.',$status);
       }
 
@@ -627,7 +627,7 @@ class LibFlowApachemod extends Base
       if ($status = $conf->getStatus('tripple_annon')) {
         $tmp = explode('.', $conf->getStatus('tripple_annon'));
       } else {
-        $status = 'Webfrap.Auth.form';
+        $status = 'Buiz.Auth.form';
         $tmp = explode('.',$status);
       }
 

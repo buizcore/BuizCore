@@ -29,7 +29,7 @@ session_set_save_handler
 
 /**
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class Session
 {
@@ -105,7 +105,7 @@ class Session
   {
 
     if (is_null(self::$session))
-      throw new WebfrapSys_Exception('Session not yet started!');
+      throw new BuizSys_Exception('Session not yet started!');
 
     return self::$session;
 
@@ -120,7 +120,7 @@ class Session
   {
 
     if (is_null(self::$session))
-      throw new WebfrapSys_Exception('Session not yet started!');
+      throw new BuizSys_Exception('Session not yet started!');
 
     return self::$session;
 

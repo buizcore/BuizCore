@@ -17,7 +17,7 @@
 
 /**
  * @lang:de
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibAclRoot extends BaseChild
 {

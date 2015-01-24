@@ -22,7 +22,7 @@
  *
  * ArrayAccess und Statische getter und setter
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 interface ITObject extends ArrayAccess
 {

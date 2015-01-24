@@ -20,7 +20,7 @@
  *
  * Die Readerklasse ist im Gegensatz zum ACL Adapter nicht relativ zum aktuellen
  * User
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibAclReader extends BaseChild
 {

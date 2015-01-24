@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class EUserSettingType
 {
@@ -52,7 +52,7 @@ class EUserSettingType
    * @var array
    */
   public static $classes = array(
-    self::MESSAGES => 'WebfrapMessage_Table_Search_Settings',
+    self::MESSAGES => 'BuizMessage_Table_Search_Settings',
     self::LISTING => 'WgtSettings_Search_Listing',
     self::LISTING_SEARCH => 'WgtSettings_Search_Listing',
     self::LISTING_REF => 'WgtSettings_Search_Listing',

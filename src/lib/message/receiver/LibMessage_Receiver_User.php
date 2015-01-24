@@ -17,7 +17,7 @@
 
 /**
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibMessage_Receiver_User implements IReceiver
 {
@@ -26,7 +26,7 @@ class LibMessage_Receiver_User implements IReceiver
 /*////////////////////////////////////////////////////////////////////////////*/
 
   /**
-   * @var WbfsysRoleUser_Entity
+   * @var BuizRoleUser_Entity
    */
   public $user = null;
 

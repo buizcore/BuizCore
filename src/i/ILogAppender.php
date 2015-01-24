@@ -18,7 +18,7 @@
 /**
  * Das Interface für die Logappender
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 interface ILogAppender
 {

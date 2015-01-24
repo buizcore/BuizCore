@@ -18,7 +18,7 @@
 /**
  * Die Dauer eines Vorgangs aus dem Start und Endedatum heraus berechnen
  * 
- * @package net.webfrap
+ * @package net.buiz
  */
 class FormatNumber
 {

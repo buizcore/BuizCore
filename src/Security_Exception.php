@@ -18,10 +18,10 @@
 /**
  * Die Exception die durch die Gegend fliegt wenn Sicherheitsprobleme fest
  * gestell werden
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class Security_Exception extends Webfrap_Exception
+class Security_Exception extends Buiz_Exception
 {
 
   /**

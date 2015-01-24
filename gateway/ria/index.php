@@ -23,7 +23,7 @@ $indexFile = isset($_GET['request'])?strtolower($_GET['request']):'html';
 
 $index = array
 (
-  'webfrap'    => 'html',
+  'buiz'    => 'html',
   'html'       => 'html',
   'ajax'       => 'ajax',
   'window'     => 'window',

@@ -63,7 +63,7 @@ if (!defined('PATH_ICONS'))
     define( 'PATH_ICONS'    , PATH_ROOT.'BuizCore_Wgt/'  );
 
 /**
- * Source path to the webfrap wgt
+ * Source path to the buiz wgt
  * @var
 */
 if (!defined('PATH_WGT'))

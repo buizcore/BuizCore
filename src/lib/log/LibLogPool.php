@@ -17,7 +17,7 @@
 
 /**
  * Logappender für die Ausgabe der Logmeldung in die Console
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibLogPool
 {
@@ -190,7 +190,7 @@ class LibLogPool
         if (BuizCore::classExists($class)  )
           $this->loadedAppender[$target] = new $class($modul);
         else
-          throw new WebfrapService_Exception('invalid config');
+          throw new BuizService_Exception('invalid config');
 
       } // Ende If
     } // ENDE FOREACH

@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 abstract class MvcModule extends BaseChild
 {
@@ -196,7 +196,7 @@ abstract class MvcModule extends BaseChild
     try {
 
       if (!$this->initModul())
-        throw new Webfrap_Exception('Failed to initialize Modul');
+        throw new Buiz_Exception('Failed to initialize Modul');
 
       // no controller? asume init allready reported an error
       if (!$this->controller)
@@ -204,7 +204,7 @@ abstract class MvcModule extends BaseChild
 
       // Initialisieren der Extention
       if (!$this->controller->initController())
-        throw new Webfrap_Exception('Failed to initialize Controller');
+        throw new Buiz_Exception('Failed to initialize Controller');
 
       // Run the mainpart
       $this->controller->run($request->param('do', Validator::CNAME));

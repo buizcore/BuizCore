@@ -16,9 +16,9 @@
 *******************************************************************************/
 
 /**
- * @author Dominik Bonsch <dominik.bonsch@webfrap.net>
- * @copyright Webfrap Developer Network <contact@webfrap.net>
- * @package net.webfrap
+ * @author Dominik Bonsch <dominik.bonsch@buiz.net>
+ * @copyright Buiz Developer Network <contact@buiz.net>
+ * @package net.buiz
  */
 class LibCleanerUser
 {
@@ -67,33 +67,33 @@ ERRMSG;
 
     // bookmarks
     $sql[] = <<<SQL
-DELETE FROM wbfsys_bookmark where vid = {$id};
+DELETE FROM buiz_bookmark where vid = {$id};
 SQL;
 
     // calendar refs
     $sql[] = <<<SQL
-DELETE FROM wbfsys_calendar_vref where vid = {$id};
+DELETE FROM buiz_calendar_vref where vid = {$id};
 SQL;
 
     // calendar refs
     $sql[] = <<<SQL
-DELETE FROM wbfsys_tag_reference where vid = {$id};
+DELETE FROM buiz_tag_reference where vid = {$id};
 SQL;
 
     // comments
     $sql[] = <<<SQL
-DELETE FROM wbfsys_comment where vid = {$id};
+DELETE FROM buiz_comment where vid = {$id};
 SQL;
 
     // faq
     $sql[] = <<<SQL
-DELETE FROM wbfsys_faq where vid = {$id};
+DELETE FROM buiz_faq where vid = {$id};
 SQL;
 
 
     // Prozess status leeren
     $sql[] = <<<SQL
-DELETE FROM wbfsys_process_status where vid = {$id};
+DELETE FROM buiz_process_status where vid = {$id};
 SQL;
 
     $db->multiDelete($sql);

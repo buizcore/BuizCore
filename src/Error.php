@@ -20,9 +20,9 @@
  * Hilfsklasse zum behandeln von Fehlern,
  * Wir hauptsächlich als Container für die Fehlercodes verwendet
  *
- * @package net.webfrap
+ * @package net.buiz
  *
- * @author domnik alexander bonsch <dominik.bonsch@webfrap.net>
+ * @author domnik alexander bonsch <dominik.bonsch@buiz.net>
  */
 class Error
 {
@@ -266,7 +266,7 @@ HTML;
   public function construct($message, $debugMessage = null, $errorKey = Response::INTERNAL_ERROR, $toDump = null)
   {
 
-    if (is_object($message) && $message instanceof Webfrap_Exception) {
+    if (is_object($message) && $message instanceof Buiz_Exception) {
       $this->message = $message->getMessage();
       $this->debugMessage = $message->getDebugMessage();
       $this->errorKey = $message->getErrorKey();
@@ -390,7 +390,7 @@ HTML;
       if (BuizCore::classExists($exception)) {
         throw new $exception($message);
       } else {
-        throw new WebfrapSys_Exception
+        throw new BuizSys_Exception
         (
           'Thrown nonexisting exception: '.$exception.' with message: '.$message
         );
@@ -446,7 +446,7 @@ HTML;
       if (BuizCore::classExists($exception)) {
         throw new $exception($message);
       } else {
-        throw new WebfrapSys_Exception
+        throw new BuizSys_Exception
         (
           'Thrown nonexisting exception: '.$exception.' with message: '.$message
         );
@@ -565,7 +565,7 @@ HTML;
       if (BuizCore::classExists($exception)) {
         throw new $exception($message);
       } else {
-        throw new WebfrapSys_Exception(
+        throw new BuizSys_Exception(
           'Thrown nonexisting exception: '.$exception.' with message: '.$message
         );
       }
@@ -605,7 +605,7 @@ HTML;
        Debug::appendLogDump($toDump);
     }
 
-    throw new WebfrapSys_Exception($message);
+    throw new BuizSys_Exception($message);
 
   }//end public static function addFatalError */
 

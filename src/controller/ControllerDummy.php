@@ -2,11 +2,11 @@
 
 /*******************************************************************************
  *
- * @author      : Dominik Bonsch <dominik.bonsch@webfrap.net>
+ * @author      : Dominik Bonsch <dominik.bonsch@buiz.net>
  * @date        :
- * @copyright   : Webfrap Developer Network <contact@webfrap.net>
- * @project     : Webfrap Web Frame Application
- * @projectUrl  : http://webfrap.net
+ * @copyright   : Buiz Developer Network <contact@buiz.net>
+ * @project     : Buiz Web Frame Application
+ * @projectUrl  : http://buiz.net
  *
  * @licence     : BSD License see: LICENCE/BSD Licence.txt
  *
@@ -20,7 +20,7 @@
  * Dummy class for Extentions
  * This class will be loaded if the System requests for an Extention that
  * doesn't exist
- * @package net.webfrap
+ * @package net.buiz
  */
 class ControllerDummy extends Controller
 {
@@ -34,7 +34,7 @@ class ControllerDummy extends Controller
   public function run ($aktion = null)
   {
 
-    $this->view->setTemplate('webfrap/error');
+    $this->view->setTemplate('buiz/error');
 
     $this->view->addVar([
       'errorTitle' => 'Wrong Extention', 'errorMessage' => 'Wrong Extention'

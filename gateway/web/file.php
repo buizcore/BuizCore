@@ -25,9 +25,9 @@ try {
     ob_start();
 
   $errors = '';
-  $webfrap = BuizCore::init();
+  $buiz = BuizCore::init();
 
-  $request = $webfrap->getRequest();
+  $request = $buiz->getRequest();
 
 
   $key = $request->param('f',Validator::CKEY);
@@ -36,8 +36,8 @@ try {
 
     $name = $request->param('n', Validator::TEXT);
 
-    /* @var $fileManager Webfrap_File_Manager */
-    $fileManager = Manager::get('Webfrap_File');
+    /* @var $fileManager Buiz_File_Manager */
+    $fileManager = Manager::get('Buiz_File');
     $fileManager->readFile($key,$name );
     return;
   }
@@ -46,8 +46,8 @@ try {
 
   if ($objId) {
 
-    /* @var $fileManager WebfrapDms_File_Manager */
-    $fileManager = Manager::get('WebfrapDms_File');
+    /* @var $fileManager BuizDms_File_Manager */
+    $fileManager = Manager::get('BuizDms_File');
     $fileManager->readFile($objId);
     return;
   }

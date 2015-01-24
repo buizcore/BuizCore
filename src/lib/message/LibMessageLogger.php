@@ -17,7 +17,7 @@
 
 /**
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibMessageLogger
 {
@@ -86,7 +86,7 @@ class LibMessageLogger
   {
     
     $this->db->orm->insert(
-      'WbfsysMessageLog',
+      'BuizMessageLog',
       array(
         'title' => $title,
         'email' => $address,

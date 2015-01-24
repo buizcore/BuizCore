@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class Request
@@ -272,7 +272,7 @@ class Request
       $classname = 'LibRequest'.ucfirst(WBF_REQUEST_ADAPTER);
       if (!BuizCore::classExists($classname)) {
 
-        throw new WebfrapConfig_Exception
+        throw new BuizConfig_Exception
         (
           'Request Type: '.ucfirst(WBF_REQUEST_ADAPTER).' not exists!'
         );

@@ -18,8 +18,8 @@
 
 /**
  *
- * @author dominik bonsch <dominik.bonsch@webfrap.net>
- * @package net.webfrap
+ * @author dominik bonsch <dominik.bonsch@buiz.net>
+ * @package net.buiz
  *            
  */
 class ContextDomainCrud extends Context

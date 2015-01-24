@@ -17,7 +17,7 @@
 
 /**
  * class Cache
- * @package net.webfrap
+ * @package net.buiz
  */
 class Cache
 {
@@ -131,7 +131,7 @@ class Cache
       $class = 'LibCache'.ucfirst($conf['adapters']['level1']['class']);
 
       if (!BuizCore::classExists($class)) {
-        throw new WebfrapConfig_Exception('Wrong Configuration');
+        throw new BuizConfig_Exception('Wrong Configuration');
       }
       $this->level1 = new $class($conf['adapters']['level1']);
     }
@@ -140,7 +140,7 @@ class Cache
       $class = 'LibCache'.ucfirst($conf['adapters']['level2']['class']);
 
       if (!BuizCore::classExists($class)) {
-        throw new WebfrapConfig_Exception('Wrong Configuration');
+        throw new BuizConfig_Exception('Wrong Configuration');
       }
 
       $this->level2 = new $class($conf['adapters']['level2']);
@@ -152,7 +152,7 @@ class Cache
       $class = 'LibCache'.ucfirst($conf['adapters']['level3']['class']);
 
       if (!BuizCore::classExists($class)) {
-        throw new WebfrapConfig_Exception('Wrong Configuration');
+        throw new BuizConfig_Exception('Wrong Configuration');
       }
 
       $this->level3 = new $class($conf['adapters']['level3']);

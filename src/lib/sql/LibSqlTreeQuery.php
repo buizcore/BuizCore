@@ -18,7 +18,7 @@
 /**
  * Collection to fetch result and bundle them
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 abstract class LibSqlTreeQuery extends LibSqlQuery
 {

@@ -1,11 +1,11 @@
 <?php
 /*******************************************************************************
  *
- * @author      : Dominik Bonsch <dominik.bonsch@webfrap.net>
+ * @author      : Dominik Bonsch <dominik.bonsch@buiz.net>
  * @date        :
- * @copyright   : Webfrap Developer Network <contact@webfrap.net>
- * @project     : Webfrap Web Frame Application
- * @projectUrl  : http://webfrap.net
+ * @copyright   : Buiz Developer Network <contact@buiz.net>
+ * @project     : Buiz Web Frame Application
+ * @projectUrl  : http://buiz.net
  *
  * @licence     : BSD License see: LICENCE/BSD Licence.txt
  *
@@ -26,7 +26,7 @@ define('NLB', "\r\n");
  * Class CliBase
  * @version alpha 0.1
  * @copyright DominikBonsch <a href="dominik.bonsch@wefrap.de">Dominik Bonsch</a>
- * @package net.webfrap
+ * @package net.buiz
  */
 class Cli
 {
@@ -158,8 +158,8 @@ class Cli
 /*////////////////////////////////////////////////////////////////////////////*/
 
   /**
-   * Funktion zum beenden von Webfrap falls ein Fataler Fehler auftritt der das
-   * Ausführen von Webfrap verhindert
+   * Funktion zum beenden von Buiz falls ein Fataler Fehler auftritt der das
+   * Ausführen von Buiz verhindert
    *
    * @return void
    */
@@ -188,8 +188,8 @@ class Cli
 /*////////////////////////////////////////////////////////////////////////////*/
 
   /**
-   * Funktion zum beenden von Webfrap falls ein Fataler Fehler auftritt der das
-   * Ausführen von Webfrap verhindert
+   * Funktion zum beenden von Buiz falls ein Fataler Fehler auftritt der das
+   * Ausführen von Buiz verhindert
    * @param string $Data
    * @return bool
    */
@@ -207,8 +207,8 @@ class Cli
   } // end of member function _panicShutdown
 
   /**
-   * Funktion zum beenden von Webfrap falls ein Fataler Fehler auftritt der das
-   * Ausführen von Webfrap verhindert
+   * Funktion zum beenden von Buiz falls ein Fataler Fehler auftritt der das
+   * Ausführen von Buiz verhindert
    * @param string $Data
    * @since 0.1
    * @return array

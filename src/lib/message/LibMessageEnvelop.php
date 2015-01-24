@@ -24,7 +24,7 @@
  * Alle andere Informationen sind direkt im Versandweg oder dem Message Provider
  * zu entnehmen
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibMessageEnvelop
 {
@@ -32,7 +32,7 @@ class LibMessageEnvelop
   /**
    * Die Person welche die Nachricht geschickt hat
    *
-   * @var WbfsysRoleUser_Entity
+   * @var BuizRoleUser_Entity
    */
   public $sender = null;
 

@@ -17,7 +17,7 @@
 
 /**
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibMessage_Receiver_List implements IReceiver
 {
@@ -26,7 +26,7 @@ class LibMessage_Receiver_List implements IReceiver
 /*////////////////////////////////////////////////////////////////////////////*/
 
   /**
-   * @var WbfsysUserContact_Entity
+   * @var BuizUserContact_Entity
    */
   public $list = null;
 

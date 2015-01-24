@@ -19,7 +19,7 @@
 /**
  * class LibImageThumbGd
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibImageThumbGd extends LibImageThumbAdapter
 {

@@ -26,10 +26,10 @@
  * Der Benutzer benötigt eine klare Fehlermeldung was er falsch gemacht hat, bzw
  * wichtiger wie er es richtig machen kann.
  *
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class InvalidCondition_Exception extends WebfrapUser_Exception
+class InvalidCondition_Exception extends BuizUser_Exception
 {
 /*////////////////////////////////////////////////////////////////////////////*/
 // Constructor

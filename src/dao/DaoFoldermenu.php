@@ -18,7 +18,7 @@
 /**
  * Data Access Object zum laden des Menüs aus den conf Dateien
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class DaoFoldermenu extends Dao
 {

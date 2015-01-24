@@ -26,8 +26,8 @@
  * einer Tabelle stammen, laden willst nimm eine Query Klasse und lade die
  * daten als Array
  *
- * @package net.webfrap
- * @author Dominik Bonsch <dominik.bonsch@webfrap.net>
+ * @package net.buiz
+ * @author Dominik Bonsch <dominik.bonsch@buiz.net>
  *
  * @tag orm, db, abstraction, entity
  *
@@ -1365,7 +1365,7 @@ abstract class Entity implements ArrayAccess
    * Besitzer der Entity
    *
    * @param boolean $id
-   * @return WbfsysRoleUser_Entity
+   * @return BuizRoleUser_Entity
    */
   public function owner($id = null)
   {

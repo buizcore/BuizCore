@@ -21,7 +21,7 @@
  * Warnungen, Fehler und ein Protokoll mit dem Nachrichten in einen Kontext, bzw. mit einer Entität
  * in Verbindung gebracht werden können.
  * 
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibResponseCollector extends LibResponse
 {

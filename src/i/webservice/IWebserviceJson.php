@@ -18,7 +18,7 @@
 /**
  * Abstract Class For SysExtention Controllers
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 interface IWebserviceJson extends IWebservice
 {

@@ -42,7 +42,7 @@
 */
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  *
  * @todo Festlegen was passiert wenn sowohl mehrere Empfänger als auch
  * BBC und CC angegeben werden
@@ -181,7 +181,7 @@ class LibMessageAdapter
       $db = $this->getDb();
       $orm = $db->getOrm();
 
-      $this->sender = $orm->get('WbfsysRoleUser', BuizCore::$env->getUser()->getid());
+      $this->sender = $orm->get('BuizRoleUser', BuizCore::$env->getUser()->getid());
     }
 
   }//end public function __construct */

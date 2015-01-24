@@ -20,10 +20,10 @@
  *
  * Nicht zu verwechseln mit Service not exists, das wäre ein Userfehler
  *
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class ClassNotFound_Exception extends WebfrapSys_Exception
+class ClassNotFound_Exception extends BuizSys_Exception
 {
 
 }

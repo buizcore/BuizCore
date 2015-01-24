@@ -37,7 +37,7 @@ if (isset($_GET['l'])) {
 
 BuizCore::loadClassIndex( $type.'/'.$id );
 
-$webfrap  = BuizCore::init();
+$buiz  = BuizCore::init();
 $cache    = new LibCacheRequestJavascript();
 
 if( isset($_GET['clean']) )

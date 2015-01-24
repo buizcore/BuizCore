@@ -17,7 +17,7 @@
 
  /**
   * A Class to resolve Dependencies
- * @package net.webfrap
+ * @package net.buiz
   */
 class LibDependency
 {

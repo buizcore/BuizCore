@@ -35,7 +35,7 @@
  *  $roles = $container->getRoles($someId);
  *
  * </code>
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibAclRoleContainer implements ArrayAccess, Countable
 {

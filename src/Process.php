@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 abstract class Process extends PBase
@@ -55,7 +55,7 @@ abstract class Process extends PBase
 
   /**
    * Der aktuell aktive Status eines Prozesses
-   * @var WbfsysProcessStatus_Entity
+   * @var BuizProcessStatus_Entity
    */
   public $activStatus = null;
 
@@ -353,7 +353,7 @@ abstract class Process extends PBase
   }//end public function setProcessId */
 
   /**
-   * @param WbfsysProcess_Entity
+   * @param BuizProcess_Entity
    */
   public function getProcessId()
   {

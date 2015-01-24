@@ -19,7 +19,7 @@
  * 
  * Many To Many referenz
  * 
- * @package net.webfrap
+ * @package net.buiz
  */
 class Procedure_AssignUserToEntity extends Action
 {

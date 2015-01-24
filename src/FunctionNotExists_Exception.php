@@ -21,10 +21,10 @@
  *
  * Ganz klar ein Programmfehler
  *
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class FunctionNotExists_Exception extends WebfrapSys_Exception
+class FunctionNotExists_Exception extends BuizSys_Exception
 {
 
 }

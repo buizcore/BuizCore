@@ -25,7 +25,7 @@
  * Weiter ermöglicht der Permission Container einfach zusätzliche Checks
  * mit einzubauen.
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibAclPermission_Node
 {

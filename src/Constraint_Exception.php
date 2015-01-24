@@ -18,10 +18,10 @@
 /**
  * Exception welche geworfen wird wenn gegen Constraints verstoßen wird
  *
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class Constraint_Exception extends WebfrapUser_Exception
+class Constraint_Exception extends BuizUser_Exception
 {
 
 }

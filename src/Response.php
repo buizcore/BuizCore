@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class Response
@@ -205,7 +205,7 @@ class Response
       $classname = 'LibResponse'.ucfirst(WBF_RESPONSE_ADAPTER);
       if (!BuizCore::classExists($classname)) {
 
-        throw new WebfrapConfig_Exception
+        throw new BuizConfig_Exception
         (
         'Request Type: '.ucfirst(WBF_RESPONSE_ADAPTER).' not exists!'
         );

@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class EMessagePriority
 {
@@ -58,8 +58,8 @@ class EMessagePriority
         $i18n = BuizCore::$env->getI18n();
         
         return isset(self::$labels[$key])
-            ? $i18n->l(self::$labels[$key],'wbfsys.base')
-            : $i18n->l(self::$labels[self::NORMAL],'wbfsys.base');
+            ? $i18n->l(self::$labels[$key],'buiz.base')
+            : $i18n->l(self::$labels[self::NORMAL],'buiz.base');
     
     }//end public static function label */
 

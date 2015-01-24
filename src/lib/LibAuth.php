@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibAuth extends BaseChild
 {
@@ -218,7 +218,7 @@ class LibAuth extends BaseChild
     $orm = $this->getOrm();
 
     return $orm->update(
-      'WbfsysRoleUser',
+      'BuizRoleUser',
       self::id(),
       array(
         'password' =>  SEncrypt::passwordHash($pwd),

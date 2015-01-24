@@ -18,7 +18,7 @@
 /**
  * Bibliothek zum manipulieren von Strings
  *
- * @package net.webfrap
+ * @package net.buiz
  *
  * @stateless Diese Klasse ist komplett stateless
  *  Alle informatione müssen als Parameter übergeben werden.

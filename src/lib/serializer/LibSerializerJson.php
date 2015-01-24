@@ -17,7 +17,7 @@
 
 /**
  * serializer to json
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibSerializerJson extends LibSerializerAbstract
 {

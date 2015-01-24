@@ -17,7 +17,7 @@
 
 /**
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibMessage_Receiver_Group implements IReceiver
 {
@@ -26,7 +26,7 @@ class LibMessage_Receiver_Group implements IReceiver
 /*////////////////////////////////////////////////////////////////////////////*/
 
   /**
-   * @var WbfsysRoleGroup_Entity
+   * @var BuizRoleGroup_Entity
    */
   public $group = null;
 

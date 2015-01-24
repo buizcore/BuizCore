@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class TUrl
@@ -309,7 +309,7 @@ class TUrl
   {
 
     if (trim($title) == '') {
-      return 'Webfrap';
+      return 'Buiz';
     } else {
 
       $parts = explode(' ',$title);

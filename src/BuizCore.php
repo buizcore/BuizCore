@@ -36,8 +36,8 @@ if (DEBUG)
 
 /**
  * Die Hautptklasse für WebFrap
- * @package net.webfrap
- * @author Dominik Bonsch <dominik.bonsch@webfrap.net>
+ * @package net.buiz
+ * @author Dominik Bonsch <dominik.bonsch@buiz.net>
  */
 class BuizCore
 {
@@ -216,7 +216,7 @@ class BuizCore
   } // end public static function getActive */
 
   /**
-   * set the flow controller for webfrap
+   * set the flow controller for buiz
    * @param string $key
    */
   public static function setEnvironment($key)
@@ -628,7 +628,7 @@ class BuizCore
 /*////////////////////////////////////////////////////////////////////////////*/
 
   /**
-   * Webfrap Own Error Handler
+   * Buiz Own Error Handler
    *
    * @param int $errno
    * @param string $errstr
@@ -666,7 +666,7 @@ class BuizCore
   }//end public static function errorHandler */
 
   /**
-   * Webfrap Own Error Handler
+   * Buiz Own Error Handler
    *
    * @param int $errno
    * @param string $errstr
@@ -823,7 +823,7 @@ class BuizCore
 
         self::$instance->wakeup();
 
-        if (BuizCore::classExists('WbfsysRoleUser_Entity')) {
+        if (BuizCore::classExists('BuizRoleUser_Entity')) {
 
           // try to login user, if user has an annonymous session
           $user = User::getActive();
@@ -838,7 +838,7 @@ class BuizCore
 
         self::$instance->init();
 
-        if (BuizCore::classExists('WbfsysRoleUser_Entity')) {
+        if (BuizCore::classExists('BuizRoleUser_Entity')) {
           // try to sign on session start
           $user = User::getActive();
           $user->singleSignOn();
@@ -922,7 +922,7 @@ class BuizCore
 
       self::$instance->wakeup();
 
-      if (BuizCore::classExists('WbfsysRoleUser_Entity')) {
+      if (BuizCore::classExists('BuizRoleUser_Entity')) {
 
         // try to login user, if user has an annonymous session
         $user = User::getActive();
@@ -937,7 +937,7 @@ class BuizCore
 
       self::$instance->init();
 
-      if (BuizCore::classExists('WbfsysRoleUser_Entity')) {
+      if (BuizCore::classExists('BuizRoleUser_Entity')) {
         // try to sign on session start
         $user = User::getActive();
         $user->singleSignOn();
@@ -1457,5 +1457,5 @@ class BuizCore
 
   }//end public static function templatePath */
 
-}//end class Webfrap
+}//end class Buiz
 

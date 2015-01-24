@@ -19,7 +19,7 @@
 /**
  * Taskplanner
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibTaskplanner extends BaseChild {
    
@@ -298,10 +298,10 @@ SELECT
   task.actions as task_actions
 
 FROM
-  wbfsys_task_plan as plan
+  buiz_task_plan as plan
 
 JOIN
-  wbfsys_planned_task task
+  buiz_planned_task task
     ON plan.rowid = task.vid
 
 WHERE

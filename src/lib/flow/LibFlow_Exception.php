@@ -16,10 +16,10 @@
 *******************************************************************************/
 /**
  * Die Basis Exception in WebFrap
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class LibFlow_Exception extends Webfrap_Exception
+class LibFlow_Exception extends Buiz_Exception
 {
 
 }//end class LibFlowException

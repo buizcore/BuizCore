@@ -17,10 +17,10 @@
 
 /**
  *
- * @package net.webfrap
- * @author Dominik Bonsch <dominik.bonsch@webfrap.net>
- * @author Malte Schirmacher <malte.schirmacher@webfrap.net>
- * @copyright Webfrap Developer Network <contact@webfrap.net>
+ * @package net.buiz
+ * @author Dominik Bonsch <dominik.bonsch@buiz.net>
+ * @author Malte Schirmacher <malte.schirmacher@buiz.net>
+ * @copyright Buiz Developer Network <contact@buiz.net>
  */
 abstract class TStruct
 {

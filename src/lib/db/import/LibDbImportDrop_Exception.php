@@ -18,7 +18,7 @@
 /**
  * class LibDb_Exception
  * the database exception, this exception always will be thrown on database errors
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibDbImportDrop_Exception extends Exception
 {

@@ -19,7 +19,7 @@
 /**
  * Das Ausgabemodul für die Seite
  * 
- * @package net.webfrap
+ * @package net.buiz
  * @deprecated use MvcUi instead
  */
 class Ui extends BaseChild

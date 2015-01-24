@@ -18,8 +18,8 @@
 /**
  * Check ob der Request über die richtige URL kam, ansonten redirect
  *
- * @author Dominik Bonsch <dominik.bonsch@webfrap.net>
- * @package net.webfrap
+ * @author Dominik Bonsch <dominik.bonsch@buiz.net>
+ * @package net.buiz
  */
 class MvcRouterAdressCheck
 {

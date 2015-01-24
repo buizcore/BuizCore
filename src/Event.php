@@ -17,7 +17,7 @@
 
 /**
  * Static Interface to get the activ configuration object
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class Event extends BaseChild

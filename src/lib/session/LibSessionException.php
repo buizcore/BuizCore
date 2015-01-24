@@ -16,9 +16,9 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
-class LibSessionException extends WebfrapService_Exception
+class LibSessionException extends BuizService_Exception
 {
 
 }

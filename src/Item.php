@@ -17,7 +17,7 @@
 
 /**
   * Das Ausgabemodul für die Seite
-  * @package net.webfrap
+  * @package net.buiz
   */
 class Item extends BaseChild
 {
@@ -81,7 +81,7 @@ class Item extends BaseChild
     * @param string $key
     *
     * @return Model
-    * @throws WebfrapSys_Exception wenn das angefragt Modell nicht existiert
+    * @throws BuizSys_Exception wenn das angefragt Modell nicht existiert
     */
     public function loadModel($modelName , $key = null)
     {
@@ -96,7 +96,7 @@ class Item extends BaseChild
                 $model = new $modelClass($this);
                 $this->models[$key] = $model;
             } else {
-                throw new WebfrapSys_Exception(
+                throw new BuizSys_Exception(
                     'Internal Error',
                     'Failed to load Submodul: '.$modelClass
                 );
@@ -125,7 +125,7 @@ class Item extends BaseChild
     *
     * @param string $uiName
     * @return Ui ein UI Container
-    * @throws WebfrapSys_Exception
+    * @throws BuizSys_Exception
     */
     public function loadUi($uiName)
     {
@@ -141,7 +141,7 @@ class Item extends BaseChild
             return $ui;
         } else {
             
-            throw new WebfrapSys_Exception(
+            throw new BuizSys_Exception(
                 'Internal Error',
                 'Failed to load ui: '.$uiName
             );

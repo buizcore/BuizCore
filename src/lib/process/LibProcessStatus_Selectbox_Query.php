@@ -17,8 +17,8 @@
 
 /**
  *
- * @package net.webfrap
- * @author Dominik Donsch <dominik.bonsch@webfrap.net>
+ * @package net.buiz
+ * @author Dominik Donsch <dominik.bonsch@buiz.net>
  *
  */
 class LibProcessStatus_Selectbox_Query extends LibSqlQuery
@@ -58,30 +58,30 @@ class LibProcessStatus_Selectbox_Query extends LibSqlQuery
 
     $criteria->select(array
     (
-      'wbfsys_process_node.rowid as id',
-      'wbfsys_process_node.label as value'
+      'buiz_process_node.rowid as id',
+      'buiz_process_node.label as value'
      ));
 
-    $criteria->from('wbfsys_process_node');
+    $criteria->from('buiz_process_node');
 
     if ($this->processId) {
-      $criteria->where('wbfsys_process_node.id_process = '.$this->processId);
+      $criteria->where('buiz_process_node.id_process = '.$this->processId);
     } else {
 
       $criteria->leftJoinOn
       (
-        'wbfsys_process_node',
+        'buiz_process_node',
         'id_process',
-        'wbfsys_process',
+        'buiz_process',
         'rowid',
         null,
-        'wbfsys_process'
+        'buiz_process'
       );
 
-      $criteria->where('wbfsys_process.access_key = \''.$this->processName."'");
+      $criteria->where('buiz_process.access_key = \''.$this->processName."'");
     }
 
-    $criteria->orderBy('wbfsys_process_node.m_order');
+    $criteria->orderBy('buiz_process_node.m_order');
 
     $this->result = $db->orm->select($criteria);
 

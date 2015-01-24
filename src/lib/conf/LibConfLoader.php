@@ -25,9 +25,9 @@
 */
 
 /**
- * @author Dominik Bonsch <dominik.bonsch@webfrap.net>
- * @copyright Webfrap Developer Network <contact@webfrap.net>
- * @package net.webfrap
+ * @author Dominik Bonsch <dominik.bonsch@buiz.net>
+ * @copyright Buiz Developer Network <contact@buiz.net>
+ * @package net.buiz
  */
 class LibConfLoader
 {

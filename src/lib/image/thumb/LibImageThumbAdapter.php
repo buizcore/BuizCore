@@ -17,7 +17,7 @@
 
 /**
  * class LibImageThumbAdapter
- * @package net.webfrap
+ * @package net.buiz
  */
 abstract class LibImageThumbAdapter
 {

@@ -17,7 +17,7 @@
 
 /**
  * @author dbonsch
- * @package net.webfrap
+ * @package net.buiz
  */
 class ERelevance_Selectbox extends WgtSelectboxEnum
 {

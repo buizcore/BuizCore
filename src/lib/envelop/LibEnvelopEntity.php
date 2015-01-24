@@ -16,9 +16,9 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
- * @author Dominik Bonsch <dominik.bonsch@webfrap.net>
- * @copyright Webfrap Developer Network <contact@webfrap.net>
+ * @package net.buiz
+ * @author Dominik Bonsch <dominik.bonsch@buiz.net>
+ * @copyright Buiz Developer Network <contact@buiz.net>
  */
 class LibEnvelopEntity
 {
@@ -34,7 +34,7 @@ class LibEnvelopEntity
 
   /**
    * Entity object of the data repository
-   * @var EntityWbfsysDataRepository
+   * @var EntityBuizDataRepository
    */
   protected $repository = null;
 
@@ -130,7 +130,7 @@ class LibEnvelopEntity
   }//end public function getRefId */
 
   /**
-   * @return EntityWbfsysDataRepository
+   * @return EntityBuizDataRepository
    */
   public function getRepository()
   {

@@ -22,7 +22,7 @@ if (!defined('WBF_CONTROLLER_PREFIX'))
 /**
  *
  * @author Dominik Alexander Bonsch <db@s-db.de>
- * @package net.webfrap
+ * @package net.buiz
  */
 class MvcRouter_Cli extends LibFlow
 {
@@ -134,7 +134,7 @@ class MvcRouter_Cli extends LibFlow
 
         // Initialisieren der Extention
         if (!$this->controller->initController())
-          throw new WebfrapSys_Exception('Failed to initialize Controller');
+          throw new BuizSys_Exception('Failed to initialize Controller');
 
         // Run the mainpart
         $this->controller->run($action);
@@ -143,7 +143,7 @@ class MvcRouter_Cli extends LibFlow
         $this->controller->shutdownController();
 
       } else {
-        throw new WebfrapUser_Exception('Resource '.$classname.' not exists!');
+        throw new BuizUser_Exception('Resource '.$classname.' not exists!');
       }
 
     } catch (Exception $exc) {
@@ -186,8 +186,8 @@ class MvcRouter_Cli extends LibFlow
   }//end public function shutdown */
 
  /**
-  * Funktion zum beenden von Webfrap falls ein Fataler Fehler auftritt der das
-  * Ausführen von Webfrap verhindert
+  * Funktion zum beenden von Buiz falls ein Fataler Fehler auftritt der das
+  * Ausführen von Buiz verhindert
   *
   * @param string $file
   * @param int $line

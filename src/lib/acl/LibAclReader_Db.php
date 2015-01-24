@@ -17,7 +17,7 @@
 
 /**
  * Manager Class zum bearbeiten der ACLs
- * @package net.webfrap
+ * @package net.buiz
  * @todo die queries müssen noch in query objekte ausgelagert werden
  *
  */

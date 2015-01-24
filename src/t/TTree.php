@@ -18,7 +18,7 @@
 /**
  * a tree
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class TTree
 {

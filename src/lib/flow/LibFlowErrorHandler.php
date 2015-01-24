@@ -19,9 +19,9 @@
  * Hilfsklasse zum behandeln von Fehlern,
  * Wir hauptsächlich als Container für die Fehlercodes verwendet
  *
- * @package net.webfrap
+ * @package net.buiz
  *
- * @author domnik alexander bonsch <dominik.bonsch@webfrap.net>
+ * @author domnik alexander bonsch <dominik.bonsch@buiz.net>
  */
 class LibFlowErrorHandler extends Pbase // wird nicht von Controller abgeleitet um Endless Loops zu vermeiden
 {
@@ -32,7 +32,7 @@ class LibFlowErrorHandler extends Pbase // wird nicht von Controller abgeleitet 
   /**
    * @param LibRequestHttp $request
    * @param LibResponseHttp $response
-   * @param WebfrapException $error
+   * @param BuizException $error
    */
   public function handleError($request, $response, $error)
   {

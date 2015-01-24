@@ -21,7 +21,7 @@ if(!function_exists('password_hash')){
 }
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class SEncrypt
 {

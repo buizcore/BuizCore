@@ -18,12 +18,12 @@
 /**
  * class Log
  * Heißt zwar wie eine Systemmodul ist aber streng genommen keins
- * Das Logsystem ist nicht so tief in Webfrap verknüft wie die Standard
+ * Das Logsystem ist nicht so tief in Buiz verknüft wie die Standard
  * Module.
  * Theoretisch ist es so recht einfach, das StandardLogsystem durch ein
  * anderes Logsystem zu ersetzen, zb Log4PHP oder ähnliches
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class Log
 {

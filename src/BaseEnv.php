@@ -21,7 +21,7 @@
  *
  * Es gibt noch eine 2te Basis Klasse mit nur Public Attributen PBase
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 abstract class BaseEnv
 {
@@ -54,7 +54,7 @@ abstract class BaseEnv
   public function setAcl($acl)
   {
 
-    throw new WebfrapSys_Exception('set acl is not applicable on BaseEnv');
+    throw new BuizSys_Exception('set acl is not applicable on BaseEnv');
 
   }//end public function setAcl */
 
@@ -75,7 +75,7 @@ abstract class BaseEnv
   public function setAccess($access)
   {
 
-    throw new WebfrapSys_Exception('set access is not applicable on BaseEnv');
+    throw new BuizSys_Exception('set access is not applicable on BaseEnv');
 
   }//end public function setAccess */
 
@@ -96,7 +96,7 @@ abstract class BaseEnv
   public function setConf($conf)
   {
 
-    throw new WebfrapSys_Exception('set conf is not applicable on BaseEnv');
+    throw new BuizSys_Exception('set conf is not applicable on BaseEnv');
 
   }//end public function setConf */
 

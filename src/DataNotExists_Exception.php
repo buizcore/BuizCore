@@ -17,7 +17,7 @@
 
 /**
  * Always Thrown If A Class Not Exists
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class DataNotExists_Exception extends Io_Exception

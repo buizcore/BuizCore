@@ -16,7 +16,7 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class Debug
@@ -331,7 +331,7 @@ class Debug
         } else {
           $content = 'SimpleXmlElement: ';
         }
-      } elseif ($toDump instanceof Webfrap_Exception) {
+      } elseif ($toDump instanceof Buiz_Exception) {
         $content = $toDump->dump();
       } elseif ($toDump instanceof Exception) {
         $content = 'Exception: '.get_class($toDump).' '.$toDump->getMessage();
@@ -432,7 +432,7 @@ class Debug
         } else {
           $content = 'SimpleXmlElement: ';
         }
-      } elseif ($toDump instanceof Webfrap_Exception) {
+      } elseif ($toDump instanceof Buiz_Exception) {
         $content = $toDump->dump();
       } elseif ($toDump instanceof Exception) {
         $content = 'Exception: '.get_class($toDump).' '.$toDump->getMessage();

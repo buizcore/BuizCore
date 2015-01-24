@@ -17,7 +17,7 @@
 
 /**
  * Logappender für das Unix Syslogsystem
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibLogSyslog
   implements LibLogAdapter

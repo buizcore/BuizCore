@@ -17,7 +17,7 @@
 
 /**
  * Ein Array Objekt für Simple Daten
- * @package net.webfrap
+ * @package net.buiz
  */
 class TArray implements ITObject, Iterator, Countable
 {

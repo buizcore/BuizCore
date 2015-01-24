@@ -17,7 +17,7 @@
 
 /**
  * Class to create simple protocols
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class LibProtocolFile

@@ -28,8 +28,8 @@ if (!defined('WBF_CONTROLLER_TYPE'))
  * Kompletten Systems speichert und die Benutzereingaben verarbeite.
  * Weiter liest der Supercontroller bei Systemstart die Systemkonfiguration aus.
  *
- * @author Dominik Bonsch <dominik.bonsch@webfrap.net>
- * @package net.webfrap
+ * @author Dominik Bonsch <dominik.bonsch@buiz.net>
+ * @package net.buiz
  */
 class LibFlowTaskplanner extends LibFlow {
    
@@ -280,7 +280,7 @@ class LibFlowTaskplanner extends LibFlow {
       $taskId = $task ['task_id'];
       $taskVid = $task ['plan_id'];
       
-      $taskPlan = $orm->get( 'WbfsysTaskPlan', $taskVid );
+      $taskPlan = $orm->get( 'BuizTaskPlan', $taskVid );
       
       $now = time();
       
@@ -293,9 +293,9 @@ class LibFlowTaskplanner extends LibFlow {
             'response' => json_encode( $response ) 
       );
       
-      $orm->insert( 'WbfsysTaskLog', $logMessage );
+      $orm->insert( 'BuizTaskLog', $logMessage );
       
-      $orm->update( 'WbfsysPlannedTask', $taskId, array (
+      $orm->update( 'BuizPlannedTask', $taskId, array (
             'status' => $status 
       ) );
    
@@ -487,7 +487,7 @@ class LibFlowTaskplanner extends LibFlow {
             
             // Initialisieren der Extention
             if (! $this->controller->initController())
-               throw new WebfrapSys_Exception( 'Failed to initialize Controller' );
+               throw new BuizSys_Exception( 'Failed to initialize Controller' );
                
                // Run the mainpart
             $this->controller->run( $action );
@@ -508,7 +508,7 @@ class LibFlowTaskplanner extends LibFlow {
             
             // Initialisieren der Extention
             if (! $this->controller->initController())
-               throw new WebfrapSys_Exception( 'Failed to initialize Controller' );
+               throw new BuizSys_Exception( 'Failed to initialize Controller' );
                
                // Run the mainpart
             $this->controller->run( $action );
@@ -516,7 +516,7 @@ class LibFlowTaskplanner extends LibFlow {
             // shout down the extension
             $this->controller->shutdownController();
          } else {
-            throw new WebfrapUser_Exception( 'Resource ' . $classname . ' not exists!' );
+            throw new BuizUser_Exception( 'Resource ' . $classname . ' not exists!' );
          }
       } catch ( Exception $exc ) {
          
@@ -547,7 +547,7 @@ class LibFlowTaskplanner extends LibFlow {
    public function out() {
 
       if (View::$published)
-         throw new Webfrap_Exception( "Allready published!!" );
+         throw new Buiz_Exception( "Allready published!!" );
       
       View::$published = true;
       
@@ -623,8 +623,8 @@ class LibFlowTaskplanner extends LibFlow {
    } // end public function shutdown */
    
    /**
-    * Funktion zum beenden von Webfrap falls ein Fataler Fehler auftritt der das
-    * Ausführen von Webfrap verhindert
+    * Funktion zum beenden von Buiz falls ein Fataler Fehler auftritt der das
+    * Ausführen von Buiz verhindert
     *
     * @param string $file           
     * @param int $line           
@@ -773,14 +773,14 @@ class LibFlowTaskplanner extends LibFlow {
             $status = $conf->getStatus( 'tripple_user' );
             $tmp = explode( '.', $status );
          } else {
-            $status = 'webfrap.netsktop.display';
+            $status = 'buiz.netsktop.display';
             $tmp = explode( '.', $status );
          }
       } else {
          if ($status = $conf->getStatus( 'tripple_annon' )) {
             $tmp = explode( '.', $conf->getStatus( 'tripple_annon' ) );
          } else {
-            $status = 'Webfrap.Auth.form';
+            $status = 'Buiz.Auth.form';
             $tmp = explode( '.', $status );
          }
       }

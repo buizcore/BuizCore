@@ -16,9 +16,9 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
-class LibParser_Exception extends WebfrapUser_Exception
+class LibParser_Exception extends BuizUser_Exception
 {
 
 }

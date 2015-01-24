@@ -17,7 +17,7 @@
 
 /**
  * serializer to xml
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibSerializerSoap extends LibSerializerAbstract
 {

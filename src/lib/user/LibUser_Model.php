@@ -18,7 +18,7 @@
 /**
  * Standard Query Objekt zum laden der Benutzer anhand der Rolle
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibUser_Model extends Model
 {
@@ -66,34 +66,34 @@ class LibUser_Model extends Model
       $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        AND wbfsys_group_users.id_area  is null
-        AND wbfsys_group_users.vid      is null
-        AND (wbfsys_group_users.partial = 0  )
+      buiz_group_users.id_group = buiz_role_group.rowid
+        AND buiz_group_users.id_area  is null
+        AND buiz_group_users.vid      is null
+        AND (buiz_group_users.partial = 0  )
 SQL;
 
     } elseif (is_null($id) || (is_object($id) && !$id->getId())  ) {
 
       if (is_string($areas)) {
-        $areaKeys = " wbfsys_security_area.access_key =  '{$areas}' " ;
+        $areaKeys = " buiz_security_area.access_key =  '{$areas}' " ;
       } else {
-        $areaKeys = " wbfsys_security_area.access_key  IN('".implode($areas,"','")."')" ;
+        $areaKeys = " buiz_security_area.access_key  IN('".implode($areas,"','")."')" ;
       }
 
       $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        AND (wbfsys_group_users.partial = 0  )
+      buiz_group_users.id_group = buiz_role_group.rowid
+        AND (buiz_group_users.partial = 0  )
 
   LEFT JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_area = wbfsys_security_area.rowid
+      buiz_group_users.id_area = buiz_security_area.rowid
 
 SQL;
 
@@ -103,39 +103,39 @@ AND
 (
   (
     {$areaKeys}
-      and wbfsys_group_users.vid is null
+      and buiz_group_users.vid is null
    )
    OR
    (
-      wbfsys_group_users.id_area is null
-       and wbfsys_group_users.vid is null
+      buiz_group_users.id_area is null
+       and buiz_group_users.vid is null
    )
 )
 SQL;
 
-      // wbfsys_security_area.rowid = wbfsys_role_group.id_area
+      // buiz_security_area.rowid = buiz_role_group.id_area
 
 
     } else {
 
       if (is_string($areas)) {
-        $areaKeys = " wbfsys_security_area.access_key =  '{$areas}' " ;
+        $areaKeys = " buiz_security_area.access_key =  '{$areas}' " ;
       } else {
-        $areaKeys = " wbfsys_security_area.access_key  IN('".implode($areas,"','")."') " ;
+        $areaKeys = " buiz_security_area.access_key  IN('".implode($areas,"','")."') " ;
       }
 
       $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        AND (wbfsys_group_users.partial = 0  )
+      buiz_group_users.id_group = buiz_role_group.rowid
+        AND (buiz_group_users.partial = 0  )
 
   LEFT JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_area = wbfsys_security_area.rowid
+      buiz_group_users.id_area = buiz_security_area.rowid
 
 SQL;
 
@@ -144,17 +144,17 @@ AND
 (
   (
     {$areaKeys}
-      AND wbfsys_group_users.vid = {$id}
+      AND buiz_group_users.vid = {$id}
    )
    OR
    (
       {$areaKeys}
-        AND wbfsys_group_users.vid is null
+        AND buiz_group_users.vid is null
    )
    OR
    (
-      wbfsys_group_users.id_area is null
-       and wbfsys_group_users.vid is null
+      buiz_group_users.id_area is null
+       and buiz_group_users.vid is null
    )
 )
 SQL;
@@ -164,19 +164,19 @@ SQL;
 
     $query = <<<SQL
   SELECT
-    distinct wbfsys_role_group.rowid,
-    wbfsys_role_group.access_key
+    distinct buiz_role_group.rowid,
+    buiz_role_group.access_key
   FROM
-    wbfsys_role_group
+    buiz_role_group
 {$joins}
   WHERE
-    wbfsys_group_users.id_user = {$userId}
+    buiz_group_users.id_user = {$userId}
  {$wheres}
 
 SQL;
 
     /// FIXME so umschreiben das nur noch partielle permissions gefunden werden
-    // and wbfsys_group_users.partial = 0
+    // and buiz_group_users.partial = 0
 
 
     $groups = [];
@@ -231,12 +231,12 @@ SQL;
       $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        and wbfsys_group_users.id_area is null
-        and wbfsys_group_users.vid is null
-        and (wbfsys_group_users.partial = 0)
+      buiz_group_users.id_group = buiz_role_group.rowid
+        and buiz_group_users.id_area is null
+        and buiz_group_users.vid is null
+        and (buiz_group_users.partial = 0)
 SQL;
 
     } elseif (is_null($id)) {
@@ -246,30 +246,30 @@ SQL;
       $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        AND (wbfsys_group_users.partial = 0)
+      buiz_group_users.id_group = buiz_role_group.rowid
+        AND (buiz_group_users.partial = 0)
 
   LEFT JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_area = wbfsys_security_area.rowid
+      buiz_group_users.id_area = buiz_security_area.rowid
 
 SQL;
-      // wbfsys_security_area.rowid = wbfsys_role_group.id_area
+      // buiz_security_area.rowid = buiz_role_group.id_area
 
       $condition = <<<SQL
     AND
     (
       (
-        wbfsys_security_area.access_key IN({$areaKeys})
-          and wbfsys_group_users.vid is null
+        buiz_security_area.access_key IN({$areaKeys})
+          and buiz_group_users.vid is null
       )
       OR
       (
-        wbfsys_group_users.id_area is null
-           and wbfsys_group_users.vid is null
+        buiz_group_users.id_area is null
+           and buiz_group_users.vid is null
       )
     )
 
@@ -289,15 +289,15 @@ SQL;
       $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        AND (wbfsys_group_users.partial = 0)
+      buiz_group_users.id_group = buiz_role_group.rowid
+        AND (buiz_group_users.partial = 0)
 
   LEFT JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_area = wbfsys_security_area.rowid
+      buiz_group_users.id_area = buiz_security_area.rowid
 
 SQL;
 
@@ -305,18 +305,18 @@ SQL;
     AND
     (
       (
-        wbfsys_security_area.access_key IN({$areaKeys})
-          AND wbfsys_group_users.vid {$whereVid}
+        buiz_security_area.access_key IN({$areaKeys})
+          AND buiz_group_users.vid {$whereVid}
       )
       OR
       (
-        wbfsys_security_area.access_key IN({$areaKeys})
-          and wbfsys_group_users.vid is null
+        buiz_security_area.access_key IN({$areaKeys})
+          and buiz_group_users.vid is null
       )
       OR
       (
-        wbfsys_group_users.id_area is null
-           and wbfsys_group_users.vid is null
+        buiz_group_users.id_area is null
+           and buiz_group_users.vid is null
       )
     )
 
@@ -332,11 +332,11 @@ SQL;
       (
         CASE
         WHEN
-          wbfsys_group_users.id_area IS NOT NULL
+          buiz_group_users.id_area IS NOT NULL
           THEN
           {$condition2}
           ELSE
-            wbfsys_group_users.id_group = wbfsys_role_group.rowid
+            buiz_group_users.id_group = buiz_role_group.rowid
         END
       )
      *
@@ -350,13 +350,13 @@ SQL;
 
     $query = <<<SQL
   SELECT
-    count(wbfsys_role_group.rowid) as num
+    count(buiz_role_group.rowid) as num
   FROM
-    wbfsys_role_group
+    buiz_role_group
 {$joins}
   WHERE
-    wbfsys_group_users.id_user = {$userId}
-      AND wbfsys_role_group.access_key {$roleCheck}
+    buiz_group_users.id_user = {$userId}
+      AND buiz_role_group.access_key {$roleCheck}
 {$condition}
 
 SQL;
@@ -401,14 +401,14 @@ SQL;
         $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
+      buiz_group_users.id_group = buiz_role_group.rowid
 
   LEFT JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_area = wbfsys_security_area.rowid
+      buiz_group_users.id_area = buiz_security_area.rowid
 
 SQL;
 
@@ -417,13 +417,13 @@ SQL;
     AND
     (
       (
-        wbfsys_security_area.access_key IN({$areaKeys})
-          and wbfsys_group_users.vid is null
+        buiz_security_area.access_key IN({$areaKeys})
+          and buiz_group_users.vid is null
       )
       OR
       (
-        wbfsys_group_users.id_area is null
-           and wbfsys_group_users.vid is null
+        buiz_group_users.id_area is null
+           and buiz_group_users.vid is null
       )
     )
 
@@ -437,16 +437,16 @@ SQL;
         $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
+      buiz_group_users.id_group = buiz_role_group.rowid
 
   JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-     wbfsys_group_users.id_area = wbfsys_security_area.rowid
-      AND wbfsys_security_area.access_key IN({$areaKeys})
-      AND wbfsys_group_users.vid is null
+     buiz_group_users.id_area = buiz_security_area.rowid
+      AND buiz_security_area.access_key IN({$areaKeys})
+      AND buiz_group_users.vid is null
 
 SQL;
 
@@ -468,14 +468,14 @@ SQL;
         $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
+      buiz_group_users.id_group = buiz_role_group.rowid
 
   LEFT JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_area = wbfsys_security_area.rowid
+      buiz_group_users.id_area = buiz_security_area.rowid
 
 
 SQL;
@@ -485,18 +485,18 @@ SQL;
     AND
     (
       (
-        wbfsys_security_area.access_key IN({$areaKeys})
-          and wbfsys_group_users.vid {$whereVid}
+        buiz_security_area.access_key IN({$areaKeys})
+          and buiz_group_users.vid {$whereVid}
       )
       OR
       (
-        wbfsys_security_area.access_key IN({$areaKeys})
-          and wbfsys_group_users.vid is null
+        buiz_security_area.access_key IN({$areaKeys})
+          and buiz_group_users.vid is null
       )
       OR
       (
-        wbfsys_group_users.id_area is null
-           and wbfsys_group_users.vid is null
+        buiz_group_users.id_area is null
+           and buiz_group_users.vid is null
       )
     )
 
@@ -507,16 +507,16 @@ SQL;
         $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
+      buiz_group_users.id_group = buiz_role_group.rowid
 
   JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_area = wbfsys_security_area.rowid
-        AND wbfsys_security_area.access_key IN({$areaKeys})
-        AND wbfsys_group_users.vid {$whereVid}
+      buiz_group_users.id_area = buiz_security_area.rowid
+        AND buiz_security_area.access_key IN({$areaKeys})
+        AND buiz_group_users.vid {$whereVid}
 
 SQL;
       }
@@ -537,19 +537,19 @@ SQL;
 
       $query = <<<SQL
   SELECT
-    COUNT(wbfsys_role_group.rowid) as num,
-    wbfsys_role_group.access_key,
-    wbfsys_group_users.vid
+    COUNT(buiz_role_group.rowid) as num,
+    buiz_role_group.access_key,
+    buiz_group_users.vid
   FROM
-    wbfsys_role_group
+    buiz_role_group
 {$joins}
   WHERE
-    wbfsys_group_users.partial = 0
-      AND wbfsys_role_group.access_key {$roleCheck}
+    buiz_group_users.partial = 0
+      AND buiz_role_group.access_key {$roleCheck}
 {$condition}
   GROUP BY
-    wbfsys_role_group.access_key,
-    wbfsys_group_users.vid;
+    buiz_role_group.access_key,
+    buiz_group_users.vid;
 SQL;
 
       if (DEBUG)
@@ -569,17 +569,17 @@ SQL;
 
       $query = <<<SQL
   SELECT
-    COUNT(wbfsys_role_group.rowid) as num,
-    wbfsys_role_group.access_key
+    COUNT(buiz_role_group.rowid) as num,
+    buiz_role_group.access_key
   FROM
-    wbfsys_role_group
+    buiz_role_group
 {$joins}
   WHERE
-    wbfsys_group_users.partial = 0
-      AND wbfsys_role_group.access_key {$roleCheck}
+    buiz_group_users.partial = 0
+      AND buiz_role_group.access_key {$roleCheck}
 {$condition}
   GROUP BY
-    wbfsys_role_group.access_key;
+    buiz_role_group.access_key;
 SQL;
 
       if (DEBUG)
@@ -624,11 +624,11 @@ SQL;
       $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        AND wbfsys_group_users.id_area is null
-        AND wbfsys_group_users.vid is null
+      buiz_group_users.id_group = buiz_role_group.rowid
+        AND buiz_group_users.id_area is null
+        AND buiz_group_users.vid is null
 SQL;
 
     } elseif (is_null($id)) {
@@ -640,14 +640,14 @@ SQL;
         $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
+      buiz_group_users.id_group = buiz_role_group.rowid
 
   LEFT JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_area = wbfsys_security_area.rowid
+      buiz_group_users.id_area = buiz_security_area.rowid
 
 SQL;
 
@@ -656,13 +656,13 @@ SQL;
     AND
     (
       (
-        wbfsys_security_area.access_key IN({$areaKeys})
-          and wbfsys_group_users.vid is null
+        buiz_security_area.access_key IN({$areaKeys})
+          and buiz_group_users.vid is null
       )
       OR
       (
-        wbfsys_group_users.id_area is null
-           and wbfsys_group_users.vid is null
+        buiz_group_users.id_area is null
+           and buiz_group_users.vid is null
       )
     )
 
@@ -676,16 +676,16 @@ SQL;
         $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
+      buiz_group_users.id_group = buiz_role_group.rowid
 
   JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-     wbfsys_group_users.id_area = wbfsys_security_area.rowid
-      AND wbfsys_security_area.access_key IN({$areaKeys})
-      AND wbfsys_group_users.vid is null
+     buiz_group_users.id_area = buiz_security_area.rowid
+      AND buiz_security_area.access_key IN({$areaKeys})
+      AND buiz_group_users.vid is null
 
 SQL;
 
@@ -708,14 +708,14 @@ SQL;
         $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
+      buiz_group_users.id_group = buiz_role_group.rowid
 
   LEFT JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_area = wbfsys_security_area.rowid
+      buiz_group_users.id_area = buiz_security_area.rowid
 
 
 SQL;
@@ -725,18 +725,18 @@ SQL;
     AND
     (
       (
-        wbfsys_security_area.access_key IN({$areaKeys})
-          and wbfsys_group_users.vid {$whereVid}
+        buiz_security_area.access_key IN({$areaKeys})
+          and buiz_group_users.vid {$whereVid}
       )
       OR
       (
-        wbfsys_security_area.access_key IN({$areaKeys})
-          and wbfsys_group_users.vid is null
+        buiz_security_area.access_key IN({$areaKeys})
+          and buiz_group_users.vid is null
       )
       OR
       (
-        wbfsys_group_users.id_area is null
-           and wbfsys_group_users.vid is null
+        buiz_group_users.id_area is null
+           and buiz_group_users.vid is null
       )
     )
 
@@ -747,16 +747,16 @@ SQL;
         $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
+      buiz_group_users.id_group = buiz_role_group.rowid
 
   JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_area = wbfsys_security_area.rowid
-        AND wbfsys_security_area.access_key IN({$areaKeys})
-        AND wbfsys_group_users.vid {$whereVid}
+      buiz_group_users.id_area = buiz_security_area.rowid
+        AND buiz_security_area.access_key IN({$areaKeys})
+        AND buiz_group_users.vid {$whereVid}
 
 SQL;
       }
@@ -773,13 +773,13 @@ SQL;
 
     $query = <<<SQL
   SELECT
-    count(wbfsys_role_group.rowid) as num
+    count(buiz_role_group.rowid) as num
   FROM
-    wbfsys_role_group
+    buiz_role_group
 {$joins}
   WHERE
-    wbfsys_group_users.partial = 0
-      AND wbfsys_role_group.access_key {$roleCheck}
+    buiz_group_users.partial = 0
+      AND buiz_role_group.access_key {$roleCheck}
 {$condition}
 
 SQL;
@@ -820,10 +820,10 @@ SQL;
       $areaCheck = <<<SQL
 
   JOIN
-    wbfsys_security_area
+    buiz_security_area
       ON
-        wbfsys_group_users.id_area = wbfsys_security_area.rowid
-          AND wbfsys_security_area.access_key {$areaKeys}
+        buiz_group_users.id_area = buiz_security_area.rowid
+          AND buiz_security_area.access_key {$areaKeys}
 
 SQL;
 
@@ -833,18 +833,18 @@ SQL;
 
     $query = <<<SQL
   SELECT
-    count(wbfsys_role_group.rowid) as num
+    count(buiz_role_group.rowid) as num
   FROM
-    wbfsys_role_group
+    buiz_role_group
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        AND (wbfsys_group_users.partial = 0)
+      buiz_group_users.id_group = buiz_role_group.rowid
+        AND (buiz_group_users.partial = 0)
 {$areaCheck}
   WHERE
-    wbfsys_group_users.id_user = {$userId}
-      AND wbfsys_role_group.access_key {$roleCheck}
+    buiz_group_users.id_user = {$userId}
+      AND buiz_role_group.access_key {$roleCheck}
 
 SQL;
 
@@ -886,18 +886,18 @@ SQL;
       $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        AND (wbfsys_group_users.partial = 0)
+      buiz_group_users.id_group = buiz_role_group.rowid
+        AND (buiz_group_users.partial = 0)
 
   JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        and wbfsys_group_users.id_area = wbfsys_security_area.rowid
-        and wbfsys_security_area.access_key IN({$areaKeys})
-        and wbfsys_group_users.vid is null
+      buiz_group_users.id_group = buiz_role_group.rowid
+        and buiz_group_users.id_area = buiz_security_area.rowid
+        and buiz_security_area.access_key IN({$areaKeys})
+        and buiz_group_users.vid is null
 
 SQL;
 
@@ -913,18 +913,18 @@ SQL;
       $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        and (wbfsys_group_users.partial = 0)
+      buiz_group_users.id_group = buiz_role_group.rowid
+        and (buiz_group_users.partial = 0)
 
   JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        and wbfsys_group_users.id_area = wbfsys_security_area.rowid
-        and wbfsys_security_area.access_key IN({$areaKeys})
-        and wbfsys_group_users.vid {$whereVid}
+      buiz_group_users.id_group = buiz_role_group.rowid
+        and buiz_group_users.id_area = buiz_security_area.rowid
+        and buiz_security_area.access_key IN({$areaKeys})
+        and buiz_group_users.vid {$whereVid}
 
 SQL;
 
@@ -939,13 +939,13 @@ SQL;
 
     $query = <<<SQL
   SELECT
-    count(wbfsys_role_group.rowid) as num
+    count(buiz_role_group.rowid) as num
   FROM
-    wbfsys_role_group
+    buiz_role_group
 {$joins}
   WHERE
-    wbfsys_group_users.id_user = {$userId}
-      and wbfsys_role_group.access_key {$roleCheck}
+    buiz_group_users.id_user = {$userId}
+      and buiz_role_group.access_key {$roleCheck}
 {$condition}
 
 SQL;
@@ -993,18 +993,18 @@ SQL;
       $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        and (wbfsys_group_users.partial = 0)
+      buiz_group_users.id_group = buiz_role_group.rowid
+        and (buiz_group_users.partial = 0)
 
   JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        and wbfsys_group_users.id_area = wbfsys_security_area.rowid
-        and wbfsys_security_area.access_key IN({$areaKeys})
-        and wbfsys_group_users.vid is null
+      buiz_group_users.id_group = buiz_role_group.rowid
+        and buiz_group_users.id_area = buiz_security_area.rowid
+        and buiz_security_area.access_key IN({$areaKeys})
+        and buiz_group_users.vid is null
 
 SQL;
 
@@ -1020,18 +1020,18 @@ SQL;
       $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        and (wbfsys_group_users.partial = 0)
+      buiz_group_users.id_group = buiz_role_group.rowid
+        and (buiz_group_users.partial = 0)
 
   JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        and wbfsys_group_users.id_area = wbfsys_security_area.rowid
-        and wbfsys_security_area.access_key IN({$areaKeys})
-        and wbfsys_group_users.vid {$whereVid}
+      buiz_group_users.id_group = buiz_role_group.rowid
+        and buiz_group_users.id_area = buiz_security_area.rowid
+        and buiz_security_area.access_key IN({$areaKeys})
+        and buiz_group_users.vid {$whereVid}
 
 SQL;
 
@@ -1046,17 +1046,17 @@ SQL;
 
     $query = <<<SQL
   SELECT
-    wbfsys_role_group.access_key as role_name,
-    wbfsys_role_group.rowid as role_id,
-    wbfsys_security_area.access_key as area_name,
-    wbfsys_security_area.rowid as area_id,
-    wbfsys_group_users.vid as entity_id
+    buiz_role_group.access_key as role_name,
+    buiz_role_group.rowid as role_id,
+    buiz_security_area.access_key as area_name,
+    buiz_security_area.rowid as area_id,
+    buiz_group_users.vid as entity_id
   FROM
-    wbfsys_role_group
+    buiz_role_group
 {$joins}
   WHERE
-    wbfsys_group_users.id_user = {$userId}
-      and wbfsys_role_group.access_key {$roleCheck}
+    buiz_group_users.id_user = {$userId}
+      and buiz_role_group.access_key {$roleCheck}
 {$condition}
 
 SQL;
@@ -1091,9 +1091,9 @@ SQL;
     $joins = '';
 
     if (is_string($areas)) {
-      $areaKeys = " wbfsys_security_area.access_key =  '{$areas}' " ;
+      $areaKeys = " buiz_security_area.access_key =  '{$areas}' " ;
     } else {
-      $areaKeys = " wbfsys_security_area.access_key  IN('".implode($areas,"','")."')" ;
+      $areaKeys = " buiz_security_area.access_key  IN('".implode($areas,"','")."')" ;
     }
 
     $checkKeys = implode(',',  $datasets);
@@ -1101,15 +1101,15 @@ SQL;
     $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        AND (wbfsys_group_users.partial = 0)
+      buiz_group_users.id_group = buiz_role_group.rowid
+        AND (buiz_group_users.partial = 0)
 
   LEFT JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_area = wbfsys_security_area.rowid
+      buiz_group_users.id_area = buiz_security_area.rowid
 
 
 SQL;
@@ -1120,17 +1120,17 @@ AND
 (
   (
     {$areaKeys}
-      AND wbfsys_group_users.vid IN({$checkKeys})
+      AND buiz_group_users.vid IN({$checkKeys})
   )
   OR
   (
     {$areaKeys}
-      AND wbfsys_group_users.vid is null
+      AND buiz_group_users.vid is null
   )
   OR
   (
-    wbfsys_group_users.id_area is null
-      and wbfsys_group_users.vid is null
+    buiz_group_users.id_area is null
+      and buiz_group_users.vid is null
   )
 )
 
@@ -1139,20 +1139,20 @@ SQL;
 
     $query = <<<SQL
   SELECT
-    wbfsys_group_users.vid as dataset,
-    wbfsys_role_group.rowid,
-    wbfsys_role_group.access_key
+    buiz_group_users.vid as dataset,
+    buiz_role_group.rowid,
+    buiz_role_group.access_key
   FROM
-    wbfsys_role_group
+    buiz_role_group
 {$joins}
   WHERE
-    wbfsys_group_users.id_user = {$userId}
+    buiz_group_users.id_user = {$userId}
 {$where}
 
 SQL;
 
     /// FIXME so umschreiben das nur noch partielle permissions gefunden werden
-    // and wbfsys_group_users.partial = 0
+    // and buiz_group_users.partial = 0
 
     $groups = [];
 
@@ -1205,14 +1205,14 @@ SQL;
     $joins = '';
 
     if (is_string($areas)) {
-      $areaKeys = " wbfsys_security_area.access_key =  '{$areas}' " ;
+      $areaKeys = " buiz_security_area.access_key =  '{$areas}' " ;
     } else {
-      $areaKeys = " wbfsys_security_area.access_key  IN('".implode($areas,"','")."')" ;
+      $areaKeys = " buiz_security_area.access_key  IN('".implode($areas,"','")."')" ;
     }
 
     $checkRoles = '';
     if ($roles) {
-      $checkRoles = " AND wbfsys_role_group.access_key  IN('".implode("','",$roles)."')" ;
+      $checkRoles = " AND buiz_role_group.access_key  IN('".implode("','",$roles)."')" ;
     }
 
     $checkKeys = implode(',',  $datasets);
@@ -1220,36 +1220,36 @@ SQL;
     $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        AND wbfsys_group_users.partial = 0
+      buiz_group_users.id_group = buiz_role_group.rowid
+        AND buiz_group_users.partial = 0
 
   JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        and wbfsys_group_users.id_area = wbfsys_security_area.rowid
+      buiz_group_users.id_group = buiz_role_group.rowid
+        and buiz_group_users.id_area = buiz_security_area.rowid
         and {$areaKeys}
-        and wbfsys_group_users.vid IN({$checkKeys})
+        and buiz_group_users.vid IN({$checkKeys})
 
 SQL;
 
     $query = <<<SQL
   SELECT
-    wbfsys_group_users.vid as dataset,
-    wbfsys_role_group.rowid,
-    wbfsys_role_group.access_key
+    buiz_group_users.vid as dataset,
+    buiz_role_group.rowid,
+    buiz_role_group.access_key
   FROM
-    wbfsys_role_group
+    buiz_role_group
 {$joins}
   WHERE
-    wbfsys_group_users.id_user = {$userId}{$checkRoles}
+    buiz_group_users.id_user = {$userId}{$checkRoles}
 
 SQL;
 
     /// FIXME so umschreiben das nur noch partielle permissions gefunden werden
-    // and wbfsys_group_users.partial = 0
+    // and buiz_group_users.partial = 0
 
     $groups = [];
 
@@ -1293,14 +1293,14 @@ SQL;
     $joins = '';
 
     if (is_string($areas)) {
-      $areaKeys = " wbfsys_security_area.access_key =  '{$areas}' " ;
+      $areaKeys = " buiz_security_area.access_key =  '{$areas}' " ;
     } else {
-      $areaKeys = " wbfsys_security_area.access_key  IN('".implode($areas,"','")."')" ;
+      $areaKeys = " buiz_security_area.access_key  IN('".implode($areas,"','")."')" ;
     }
 
     $checkRoles = '';
     if ($roles) {
-      $checkRoles = " WHERE wbfsys_role_group.access_key  IN('".implode("','",$roles)."')" ;
+      $checkRoles = " WHERE buiz_role_group.access_key  IN('".implode("','",$roles)."')" ;
     }
 
     $checkKeys = implode(',',  $datasets);
@@ -1308,38 +1308,38 @@ SQL;
     $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
+      buiz_group_users.id_group = buiz_role_group.rowid
 
   JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        and wbfsys_group_users.id_area = wbfsys_security_area.rowid
+      buiz_group_users.id_group = buiz_role_group.rowid
+        and buiz_group_users.id_area = buiz_security_area.rowid
         and {$areaKeys}
-        and wbfsys_group_users.vid IN({$checkKeys})
-        and (wbfsys_group_users.partial = 0)
+        and buiz_group_users.vid IN({$checkKeys})
+        and (buiz_group_users.partial = 0)
 
 SQL;
 
     $query = <<<SQL
   SELECT
-    count(wbfsys_group_users.id_user) as num_user,
-    wbfsys_group_users.vid as dataset,
-    wbfsys_role_group.access_key as group
+    count(buiz_group_users.id_user) as num_user,
+    buiz_group_users.vid as dataset,
+    buiz_role_group.access_key as group
   FROM
-    wbfsys_role_group
+    buiz_role_group
 {$joins}
 {$checkRoles}
     GROUP BY
-      wbfsys_group_users.vid,
-      wbfsys_role_group.access_key
+      buiz_group_users.vid,
+      buiz_role_group.access_key
 
 SQL;
 
     /// FIXME so umschreiben das nur noch partielle permissions gefunden werden
-    // and wbfsys_group_users.partial = 0
+    // and buiz_group_users.partial = 0
 
     $groups = [];
 
@@ -1373,14 +1373,14 @@ SQL;
     $joins = '';
 
     if (is_string($areas)) {
-      $areaKeys = " wbfsys_security_area.access_key =  '{$areas}' " ;
+      $areaKeys = " buiz_security_area.access_key =  '{$areas}' " ;
     } else {
-      $areaKeys = " wbfsys_security_area.access_key IN('".implode($areas,"','")."')" ;
+      $areaKeys = " buiz_security_area.access_key IN('".implode($areas,"','")."')" ;
     }
 
     $checkRoles = '';
     if ($roles) {
-      $checkRoles = " WHERE wbfsys_role_group.access_key IN('".implode("','",$roles)."')" ;
+      $checkRoles = " WHERE buiz_role_group.access_key IN('".implode("','",$roles)."')" ;
     }
 
     $checkKeys = implode(',',  $datasets);
@@ -1388,18 +1388,18 @@ SQL;
     $joins = <<<SQL
 
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        and (wbfsys_group_users.partial = 0)
+      buiz_group_users.id_group = buiz_role_group.rowid
+        and (buiz_group_users.partial = 0)
 
   JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_group_users.id_group = wbfsys_role_group.rowid
-        and wbfsys_group_users.id_area = wbfsys_security_area.rowid
+      buiz_group_users.id_group = buiz_role_group.rowid
+        and buiz_group_users.id_area = buiz_security_area.rowid
         and {$areaKeys}
-        and wbfsys_group_users.vid IN({$checkKeys})
+        and buiz_group_users.vid IN({$checkKeys})
 
 SQL;
 
@@ -1408,11 +1408,11 @@ SQL;
 
       $query = <<<SQL
   SELECT
-    distinct wbfsys_group_users.id_user as user_id,
-    wbfsys_group_users.vid as dataset,
-    wbfsys_role_group.access_key as group
+    distinct buiz_group_users.id_user as user_id,
+    buiz_group_users.vid as dataset,
+    buiz_role_group.access_key as group
   FROM
-    wbfsys_role_group
+    buiz_role_group
 {$joins}
 {$checkRoles}
 
@@ -1430,10 +1430,10 @@ SQL;
     } elseif ('dataset' === $groupType) {
       $query = <<<SQL
   SELECT
-    distinct wbfsys_group_users.id_user as user_id,
-    wbfsys_group_users.vid as dataset
+    distinct buiz_group_users.id_user as user_id,
+    buiz_group_users.vid as dataset
   FROM
-    wbfsys_role_group
+    buiz_role_group
 {$joins}
 {$checkRoles}
 
@@ -1452,9 +1452,9 @@ SQL;
     } else {
       $query = <<<SQL
   SELECT
-    distinct wbfsys_group_users.id_user as user_id
+    distinct buiz_group_users.id_user as user_id
   FROM
-    wbfsys_role_group
+    buiz_role_group
 {$joins}
 {$checkRoles}
 
@@ -1483,7 +1483,7 @@ SQL;
  /**
   *  Beschreibung der Felder in der Rekursion:
   *
-  *  child ist eine wbfsys_security_area vom type mgmt-ref, also eine Area welche
+  *  child ist eine buiz_security_area vom type mgmt-ref, also eine Area welche
   *  eine Referenz auf Management Ebene beschreibt
   *
   *    child.rowid
@@ -1620,7 +1620,7 @@ AS
     root.rowid as the_parent
 
   FROM
-    wbfsys_security_area root
+    buiz_security_area root
 
   WHERE
     root.rowid {$whereRootId}
@@ -1637,14 +1637,14 @@ AS
     path.id_area as the_parent
 
   FROM
-    wbfsys_security_area child
+    buiz_security_area child
 
   JOIN
     sec_tree tree
       ON
         tree.the_parent = child.m_parent
   JOIN
-    wbfsys_security_path path
+    buiz_security_path path
       ON
         child.rowid = path.id_reference
           AND path.id_group in ({$groupIds})
@@ -1814,7 +1814,7 @@ SQL;
     COALESCE(min(id_level_admin),100)     as level_admin
 
   FROM
-    wbfsys_security_area
+    buiz_security_area
 
   WHERE
     access_key {$areaKeys}
@@ -1865,13 +1865,13 @@ SQL;
   SELECT
     max(acl_access.access_level)  as "acl-level"
   FROM
-    wbfsys_security_access acl_access
+    buiz_security_access acl_access
   JOIN
-    wbfsys_security_area acl_area
+    buiz_security_area acl_area
     ON
       acl_access.id_area = acl_area.rowid
   JOIN
-    wbfsys_group_users acl_gu
+    buiz_group_users acl_gu
     ON
       acl_access.id_group = acl_gu.id_group
 
@@ -1888,15 +1888,15 @@ SQL;
     max(acl_access.access_level)  as "acl-level"
 
   FROM
-    wbfsys_security_access acl_access
+    buiz_security_access acl_access
 
   JOIN
-    wbfsys_security_area acl_area
+    buiz_security_area acl_area
     ON
       acl_access.id_area = acl_area.rowid
 
   JOIN
-    wbfsys_group_users acl_gu
+    buiz_group_users acl_gu
     ON
       acl_access.id_group = acl_gu.id_group
 
@@ -1951,13 +1951,13 @@ SQL;
   SELECT
     max(acl_access.access_level)  as "acl-level"
   FROM
-    wbfsys_security_access acl_access
+    buiz_security_access acl_access
   JOIN
-    wbfsys_security_area acl_area
+    buiz_security_area acl_area
     ON
       acl_access.id_area = acl_area.rowid
   JOIN
-    wbfsys_group_users acl_gu
+    buiz_group_users acl_gu
     ON
       acl_access.id_group = acl_gu.id_group
       {$checkUserPartial}
@@ -1976,13 +1976,13 @@ SQL;
   SELECT
     max(acl_access.access_level)  as "acl-level"
   FROM
-    wbfsys_security_access acl_access
+    buiz_security_access acl_access
   JOIN
-    wbfsys_security_area acl_area
+    buiz_security_area acl_area
     ON
       acl_access.id_area = acl_area.rowid
   JOIN
-    wbfsys_group_users acl_gu
+    buiz_group_users acl_gu
     ON
       acl_access.id_group = acl_gu.id_group
       {$checkUserPartial}
@@ -2022,8 +2022,8 @@ SQL;
     if (!$userId = $user->getId())
       throw new LibAcl_Exception('Got no User');
 
-    $sourceAssigned = 'webfrap_acl_assigned_view';
-    $sourceMaxPerm = 'webfrap_acl_max_permission_view';
+    $sourceAssigned = 'buiz_acl_assigned_view';
+    $sourceMaxPerm = 'buiz_acl_max_permission_view';
 
     if (is_null($entity)) {
 
@@ -2140,7 +2140,7 @@ SQL;
   SELECT
     max("acl-level") as "acl-level"
   FROM
-    webfrap_acl_level_global_asgd_view
+    buiz_acl_level_global_asgd_view
 
   WHERE
     "acl-area" in({$areaKeys})
@@ -2169,7 +2169,7 @@ SQL;
     if (!$userId = $user->getId())
       throw new LibAcl_Exception('Got no User');
 
-    $sourceMaxPerm = 'webfrap_acl_max_permission_view';
+    $sourceMaxPerm = 'buiz_acl_max_permission_view';
 
 
     $joinGroup = '';
@@ -2179,7 +2179,7 @@ SQL;
 
       $joinGroup = <<<SQL
 JOIN
-  wbfsys_role_group ro_group acl_gu ON acl_gu.id_group = ro_group.rowid
+  buiz_role_group ro_group acl_gu ON acl_gu.id_group = ro_group.rowid
 SQL;
 
       $whereGroup = " AND ro_group.access_key IN ('".implode("','",$roles)."') ";
@@ -2206,18 +2206,18 @@ SELECT
   max(acl_access.access_level) AS "acl-level"
 
 FROM
-  wbfsys_security_access acl_access
+  buiz_security_access acl_access
 
 JOIN
-  wbfsys_security_area acl_area ON acl_access.id_area = acl_area.rowid
+  buiz_security_area acl_area ON acl_access.id_area = acl_area.rowid
 
 JOIN
-  wbfsys_group_users acl_gu ON acl_access.id_group = acl_gu.id_group
+  buiz_group_users acl_gu ON acl_access.id_group = acl_gu.id_group
 
 {$joinGroup}
 
 WHERE
-    wbfsys_security_area.access_key IN({$areaKeys})
+    buiz_security_area.access_key IN({$areaKeys})
       AND acl_gu.id_user = {$userId}
       AND (acl_gu.partial = 0)
       AND (acl_access.partial = 0)
@@ -2239,7 +2239,7 @@ SQL;
  /**
   *  Beschreibung der Felder in der Rekursion:
   *
-  *  child ist eine wbfsys_security_area vom type mgmt-ref, also eine Area welche
+  *  child ist eine buiz_security_area vom type mgmt-ref, also eine Area welche
   *  eine Referenz auf Management Ebene beschreibt
   *
   *    child.rowid
@@ -2434,7 +2434,7 @@ AS
     root.rowid as the_parent
 
   FROM
-    wbfsys_security_area root
+    buiz_security_area root
 
   WHERE
     root.rowid {$whereRootId}
@@ -2452,14 +2452,14 @@ AS
     path.id_area as the_parent
 
   FROM
-    wbfsys_security_area child
+    buiz_security_area child
 
   JOIN
     sec_tree tree
       ON
         tree.the_parent = child.m_parent
   JOIN
-    wbfsys_security_path path
+    buiz_security_path path
       ON
         child.rowid = path.id_reference
           AND path.id_group in ({$groupIds})
@@ -2512,19 +2512,19 @@ SQL;
 
     $condition = <<<SQL
   JOIN
-    wbfsys_group_users
+    buiz_group_users
     ON
     (
       CASE WHEN
-        wbfsys_group_users.id_area IS NOT NULL
+        buiz_group_users.id_area IS NOT NULL
       THEN
-        wbfsys_security_access.id_group = wbfsys_group_users.id_group
-          and wbfsys_group_users.id_area = wbfsys_security_area.rowid
-          and wbfsys_group_users.vid is null
+        buiz_security_access.id_group = buiz_group_users.id_group
+          and buiz_group_users.id_area = buiz_security_area.rowid
+          and buiz_group_users.vid is null
       ELSE
-        wbfsys_security_access.id_group = wbfsys_group_users.id_group
-          and wbfsys_group_users.id_area is null
-          and wbfsys_group_users.vid is null
+        buiz_security_access.id_group = buiz_group_users.id_group
+          and buiz_group_users.id_area is null
+          and buiz_group_users.vid is null
       END
     )
 
@@ -2532,24 +2532,24 @@ SQL;
 
     $query = <<<SQL
   SELECT
-    max(wbfsys_security_access.access_level) as access_level,
-    min(wbfsys_security_access.partial) as access_partial,
-    min(wbfsys_group_users.partial) as assign_partial
+    max(buiz_security_access.access_level) as access_level,
+    min(buiz_security_access.partial) as access_partial,
+    min(buiz_group_users.partial) as assign_partial
   FROM
-    wbfsys_security_access
+    buiz_security_access
   JOIN
-    wbfsys_security_area
+    buiz_security_area
     ON
-      wbfsys_security_access.id_area = wbfsys_security_area.rowid
+      buiz_security_access.id_area = buiz_security_area.rowid
   JOIN
-    wbfsys_role_group
+    buiz_role_group
     ON
-      wbfsys_security_access.id_group = wbfsys_role_group.rowid
+      buiz_security_access.id_group = buiz_role_group.rowid
 {$condition}
 
   WHERE
-    wbfsys_security_area.access_key IN({$areaKeys})
-      and wbfsys_group_users.id_user = {$userId}
+    buiz_security_area.access_key IN({$areaKeys})
+      and buiz_group_users.id_user = {$userId}
 
 SQL;
 
@@ -2573,7 +2573,7 @@ SQL;
 
     $orm = $this->getDb()->getOrm();
 
-    $area = $orm->get('WbfsysSecurityArea', "access_key='{$key}'");
+    $area = $orm->get('BuizSecurityArea', "access_key='{$key}'");
 
     // wenn keine area gefunden wurde wird null zurückgegeben
     if (!$area)
@@ -2588,7 +2588,7 @@ SQL;
    * Die rowid einer bestimmten area erfragen
    *
    * @param string $key
-   * @return WbfsysSecurityArea_Entity
+   * @return BuizSecurityArea_Entity
    */
   public function getAreaNode($key)
   {
@@ -2596,11 +2596,11 @@ SQL;
     $orm = $this->getDb()->getOrm();
 
     if (is_array($key))
-      $area = $orm->getByKeys('WbfsysSecurityArea', $key);
+      $area = $orm->getByKeys('BuizSecurityArea', $key);
     else if (is_numeric($key))
-      $area = $orm->get('WbfsysSecurityArea', $key);
+      $area = $orm->get('BuizSecurityArea', $key);
     else
-      $area = $orm->getByKey('WbfsysSecurityArea', $key);
+      $area = $orm->getByKey('BuizSecurityArea', $key);
 
     // wenn keine area gefunden wurde wird null zurückgegeben
     if (!$area)
@@ -2615,7 +2615,7 @@ SQL;
    * Die rowid einer bestimmten area erfragen
    *
    * @param string $key
-   * @return WbfsysSecurityArea_Entity
+   * @return BuizSecurityArea_Entity
    */
   public function getAreaNodes($key)
   {
@@ -2623,9 +2623,9 @@ SQL;
     $orm = $this->getDb()->getOrm();
 
     if (is_array($key)) {
-      $area = $orm->getByKeys('WbfsysSecurityArea', $key);
+      $area = $orm->getByKeys('BuizSecurityArea', $key);
     } else {
-      $area = $orm->getByKey('WbfsysSecurityArea', $key);
+      $area = $orm->getByKey('BuizSecurityArea', $key);
     }
 
     // wenn keine area gefunden wurde wird null zurückgegeben
@@ -2658,7 +2658,7 @@ SQL;
 
     $where = "'".implode("', '", $keys)."'";
 
-    return $orm->getIds("WbfsysSecurityArea", "access_key IN({$where})");
+    return $orm->getIds("BuizSecurityArea", "access_key IN({$where})");
 
   }//end public function getAreaIds */
 

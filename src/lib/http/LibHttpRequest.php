@@ -17,7 +17,7 @@
 
 /**
   * Php Backend für die Internationalisierungsklasse
- * @package net.webfrap
+ * @package net.buiz
   */
 interface LibHttpRequest
 {

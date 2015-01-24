@@ -17,7 +17,7 @@
 
 /**
  *
- * @package net.webfrap
+ * @package net.buiz
  */
 class LibMessageLoader
 {
@@ -55,7 +55,7 @@ SELECT
   rowid,
   message_id
 FROM
-  wbfsys_message_sync
+  buiz_message_sync
 WHERE
   message_id IN('{$whereIn}');
 

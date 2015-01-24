@@ -40,7 +40,7 @@ if (isset($_GET['l'])) {
 
 BuizCore::loadClassIndex( $type.'/'.$id );
 
-$webfrap = BuizCore::init();
+$buiz = BuizCore::init();
 BuizCore::$autoloadPath[] = View::$themePath.'src/';
 $cache = new LibCacheRequestCss();
 

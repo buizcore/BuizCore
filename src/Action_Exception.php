@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  */
 class Action_Exception extends Lib_Exception {
 	

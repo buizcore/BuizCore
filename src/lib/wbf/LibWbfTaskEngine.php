@@ -16,9 +16,9 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  * @author Dominik Bonsch <db@s-db.de>
- * @copyright Webfrap Developer Network <contact@webfrap.net>
+ * @copyright Buiz Developer Network <contact@buiz.net>
  */
 class LibWbfTaskEngine
 {

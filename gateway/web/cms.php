@@ -27,13 +27,13 @@ try {
   $errors = '';
 
   View::setType( 'Cms' );
-  $webfrap = BuizCore::init();
+  $buiz = BuizCore::init();
 
   // calling the main main function
 
-  $webfrap->main();
-  $errors = $webfrap->out();
-  $webfrap->shutdown( $errors );
+  $buiz->main();
+  $errors = $buiz->out();
+  $buiz->shutdown( $errors );
 
 } // ENDE TRY
 catch( Exception $exception ) {

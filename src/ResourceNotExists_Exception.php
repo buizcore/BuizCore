@@ -18,9 +18,9 @@
 /**
  * Is used when a service requested by the user not exists.
  *
- * @package net.webfrap
+ * @package net.buiz
  */
-class ResourceNotExists_Exception extends WebfrapUser_Exception
+class ResourceNotExists_Exception extends BuizUser_Exception
 {
 
   /**

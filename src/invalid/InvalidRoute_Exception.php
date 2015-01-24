@@ -16,10 +16,10 @@
 *******************************************************************************/
 
 /**
- * @package net.webfrap
+ * @package net.buiz
  *
  */
-class InvalidRoute_Exception extends WebfrapSys_Exception
+class InvalidRoute_Exception extends BuizSys_Exception
 {
 
 }

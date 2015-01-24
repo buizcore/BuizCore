@@ -17,7 +17,7 @@
 
 /**
  * Envelop to extend some existing object with functionality
- * @package net.webfrap
+ * @package net.buiz
  */
 class TEnvelop
 {

@@ -27,12 +27,12 @@ try {
 
   View::setType('Cli');
 
-  $webfrap = BuizCore::init();
+  $buiz = BuizCore::init();
 
   // calling the main main function
-  $webfrap->main();
+  $buiz->main();
 
-  $webfrap->shutdown( );
+  $buiz->shutdown( );
 
 } catch( Exception $exception ) {  // ENDE TRY
     

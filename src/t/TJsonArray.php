@@ -19,7 +19,7 @@
  * Json Array,
  * erlaub nur intwerte als index
  *
- * @package net.webfrap
+ * @package net.buiz
  *
  */
 class TJsonArray
