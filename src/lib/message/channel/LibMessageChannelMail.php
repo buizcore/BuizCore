@@ -49,7 +49,7 @@ class LibMessageChannelMail extends LibMessageChannel
     if (!$sender)
       $sender = $this->getSender();
 
-    if (defined('WBF_MESSAGE_SEND') && 'stub' == strtolower(WBF_MESSAGE_SEND)  ) {
+    if (defined('BUIZ_MESSAGE_SEND') && 'stub' == strtolower(BUIZ_MESSAGE_SEND)  ) {
       $mailer = new LibMessageMail_Stub();
     } else {
       $mailer = new LibMessageMail();

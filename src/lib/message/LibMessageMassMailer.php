@@ -400,7 +400,7 @@ class LibMessageMassMailer
     );
     */
     
-    if( constant('WBF_MESSAGE_SEND') && WBF_MESSAGE_SEND == 'Stub'  ){
+    if( constant('BUIZ_MESSAGE_SEND') && BUIZ_MESSAGE_SEND == 'Stub'  ){
         
         
         $mail = <<<MAIL

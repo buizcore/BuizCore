@@ -232,8 +232,8 @@ BuizCore::$autoloadPath[]  = PATH_WGT.'src/';
 BuizCore::$autoloadPath[]  = PATH_FW.'src/';
 
 // set custom handlers
-if( defined( 'WBF_ERROR_HANDLER' ) )
-  set_error_handler( WBF_ERROR_HANDLER );
+if( defined( 'BUIZ_ERROR_HANDLER' ) )
+  set_error_handler( BUIZ_ERROR_HANDLER );
 
 // clean the logs if in debug mode
 if(DEBUG)

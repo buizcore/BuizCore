@@ -22,6 +22,10 @@ if (!defined('BUIZ_DB_KEY'))
 if (!defined('DEBUG'))
   define('DEBUG',false);
 
+if (!defined('BUIZ_DEVELOP_MODE'))
+  define('BUIZ_DEVELOP_MODE',false);
+
+
 if (!defined('BUIZ_NO_LOGIN'))
   define('BUIZ_NO_LOGIN',false);
 
@@ -1022,7 +1026,7 @@ class BuizCore
       ///TODO find a solution how to add a hirachie
   
       if (is_dir(PATH_GW.'conf/include/'.$type)  ) {
-          $dModules = opendir(PATH_GW.'conf/include/include/'.$type);
+          $dModules = opendir(PATH_GW.'conf/include/'.$type);
   
           if ($dModules) {
               while ($mod = readdir($dModules)) {

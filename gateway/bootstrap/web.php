@@ -128,8 +128,8 @@ if ( !isset( $_GET['c'] ) ) {
 
 // set custom handlers
 
-//if( defined( 'WBF_ERROR_HANDLER' ) )
-//  set_error_handler( WBF_ERROR_HANDLER );
+//if( defined( 'BUIZ_ERROR_HANDLER' ) )
+//  set_error_handler( BUIZ_ERROR_HANDLER );
 
 // clean the logs if in debug mode
 if(DEBUG)

@@ -281,10 +281,14 @@ View::$searchPathTemplate[] = PATH_GW.'templates/';
 I18n::$i18nPath[]         = PATH_GW.'i18n/';
 Conf::$confPath[]         = PATH_GW.'conf/';
 
+
 // load the modules an libs from the conf
 BuizCore::loadModuleByPath('module');
 
-if (DEBUG) {
+if (BUIZ_DEVELOP_MODE) {
+    BuizCore::$autoloadPath[]  = PATH_ROOT.'/BuizCore_Developer/src/';
+    BuizCore::$autoloadPath[]  = PATH_ROOT.'/BuizCore_Developer/module/';
+    
     BuizCore::loadModuleByPath('develop_module');
 }
 
@@ -308,8 +312,8 @@ if ( !isset( $_GET['c'] ) ) {
 
 // set custom handlers
 
-//if( defined( 'WBF_ERROR_HANDLER' ) )
-//  set_error_handler( WBF_ERROR_HANDLER );
+//if( defined( 'BUIZ_ERROR_HANDLER' ) )
+//  set_error_handler( BUIZ_ERROR_HANDLER );
 
 // clean the logs if in debug mode
 if(DEBUG)
