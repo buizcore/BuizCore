@@ -897,7 +897,7 @@ class LibRequestSubrequest
 
       foreach ($filtr as $key => $tmpVal) {
         //test if we have a non row oder lang id attribute thats not empty
-        if ($key != WBF_DB_KEY and $key != 'id_lang' && trim($tmpVal) != '') {
+        if ($key != BUIZ_DB_KEY and $key != 'id_lang' && trim($tmpVal) != '') {
           $isEmpty = false;
           break;
         }

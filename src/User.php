@@ -755,7 +755,7 @@ class User extends BaseChild
     if (!isset($_SESSION['SYS_USER'])) {
       self::$instance = new User(null,$env);
 
-      if (defined('WBF_NO_LOGIN') &&  WBF_NO_LOGIN)
+      if (defined('BUIZ_NO_LOGIN') &&  BUIZ_NO_LOGIN)
         self::$instance->setNoLogin(true);
 
       $_SESSION['SYS_USER'] = self::$instance;

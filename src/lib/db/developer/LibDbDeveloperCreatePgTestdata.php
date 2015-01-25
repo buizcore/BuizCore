@@ -119,7 +119,7 @@ class LibDbDeveloperCreatePgTestdata
 
         foreach ($table->row as $row) {
           $rowName = $row['name'];
-          if ($rowName == WBF_DB_KEY) {
+          if ($rowName == BUIZ_DB_KEY) {
             continue;
           }
 

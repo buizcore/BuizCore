@@ -51,7 +51,7 @@ class BuizSys_Exception extends Buiz_Exception
     if ('undefined error' === $debugMessage)
       $debugMessage = Error::PROGRAM_BUG;
 
-    if (DEBUG || WBF_RESPONSE_ADAPTER === 'cli') {
+    if (DEBUG || BUIZ_RESPONSE_ADAPTER === 'cli') {
       //$userMessage = $debugMessage;
       parent::__construct($debugMessage);
     } else {

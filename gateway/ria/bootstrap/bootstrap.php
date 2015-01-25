@@ -162,27 +162,27 @@ if (!defined('WEB_WGT'))
  * Which Systemcontroller Should be used
  * @var
  */
-if (!defined('WBF_CONTROLLER'))
-    define( 'WBF_CONTROLLER' , 'Apachemod' );
+if (!defined('BUIZ_CONTROLLER'))
+    define( 'BUIZ_CONTROLLER' , 'Apachemod' );
 
 /**
  * @var
  */
-if (!defined('WBF_RESPONSE_ADAPTER'))
-    define( 'WBF_RESPONSE_ADAPTER' , 'Http' );
+if (!defined('BUIZ_RESPONSE_ADAPTER'))
+    define( 'BUIZ_RESPONSE_ADAPTER' , 'Http' );
 
 /**
  * @var
  */
-if (!defined('WBF_ACL_ADAPTER'))
-    define( 'WBF_ACL_ADAPTER' , 'Db' );
+if (!defined('BUIZ_ACL_ADAPTER'))
+    define( 'BUIZ_ACL_ADAPTER' , 'Db' );
 
 /**
  * db key
  * @var
  */
-if (!defined('WBF_DB_KEY'))
-    define( 'WBF_DB_KEY' , 'rowid' );
+if (!defined('BUIZ_DB_KEY'))
+    define( 'BUIZ_DB_KEY' , 'rowid' );
 
 ////////////////////////////////////////////////////////////////////////////////
 // constants

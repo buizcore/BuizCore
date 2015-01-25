@@ -16,11 +16,11 @@
 *******************************************************************************/
 
 // Sicher stellen, dass nur Cms Controller aufgerufen werden können
-if (!defined('WBF_CONTROLLER_PREFIX'))
-  define('WBF_CONTROLLER_PREFIX', '');
+if (!defined('BUIZ_CONTROLLER_PREFIX'))
+  define('BUIZ_CONTROLLER_PREFIX', '');
 
-if (!defined('WBF_CONTROLLER_TYPE'))
-    define('WBF_CONTROLLER_TYPE', '_Controller');
+if (!defined('BUIZ_CONTROLLER_TYPE'))
+    define('BUIZ_CONTROLLER_TYPE', '_Controller');
 
 /**
  * @lang de:
@@ -312,7 +312,7 @@ class LibFlowApachemod extends Base
 
     try {
 
-      $classname = $module.$controller.WBF_CONTROLLER_PREFIX.WBF_CONTROLLER_TYPE;
+      $classname = $module.$controller.BUIZ_CONTROLLER_PREFIX.BUIZ_CONTROLLER_TYPE;
 
       if (BuizCore::classExists($classname)) {
         $this->controller = new $classname($this);
@@ -350,7 +350,7 @@ class LibFlowApachemod extends Base
       );
 
       // if the controller ist not loadable set an error controller
-      $classname = 'Error'.WBF_CONTROLLER_PREFIX.WBF_CONTROLLER_TYPE;
+      $classname = 'Error'.BUIZ_CONTROLLER_PREFIX.BUIZ_CONTROLLER_TYPE;
       $this->controller = new $classname($this);
       $this->controllerName = $classname;
       //\Reset The Extention

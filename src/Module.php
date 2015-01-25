@@ -145,7 +145,7 @@ abstract class Module extends BaseChild
     if (!$name)
       $name = $this->defaultControllerName;
 
-    $classname = $this->modName.ucfirst($name).WBF_CONTROLLER_PREFIX.WBF_CONTROLLER_TYPE;
+    $classname = $this->modName.ucfirst($name).BUIZ_CONTROLLER_PREFIX.BUIZ_CONTROLLER_TYPE;
 
     ///TODO den default model kram muss ich hier mal kicken
     /// der ist nur noch wegen kompatibilitäts problemen drin
@@ -160,7 +160,7 @@ abstract class Module extends BaseChild
     } else {
 
       // if the controller ist not loadable set an error controller
-      $classname = 'Error'.WBF_CONTROLLER_PREFIX.WBF_CONTROLLER_TYPE;
+      $classname = 'Error'.BUIZ_CONTROLLER_PREFIX.BUIZ_CONTROLLER_TYPE;
       $this->controller = new $classname($this);
       $this->controllerName = $classname;
 

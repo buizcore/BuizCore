@@ -96,8 +96,8 @@ class Message
     if (self::$instance)
       return;
 
-    if (defined('WBF_MESSAGE_ADAPTER')) {
-      $className = 'LibMessage'.WBF_MESSAGE_ADAPTER;
+    if (defined('BUIZ_MESSAGE_ADAPTER')) {
+      $className = 'LibMessage'.BUIZ_MESSAGE_ADAPTER;
       self::$instance = new $className();
     } else {
       self::$instance = new LibMessagePool();

@@ -148,7 +148,7 @@ abstract class MvcModule extends BaseChild
     if (!$name)
       $name = $this->defaultControllerName;
 
-    $classname = $this->modName.ucfirst($name).WBF_CONTROLLER_PREFIX.'_Controller';
+    $classname = $this->modName.ucfirst($name).BUIZ_CONTROLLER_PREFIX.'_Controller';
     $classnameOld = 'Controller'.$this->modName.ucfirst($name);
 
     ///TODO den default model kram muss ich hier mal kicken

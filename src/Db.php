@@ -32,7 +32,7 @@ class Db
      * Name des Haupt Pks
      * @var string
      */
-    const PK = WBF_DB_KEY;
+    const PK = BUIZ_DB_KEY;
 
     /**
      * Name der Master sequence

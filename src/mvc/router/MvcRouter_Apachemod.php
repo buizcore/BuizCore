@@ -16,8 +16,8 @@
 *******************************************************************************/
 
 // Sicher stellen, dass nur Cms Controller aufgerufen werden können
-if (!defined('WBF_CONTROLLER_PREFIX'))
-  define('WBF_CONTROLLER_PREFIX', '');
+if (!defined('BUIZ_CONTROLLER_PREFIX'))
+  define('BUIZ_CONTROLLER_PREFIX', '');
 
 /**
  * @lang de:
@@ -302,7 +302,7 @@ class MvcRouter_Apachemod extends Base
 
     try {
 
-      $classname = $module.$controller.WBF_CONTROLLER_PREFIX.'_Controller';
+      $classname = $module.$controller.BUIZ_CONTROLLER_PREFIX.'_Controller';
 
       if (BuizCore::classExists($classname)) {
         $this->controller = new $classname($this);

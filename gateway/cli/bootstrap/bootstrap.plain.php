@@ -118,40 +118,40 @@ if (!defined('WEB_WGT'))
  * Which Systemcontroller Should be used
  * @var
  */
-if (!defined('WBF_CONTROLLER'))
-    define( 'WBF_CONTROLLER' , 'Cli' );
+if (!defined('BUIZ_CONTROLLER'))
+    define( 'BUIZ_CONTROLLER' , 'Cli' );
 
 /**
  * @var
 */
-if (!defined('WBF_RESPONSE_ADAPTER'))
-    define( 'WBF_RESPONSE_ADAPTER' , 'Cli' );
+if (!defined('BUIZ_RESPONSE_ADAPTER'))
+    define( 'BUIZ_RESPONSE_ADAPTER' , 'Cli' );
 
 
 /**
  * @var string
 */
-if (!defined('WBF_REQUEST_ADAPTER'))
-    define( 'WBF_REQUEST_ADAPTER', 'Cli' );
+if (!defined('BUIZ_REQUEST_ADAPTER'))
+    define( 'BUIZ_REQUEST_ADAPTER', 'Cli' );
 
 /**
  * @var string
 */
-if (!defined('WBF_MESSAGE_ADAPTER'))
-    define( 'WBF_MESSAGE_ADAPTER', 'Cli' );
+if (!defined('BUIZ_MESSAGE_ADAPTER'))
+    define( 'BUIZ_MESSAGE_ADAPTER', 'Cli' );
 
 /**
  * @var
 */
-if (!defined('WBF_ACL_ADAPTER'))
-    define( 'WBF_ACL_ADAPTER' , 'Db' );
+if (!defined('BUIZ_ACL_ADAPTER'))
+    define( 'BUIZ_ACL_ADAPTER' , 'Db' );
 
 /**
  * db key
  * @var
 */
-if (!defined('WBF_DB_KEY'))
-    define( 'WBF_DB_KEY' , 'rowid' );
+if (!defined('BUIZ_DB_KEY'))
+    define( 'BUIZ_DB_KEY' , 'rowid' );
 
 /**
  * @var string

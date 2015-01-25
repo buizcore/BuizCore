@@ -265,16 +265,16 @@ class Request
   public static function init()
   {
 
-    if (!defined('WBF_REQUEST_ADAPTER')) {
+    if (!defined('BUIZ_REQUEST_ADAPTER')) {
       self::$instance = new LibRequestPhp();
       self::$instance->init();
     } else {
-      $classname = 'LibRequest'.ucfirst(WBF_REQUEST_ADAPTER);
+      $classname = 'LibRequest'.ucfirst(BUIZ_REQUEST_ADAPTER);
       if (!BuizCore::classExists($classname)) {
 
         throw new BuizConfig_Exception
         (
-          'Request Type: '.ucfirst(WBF_REQUEST_ADAPTER).' not exists!'
+          'Request Type: '.ucfirst(BUIZ_REQUEST_ADAPTER).' not exists!'
         );
       }
       self::$instance = new $classname();

@@ -325,23 +325,23 @@ class Acl
             return;
         }
 
-        if (!defined('WBF_ACL_ADAPTER')) {
+        if (!defined('BUIZ_ACL_ADAPTER')) {
             self::$instance = new LibAclAdapter_Db($env);
 
-            // mit der WBF_NO_ACL Konstante kann ein überprüfen der rechte unterbunden werden
-            if (defined('WBF_NO_ACL') && WBF_NO_ACL) {
+            // mit der BUIZ_NO_ACL Konstante kann ein überprüfen der rechte unterbunden werden
+            if (defined('BUIZ_NO_ACL') && BUIZ_NO_ACL) {
                 self::$instance->setDisabled(true);
             }
 
             return;
         }
 
-        $className = 'LibAclAdapter_' . ucfirst(WBF_ACL_ADAPTER);
+        $className = 'LibAclAdapter_' . ucfirst(BUIZ_ACL_ADAPTER);
 
         self::$instance = new $className($env);
 
-        // mit der WBF_NO_ACL Konstante kann ein überprüfen der rechte unterbunden werden
-        if (defined('WBF_NO_ACL') && WBF_NO_ACL) {
+        // mit der BUIZ_NO_ACL Konstante kann ein überprüfen der rechte unterbunden werden
+        if (defined('BUIZ_NO_ACL') && BUIZ_NO_ACL) {
             self::$instance->setDisabled(true);
         }
 
@@ -388,10 +388,10 @@ class Acl
                 $env = BuizCore::getActive();
             }
 
-            if (!defined('WBF_ACL_ADAPTER')) {
+            if (!defined('BUIZ_ACL_ADAPTER')) {
                 self::$manager = new LibAclManager_Db($env);
             } else {
-                $className = 'LibAclManager_' . ucfirst(WBF_ACL_ADAPTER);
+                $className = 'LibAclManager_' . ucfirst(BUIZ_ACL_ADAPTER);
                 self::$manager = new $className($env);
             }
         }
@@ -544,7 +544,7 @@ class Acl
      */
     public function permission($key, $entity = null)
     {
-        if (defined('WBF_NO_ACL')) {
+        if (defined('BUIZ_NO_ACL')) {
             return true;
         }
 

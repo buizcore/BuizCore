@@ -16,20 +16,20 @@
 *******************************************************************************/
 
 // define needed constantes
-if (!defined('WBF_DB_KEY'))
-  define('WBF_DB_KEY','rowid');
+if (!defined('BUIZ_DB_KEY'))
+  define('BUIZ_DB_KEY','rowid');
 
 if (!defined('DEBUG'))
   define('DEBUG',false);
 
-if (!defined('WBF_NO_LOGIN'))
-  define('WBF_NO_LOGIN',false);
+if (!defined('BUIZ_NO_LOGIN'))
+  define('BUIZ_NO_LOGIN',false);
 
-if (!defined('WBF_NO_ACL'))
-  define('WBF_NO_ACL',false);
+if (!defined('BUIZ_NO_ACL'))
+  define('BUIZ_NO_ACL',false);
 
-if (!defined('WBF_SHOW_MOCKUP'))
-  define('WBF_SHOW_MOCKUP', false);
+if (!defined('BUIZ_SHOW_MOCKUP'))
+  define('BUIZ_SHOW_MOCKUP', false);
 
 if (DEBUG)
   BuizCore::$scriptStart = BuizCore::startMeasure();
@@ -222,8 +222,8 @@ class BuizCore
   public static function setEnvironment($key)
   {
 
-    define('WBF_CONTROLLER',$key);
-    define('WBF_REQUEST_ADAPTER',$key);
+    define('BUIZ_CONTROLLER',$key);
+    define('BUIZ_REQUEST_ADAPTER',$key);
 
   }//end public static function setEnvironment */
 
@@ -236,8 +236,8 @@ class BuizCore
   protected static function createInstance()
   {
 
-    if (defined('WBF_CONTROLLER'))
-      $flowController = 'LibFlow'.ucfirst(WBF_CONTROLLER);
+    if (defined('BUIZ_CONTROLLER'))
+      $flowController = 'LibFlow'.ucfirst(BUIZ_CONTROLLER);
     else
       $flowController = 'LibFlowApachemod';
 
@@ -866,20 +866,20 @@ class BuizCore
     else
       date_default_timezone_set('Etc/UCT');
 
-    if (defined('WBF_CONTROLLER')) {
-      $flowController = 'LibFlow'.ucfirst(WBF_CONTROLLER);
+    if (defined('BUIZ_CONTROLLER')) {
+      $flowController = 'LibFlow'.ucfirst(BUIZ_CONTROLLER);
       self::$instance = new $flowController();
       self::$env = self::$instance;
 
       if (DEBUG)
-        Log::debug('Found WBF_CONTROLLER: '.WBF_CONTROLLER);
+        Log::debug('Found BUIZ_CONTROLLER: '.BUIZ_CONTROLLER);
     } else {
       // fallback auf apache mod
       self::$instance = new LibFlowApachemod();
       self::$env = self::$instance;
 
       if (DEBUG)
-        Log::debug('Found WBF_CONTROLLER: LibFlowApachemod');
+        Log::debug('Found BUIZ_CONTROLLER: LibFlowApachemod');
     }
     
     if($conf->initClasses){
@@ -904,9 +904,9 @@ class BuizCore
 
     // if no controller is defined the framework FLow Handler does not start
     // and you can implement your own Flow/MVC Whatever Logicacl ApplicationFlow
-    if (defined('WBF_CONTROLLER')) {
+    if (defined('BUIZ_CONTROLLER')) {
 
-      if ('Cli' == WBF_CONTROLLER) {
+      if ('Cli' == BUIZ_CONTROLLER) {
         self::$instance->init();
         return self::$instance;
       }
@@ -1011,6 +1011,42 @@ class BuizCore
     }
 
   }//end public static function announceIncludePaths
+  
+  /**
+   *
+   * @param boolean $srcOnly
+   */
+  public static function loadModuleByPath( $type, $srcOnly = false)
+  {
+  
+      ///TODO find a solution how to add a hirachie
+  
+      if (is_dir(PATH_GW.'conf/include/'.$type)  ) {
+          $dModules = opendir(PATH_GW.'conf/include/include/'.$type);
+  
+          if ($dModules) {
+              while ($mod = readdir($dModules)) {
+                  if ($mod[0] == '.')
+                      continue;
+  
+                  BuizCore::$autoloadPath[] = PATH_ROOT.$mod.'/src/';
+                  BuizCore::$autoloadPath[] = PATH_ROOT.$mod.'/module/';
+  
+                  if (!$srcOnly) {
+                      //View::$searchPathTemplate[] = PATH_ROOT.$mod.'/module/';
+                      View::$searchPathTemplate[] = PATH_ROOT.$mod.'/templates/';
+                      I18n::$i18nPath[] = PATH_ROOT.$mod.'/i18n/';
+                      Conf::$confPath[] = PATH_ROOT.$mod.'/conf/';
+                  }
+  
+              }
+  
+              // close the directory
+              closedir($dModules);
+          }
+      }
+  
+  }//end public static function loadModuleByPath
 
   /**
    *
@@ -1052,6 +1088,50 @@ class BuizCore
    *
    * @param boolean $srcOnly
    */
+  public static function loadGmodPath( $srcOnly = false)
+  {
+  
+      ///TODO find a solution how to add a hirachie
+  
+      if (is_dir(PATH_GW.'conf/include/gmod')  )
+          $dModules = opendir(PATH_GW.'conf/include/gmod');
+      else
+          return;
+  
+      if ($dModules) {
+          while ($mod = readdir($dModules)) {
+              if ($mod[0] == '.')
+                  continue;
+  
+              BuizCore::$autoloadPath[] = PATH_ROOT.$mod.'/src/';
+              BuizCore::$autoloadPath[] = PATH_ROOT.$mod.'/sandbox/src/';
+              BuizCore::$autoloadPath[] = PATH_ROOT.$mod.'/module/';
+              BuizCore::$autoloadPath[] = PATH_ROOT.$mod.'/sandbox/module/';
+  
+              if (!$srcOnly) {
+                  View::$searchPathTemplate[] = PATH_ROOT.$mod.'/templates/';
+                  View::$searchPathTemplate[] = PATH_ROOT.$mod.'/sandbox/templates/';
+  
+                  I18n::$i18nPath[] = PATH_ROOT.$mod.'/i18n/';
+                  I18n::$i18nPath[] = PATH_ROOT.$mod.'/sandbox/i18n/';
+  
+                  Conf::$confPath[] = PATH_ROOT.$mod.'/conf/';
+                  Conf::$confPath[] = PATH_ROOT.$mod.'/sandbox/conf/';
+              }
+  
+          }
+  
+          // close the directory
+          closedir($dModules);
+      }
+  
+  }//end public static function loadGmodPath
+  
+  
+  /**
+   *
+   * @param boolean $srcOnly
+   */
   public static function loadPagesPath( $srcOnly = false)
   {
   
@@ -1083,48 +1163,6 @@ class BuizCore
   
   }//end public static function loadPagesPath
 
-  /**
-   *
-   * @param boolean $srcOnly
-   */
-  public static function loadGmodPath( $srcOnly = false)
-  {
-
-    ///TODO find a solution how to add a hirachie
-
-    if (is_dir(PATH_GW.'conf/include/gmod')  )
-      $dModules = opendir(PATH_GW.'conf/include/gmod');
-    else
-      return;
-
-    if ($dModules) {
-       while ($mod = readdir($dModules)) {
-          if ($mod[0] == '.')
-            continue;
-
-          BuizCore::$autoloadPath[] = PATH_ROOT.$mod.'/src/';
-          BuizCore::$autoloadPath[] = PATH_ROOT.$mod.'/sandbox/src/';
-          BuizCore::$autoloadPath[] = PATH_ROOT.$mod.'/module/';
-          BuizCore::$autoloadPath[] = PATH_ROOT.$mod.'/sandbox/module/';
-
-          if (!$srcOnly) {
-            View::$searchPathTemplate[] = PATH_ROOT.$mod.'/templates/';
-            View::$searchPathTemplate[] = PATH_ROOT.$mod.'/sandbox/templates/';
-
-            I18n::$i18nPath[] = PATH_ROOT.$mod.'/i18n/';
-            I18n::$i18nPath[] = PATH_ROOT.$mod.'/sandbox/i18n/';
-
-            Conf::$confPath[] = PATH_ROOT.$mod.'/conf/';
-            Conf::$confPath[] = PATH_ROOT.$mod.'/sandbox/conf/';
-          }
-
-       }
-
-       // close the directory
-       closedir($dModules);
-    }
-
-  }//end public static function loadGmodPath
 
   /**
    *

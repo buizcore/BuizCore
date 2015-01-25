@@ -355,7 +355,7 @@ class LibSqlStack
     if (!$in)
       return $this;
 
-    $where =  $this->table.'.'.WBF_DB_KEY.'  IN('.implode(',',$in).') ';
+    $where =  $this->table.'.'.BUIZ_DB_KEY.'  IN('.implode(',',$in).') ';
 
     if (!$this->where)
       $this->where = $where;
@@ -378,7 +378,7 @@ class LibSqlStack
     if (!$in)
       return $this;
 
-    $where =  $this->table.'.'.WBF_DB_KEY.' NOT IN('.implode(',',$in).') ';
+    $where =  $this->table.'.'.BUIZ_DB_KEY.' NOT IN('.implode(',',$in).') ';
 
     if (!$this->where)
       $this->where = $where;

@@ -16,8 +16,8 @@
 *******************************************************************************/
 
 // Sicher stellen, dass nur Cms Controller aufgerufen werden können
-if (!defined('WBF_CONTROLLER_PREFIX'))
-  define('WBF_CONTROLLER_PREFIX', '');
+if (!defined('BUIZ_CONTROLLER_PREFIX'))
+  define('BUIZ_CONTROLLER_PREFIX', '');
 
 /**
  *

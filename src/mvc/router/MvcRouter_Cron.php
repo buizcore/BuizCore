@@ -16,8 +16,8 @@
 *******************************************************************************/
 
 // Sicher stellen, dass nur Cms Controller aufgerufen werden können
-if (!defined('WBF_CONTROLLER_PREFIX'))
-  define('WBF_CONTROLLER_PREFIX', '');
+if (!defined('BUIZ_CONTROLLER_PREFIX'))
+  define('BUIZ_CONTROLLER_PREFIX', '');
 
 /**
  * @lang de:
@@ -294,7 +294,7 @@ class MvcRouter_Cron extends Base
 
     try {
 
-      $classname = $module.$controller.WBF_CONTROLLER_PREFIX.'_Controller';
+      $classname = $module.$controller.BUIZ_CONTROLLER_PREFIX.'_Controller';
       $classnameOld = 'Controller'.$module.$controller;
 
       if (BuizCore::classExists($classname)) {

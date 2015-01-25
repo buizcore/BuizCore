@@ -198,16 +198,16 @@ class Response
   public static function init()
   {
 
-    if (!defined('WBF_RESPONSE_ADAPTER')) {
+    if (!defined('BUIZ_RESPONSE_ADAPTER')) {
       self::$instance = new LibResponseHttp();
       self::$instance->init();
     } else {
-      $classname = 'LibResponse'.ucfirst(WBF_RESPONSE_ADAPTER);
+      $classname = 'LibResponse'.ucfirst(BUIZ_RESPONSE_ADAPTER);
       if (!BuizCore::classExists($classname)) {
 
         throw new BuizConfig_Exception
         (
-        'Request Type: '.ucfirst(WBF_RESPONSE_ADAPTER).' not exists!'
+        'Request Type: '.ucfirst(BUIZ_RESPONSE_ADAPTER).' not exists!'
         );
       }
       self::$instance = new $classname();
