@@ -131,7 +131,13 @@ class LibDbPostgresql extends LibDbConnection
             $trace = Debug::backtrace();
             
             // Fehlermeldung raus und gleich mal nen Trace laufen lassen
-            throw new LibDb_Exception('Failed to read from the database. Seems we have a broken query here.', 'DB Response: '.pg_last_error($this->connectionRead).' '.$trace, Response::INTERNAL_ERROR, $sql, $this->counter);
+            throw new LibDb_Exception(
+                'Failed to read from the database. Seems we have a broken query here. '.$sql, 
+                'DB Response: '.pg_last_error($this->connectionRead).' '.$trace, 
+                Response::INTERNAL_ERROR, 
+                $sql, 
+                $this->counter
+            );
         }
         
         if (DEBUG) {
@@ -223,7 +229,12 @@ class LibDbPostgresql extends LibDbConnection
         $sqlstring = "select nextval('".$seqName."');";
         
         if (! $this->result = pg_query($this->connectionWrite, $sqlstring)) {
-            throw new LibDb_Exception('Failed to receive a new id', 'No Db Result: '.pg_last_error($this->connectionWrite), Response::INTERNAL_ERROR, $sqlstring);
+            throw new LibDb_Exception(
+                'Failed to receive a new id', 
+                'No Db Result: '.pg_last_error($this->connectionWrite).' '.$this->schema , 
+                Response::INTERNAL_ERROR, 
+                $sqlstring
+            );
         }
         
         $row = pg_fetch_row($this->result);
@@ -247,7 +258,9 @@ class LibDbPostgresql extends LibDbConnection
         $sqlstring = "select currval('".$seqName."');";
         
         if (! $this->result = pg_query($this->connectionRead, $sqlstring)) {
-            throw new LibDb_Exception('Failed to receive a new id', 'No Db Result: '.pg_last_error($this->connectionRead), Response::INTERNAL_ERROR, $sqlstring);
+            throw new LibDb_Exception(
+                'Failed to receive a new id', 
+                'No Db Result: '.pg_last_error($this->connectionRead), Response::INTERNAL_ERROR, $sqlstring);
         }
         
         $row = pg_fetch_row($this->result);

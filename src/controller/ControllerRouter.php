@@ -93,7 +93,7 @@ class ControllerRouter extends ControllerCrud
           }
           default :{
 
-            Debug::console($exc->getMessage());
+            Log::error($exc->getMessage());
             $this->errorPage($response->i18n->l('Sorry Internal Error', 'wbf.message'), Response::INTERNAL_ERROR);
 
             break;

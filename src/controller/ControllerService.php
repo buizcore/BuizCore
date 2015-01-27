@@ -57,8 +57,9 @@ class ControllerService extends Controller
 
       return;
     } else {
+        
       if (DEBUG)
-        Debug::console($methodeName . ' is not callable!', $this->callAble);
+        Log::debug($methodeName . ' is not callable! '.implode(array_keys($this->callAble)) );
 
       $response->addError('The action :' . $methodeName . ' is not callable!');
 

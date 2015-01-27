@@ -707,7 +707,7 @@ SQL;
     if ($this->createPatch)
       $this->sqlPatch .= $sql.NL.NL;
 
-    Debug::console($sql);
+    Log::debug($sql);
 
     if ($this->syncDb)
       return $this->db->exec($sql);

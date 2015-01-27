@@ -300,7 +300,7 @@ class ContextServiceList extends Context
                     $this->extSearch[$fKey] = (object) $validField;
                 }
             } else {
-                Debug::console($extField['field'].' was invalid ');
+                Log::warn($extField['field'].' was invalid ');
             }
         } // end foreach
     } // end public function interpretExtendedSearch */

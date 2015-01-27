@@ -304,7 +304,12 @@ class Session
   public static function start()
   {
 
-    $className = 'LibSession'.self::$sessionType;
+      if(php_sapi_name() === 'cli'){
+          $className = 'LibSessionCli';
+      } else {
+          $className = 'LibSession'.self::$sessionType;
+      }
+    
     self::$session = new $className();
 
     Log::debug('start session '.$className);

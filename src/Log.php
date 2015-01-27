@@ -398,6 +398,10 @@ class Log
       $pos = Debug::getCallposition();
 
       $message = $file;
+      
+      if (!is_null($line)) {
+          $message .= ' '.Debug::dumpToString($line);
+      }
       $file = $pos['file'];
       $line = $pos['line'];
     }
@@ -422,6 +426,11 @@ class Log
       $pos = Debug::getCallposition();
 
       $message = $file;
+      
+      if (!is_null($line)) {
+          $message .= ' '.Debug::dumpToString($line);
+      }
+      
       $file = $pos['file'];
       $line = $pos['line'];
     }
@@ -446,6 +455,10 @@ class Log
       $pos = Debug::getCallposition();
 
       $message = $file;
+      
+      if (!is_null($line)) {
+          $message .= ' '.Debug::dumpToString($line);
+      }
       $file = $pos['file'];
       $line = $pos['line'];
     }
@@ -488,6 +501,10 @@ class Log
       $pos = Debug::getCallposition();
 
       $message = $file;
+      
+      if (!is_null($line)) {
+          $message .= ' '.Debug::dumpToString($line);
+      }
       $file = $pos['file'];
       $line = $pos['line'];
     }
@@ -512,6 +529,10 @@ class Log
       $pos = Debug::getCallposition();
 
       $message = $file;
+      
+      if (!is_null($line)) {
+          $message .= ' '.Debug::dumpToString($line);
+      }
       $file = $pos['file'];
       $line = $pos['line'];
     }
@@ -536,6 +557,10 @@ class Log
       $pos = Debug::getCallposition();
 
       $message = $file;
+      
+      if (!is_null($line)) {
+          $message .= ' '.Debug::dumpToString($line);
+      }
       $file = $pos['file'];
       $line = $pos['line'];
     }
@@ -561,6 +586,10 @@ class Log
       $pos = Debug::getCallposition();
 
       $message = $file;
+      
+      if (!is_null($line)) {
+          $message .= ' '.Debug::dumpToString($line);
+      }
       $file = $pos['file'];
       $line = $pos['line'];
     }
@@ -586,6 +615,10 @@ class Log
       $pos = Debug::getCallposition();
 
       $message = $file;
+      
+      if (!is_null($line)) {
+          $message .= ' '.Debug::dumpToString($line);
+      }
       $file = $pos['file'];
       $line = $pos['line'];
     }
@@ -608,6 +641,10 @@ class Log
       $pos = Debug::getCallposition();
 
       $message = $file;
+      
+      if (!is_null($line)) {
+          $message .= ' '.Debug::dumpToString($line);
+      }
       $file = $pos['file'];
       $line = $pos['line'];
     }

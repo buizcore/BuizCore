@@ -143,6 +143,18 @@ if (!defined('BUIZ_MESSAGE_ADAPTER'))
 /**
  * @var
  */
+if (!defined('BUIZ_META_LAYER'))
+    define( 'BUIZ_META_LAYER' , true );
+
+/**
+ * @var
+ */
+if (!defined('BUIZ_ACL'))
+    define( 'BUIZ_ACL' , 'Enterprise' );
+
+/**
+ * @var
+ */
 if (!defined('BUIZ_ACL_ADAPTER'))
     define( 'BUIZ_ACL_ADAPTER' , 'Db' );
 
@@ -213,7 +225,7 @@ include PATH_FW.'src/lib/log/LibLogPool.php';
 include PATH_FW.'src/Message.php';
 include PATH_FW.'src/lib/message/LibMessagePool.php';
 include PATH_FW.'src/Session.php';
-include PATH_FW.'src/lib/session/LibSessionPhp.php';
+include PATH_FW.'src/lib/session/LibSessionCli.php';
 include PATH_FW.'src/Request.php';
 include PATH_FW.'src/lib/request/LibRequestPhp.php';
 include PATH_FW.'src/Response.php';

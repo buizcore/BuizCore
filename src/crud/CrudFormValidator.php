@@ -325,11 +325,9 @@ class CrudFormValidator extends BaseChild
                 }
             }
         }
-        
-        if (Log::$levelTrace)
-            Debug::console('checkSearchInput filter data', $filter->data);
-        
+
         return $filter;
+        
     } // end public function checkSearchInput */
     
     /**

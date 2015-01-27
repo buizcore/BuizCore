@@ -328,8 +328,8 @@ class Acl
         if (!defined('BUIZ_ACL_ADAPTER')) {
             self::$instance = new LibAclAdapter_Db($env);
 
-            // mit der BUIZ_NO_ACL Konstante kann ein überprüfen der rechte unterbunden werden
-            if (defined('BUIZ_NO_ACL') && BUIZ_NO_ACL) {
+            // mit der BUIZ_ACL_DISABLED Konstante kann ein überprüfen der rechte unterbunden werden
+            if (defined('BUIZ_ACL_DISABLED') && BUIZ_ACL_DISABLED) {
                 self::$instance->setDisabled(true);
             }
 
@@ -340,8 +340,8 @@ class Acl
 
         self::$instance = new $className($env);
 
-        // mit der BUIZ_NO_ACL Konstante kann ein überprüfen der rechte unterbunden werden
-        if (defined('BUIZ_NO_ACL') && BUIZ_NO_ACL) {
+        // mit der BUIZ_ACL_DISABLED Konstante kann ein überprüfen der rechte unterbunden werden
+        if (defined('BUIZ_ACL_DISABLED') && BUIZ_ACL_DISABLED) {
             self::$instance->setDisabled(true);
         }
 
@@ -544,7 +544,7 @@ class Acl
      */
     public function permission($key, $entity = null)
     {
-        if (defined('BUIZ_NO_ACL')) {
+        if (defined('BUIZ_ACL_DISABLED')) {
             return true;
         }
 
@@ -625,9 +625,11 @@ class Acl
      */
     public function debug()
     {
-        Debug::console('$this->level', $this->level);
-        Debug::console('$this->group', $this->group);
-        Debug::console('$this->extend', $this->extend);
+        
+        Log::debug('$this->level', $this->level);
+        Log::debug('$this->group', $this->group);
+        Log::debug('$this->extend', $this->extend);
+        
     } //end public function debug
 
 }//end class Acl

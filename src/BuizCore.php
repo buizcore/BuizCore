@@ -29,8 +29,8 @@ if (!defined('BUIZ_DEVELOP_MODE'))
 if (!defined('BUIZ_NO_LOGIN'))
   define('BUIZ_NO_LOGIN',false);
 
-if (!defined('BUIZ_NO_ACL'))
-  define('BUIZ_NO_ACL',false);
+if (!defined('BUIZ_ACL_DISABLED'))
+  define('BUIZ_ACL_DISABLED',false);
 
 if (!defined('BUIZ_SHOW_MOCKUP'))
   define('BUIZ_SHOW_MOCKUP', false);
@@ -823,7 +823,7 @@ class BuizCore
 
       if ($session->wakeup) {
         if (DEBUG)
-          Debug::console('wakeup');
+          Log::debug('wakeup');
 
         self::$instance->wakeup();
 
@@ -838,7 +838,7 @@ class BuizCore
 
       } else {
         if (DEBUG)
-          Debug::console('init');
+          Log::debug('init');
 
         self::$instance->init();
 
@@ -922,7 +922,7 @@ class BuizCore
     if ($session->wakeup) {
 
       if (DEBUG)
-        Debug::console('wakeup');
+        Log::debug('wakeup');
 
       self::$instance->wakeup();
 
@@ -937,7 +937,7 @@ class BuizCore
 
     } else {
       if (DEBUG)
-        Debug::console('init');
+        Log::debug('init');
 
       self::$instance->init();
 
@@ -1415,7 +1415,7 @@ class BuizCore
     if (isset(self::$tplIndex[$key])) {
 
       if (DEBUG)
-        Debug::console('TEMPLATE from index: '.self::$tplIndex[$key]);
+        Log::debug('TEMPLATE from index: '.self::$tplIndex[$key]);
 
       return self::$tplIndex[$key];
     }
@@ -1435,7 +1435,7 @@ class BuizCore
       self::$indexChanged = true;
 
       if (DEBUG)
-        Debug::console('TEMPLATE: '.$tPath);
+        Log::debug('TEMPLATE: '.$tPath);
 
       return $tPath;
     }
@@ -1451,7 +1451,7 @@ class BuizCore
             Log::debug("found Template: ". $tmpPath);
 
           if (DEBUG)
-            Debug::console('Found: '. $tmpPath);
+            Log::debug('Found: '. $tmpPath);
 
           // use the realpath
           $tmpPath = realpath($tmpPath);
@@ -1463,7 +1463,7 @@ class BuizCore
         } else {
 
           if (Log::$levelDebug)
-            Debug::console('Not found: '. $tmpPath);
+            Log::debug('Not found: '. $tmpPath);
         }
 
       }
@@ -1477,7 +1477,7 @@ class BuizCore
             Log::debug("found Template: ". $tmpPath);
 
           if (DEBUG)
-            Debug::console('Found: '. $tmpPath);
+            Log::debug('Found: '. $tmpPath);
 
           // use the realpath
           $tmpPath = realpath($tmpPath);
@@ -1489,7 +1489,7 @@ class BuizCore
         } else {
 
           if (Log::$levelDebug)
-            Debug::console('Not found: '. $tmpPath);
+            Log::debug('Not found: '. $tmpPath);
         }
 
       }

@@ -171,6 +171,20 @@ if (!defined('BUIZ_CONTROLLER'))
 if (!defined('BUIZ_RESPONSE_ADAPTER'))
     define( 'BUIZ_RESPONSE_ADAPTER' , 'Http' );
 
+
+
+/**
+ * @var
+ */
+if (!defined('BUIZ_META_LAYER'))
+    define( 'BUIZ_META_LAYER' , true );
+
+/**
+ * @var
+ */
+if (!defined('BUIZ_ACL'))
+    define( 'BUIZ_ACL' , 'enterprise' );
+
 /**
  * @var
  */

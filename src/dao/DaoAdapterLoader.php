@@ -67,7 +67,7 @@ class DaoAdapterLoader extends Dao
   {
 
 
-    Debug::console("load ".$mapName.' '.$modName);
+    Log::debug("load ".$mapName.' '.$modName);
 
     $subModules = [];
     $modules = [];
@@ -93,7 +93,8 @@ class DaoAdapterLoader extends Dao
       if (is_dir(PATH_ROOT.$subMod.'/conf/adapter/'.$modName)) {
         $dModules = opendir(PATH_ROOT.$subMod.'/conf/adapter/'.$modName  );
 
-        Debug::console("open ".PATH_ROOT.$subMod.'/conf/adapter/'.$modName);
+        if(Log::$levelDebug)
+            Log::debug("open ".PATH_ROOT.$subMod.'/conf/adapter/'.$modName);
 
         if ($dModules) {
            while ($mod = readdir($dModules)) {

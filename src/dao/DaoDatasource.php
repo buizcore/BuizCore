@@ -99,7 +99,9 @@ class DaoDatasource extends Dao
     $menuPath = PATH_GW.'/'.$path.'/'.$sourceName;
 
     if (!file_exists($menuPath)) {
-      Debug::console('found no source: '.$menuPath);
+        
+        if(Log::$levelDebug)
+            Log::debug('found no source: '.$menuPath);
 
       return null;
     }
