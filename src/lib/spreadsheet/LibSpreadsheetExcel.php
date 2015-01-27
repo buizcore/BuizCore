@@ -281,8 +281,7 @@ class LibSpreadsheetExcel  extends LibTemplateDocument
   {
 
     if (!count($this->sheets)) {
-      Debug::console('There are no sheets to render');
-
+      Log::debug('There are no sheets to render');
       return;
     }
 

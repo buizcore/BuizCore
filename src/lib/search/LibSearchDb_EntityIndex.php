@@ -48,7 +48,6 @@ class LibSearchDb_EntityIndex
         $resourceId = $this->orm->getResourceId($entityKey);
 
         if (!$resourceId) {
-            Debug::console("Control Structure out of sync");
             Log::warn("Control Structure out of sync");
 
             return;

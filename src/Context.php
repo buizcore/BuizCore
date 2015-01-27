@@ -674,7 +674,7 @@ class Context
       $id = $request->data($key, Validator::INT, 'rowid');
 
       if ($id) {
-        Debug::console('got post rowid: '.$id);
+        Log::debug('got post rowid: '.$id);
         return $id;
       }
     }
@@ -686,17 +686,17 @@ class Context
         $id = $request->data($key, $validator, $accessKey);
 
         if ($id) {
-          Debug::console('got post rowid: '.$id);
+          Log::debug('got post rowid: '.$id);
           return $id;
         }
       }
 
       $id = $request->param($accessKey, $validator);
 
-      Debug::console('got param '.$accessKey.': '.$id);
+      Log::debug('got param '.$accessKey.': '.$id);
 
     } else {
-      Debug::console('got param objid: '.$id);
+      Log::debug('got param objid: '.$id);
     }
 
     return $id;

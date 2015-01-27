@@ -344,10 +344,10 @@ class User extends BaseChild
   public function __wakeup()
   {
 
-    Debug::console('$this->profiles', $this->profiles);
-    Debug::console('$this->profileName', $this->profileName);
-    Debug::console('$this->userLevel', $this->userLevel);
-    Debug::console('$this->groupRoles', $this->groupRoles);
+    Log::debug('$this->profiles', $this->profiles);
+    Log::debug('$this->profileName', $this->profileName);
+    Log::debug('$this->userLevel', $this->userLevel);
+    Log::debug('$this->groupRoles', $this->groupRoles);
 
   }//end public function __wakeup */
 
@@ -709,7 +709,7 @@ class User extends BaseChild
 
     // if the user does not have the profile stop here
     if (!isset($this->profiles[$key])) {
-      Debug::console('profile: '.$key.' not exists');
+      Log::debug('profile: '.$key.' not exists');
 
       return false;
     }
@@ -723,7 +723,7 @@ class User extends BaseChild
 
       return true;
     } else {
-      Debug::console('profile class: '.$classname.' not exists');
+      Log::debug('profile class: '.$classname.' not exists');
 
       // else just keep the old profile
       return false;

@@ -55,7 +55,7 @@ class LibSettingsNode
 
     $this->id = $id;
 
-    Debug::console("GOT ID ".$id);
+    Log::debug("GOT ID ".$id);
 
     $this->prepareSettings();
 

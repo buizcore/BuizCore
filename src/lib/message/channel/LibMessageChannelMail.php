@@ -103,7 +103,7 @@ class LibMessageChannelMail extends LibMessageChannel
         $mailer->addEmbedded($fileName , PATH_THEME.'themes/classic/images/'.$fullPath);
       }
 
-      Debug::console(
+      Log::debug(
         "try to send a mail: ".$message->getSubject($receiver)."  to ".$receiver->address
       );
 

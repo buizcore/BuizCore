@@ -143,7 +143,7 @@ class LibDbPostgresql extends LibDbConnection
         if (DEBUG) {
             $duration = BuizCore::getDuration($start);
             $this->queryTime += $duration;
-            Debug::console('SELECT SQL num:'.$this->counter.' dur:'.$duration.' :  '.$sql, null, true);
+            Log::debug('SELECT SQL num:'.$this->counter.' dur:'.$duration.' :  '.$sql, null, true);
         }
         
         return new LibDbPostgresqlResult($this->result, $this, $sql, $this->counter, $duration);
@@ -207,7 +207,7 @@ class LibDbPostgresql extends LibDbConnection
         if (DEBUG) {
             $duration = BuizCore::getDuration($start);
             $this->queryTime += $duration;
-            Debug::console('INSERT SQL dur:'.$duration.' num:'.$this->counter.':  '.$sql);
+            Log::debug('INSERT SQL dur:'.$duration.' num:'.$this->counter.':  '.$sql);
         }
         
         return $row[0];
@@ -560,7 +560,7 @@ class LibDbPostgresql extends LibDbConnection
             $this->protocol->write($sql);
         
         if (! is_resource($this->connectionWrite)) {
-            Debug::console('Lost Connection to the Database!!! Try to reconnect');
+            Log::error('Lost Connection to the Database!!! Try to reconnect');
             $this->connect();
         }
         
@@ -636,7 +636,7 @@ class LibDbPostgresql extends LibDbConnection
      */
     public function begin($write = true)
     {
-        Debug::console('DB Begin');
+        Log::debug('DB Begin');
         
         if ($write) {
             if (! $this->result = pg_query($this->connectionWrite, 'BEGIN')) {
@@ -656,7 +656,7 @@ class LibDbPostgresql extends LibDbConnection
      */
     public function rollback($write = true)
     {
-        Debug::console('DB Rollback');
+        Log::debug('DB Rollback');
         
         if ($write) {
             if (! $this->result = pg_query($this->connectionWrite, 'ROLLBACK')) {
@@ -677,7 +677,7 @@ class LibDbPostgresql extends LibDbConnection
      */
     public function commit($write = true)
     {
-        Debug::console('DB Commit');
+        Log::debug('DB Commit');
         
         if ($write) {
             if (! $this->result = pg_query($this->connectionWrite, 'COMMIT')) {
@@ -712,7 +712,7 @@ class LibDbPostgresql extends LibDbConnection
             Log::debug("Set Search_path $schema ");
         
         if (DEBUG) {
-            Debug::console("PG: set search_path $schema ");
+            Log::debug("PG: set search_path $schema ");
         }
         
         $sqlstring = 'SET search_path = "'.$schema.'", pg_catalog;';
@@ -904,7 +904,7 @@ class LibDbPostgresql extends LibDbConnection
         if (DEBUG) {
             $pgsql_con_debug = 'host='.$this->conf['dbhost'].' port='.$this->conf['dbport'].' dbname='.$this->conf['dbname'].' user='.$this->conf['dbuser'].' password=******************';
             
-            Debug::console('PG: Constring '.$pgsql_con_debug);
+            Log::debug('PG: Constring '.$pgsql_con_debug);
         }
         
         if (! $this->connectionRead = pg_connect($pgsql_con_string)) {

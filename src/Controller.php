@@ -243,7 +243,7 @@ abstract class Controller extends BaseChild
     $this->env = $env;
 
     if (DEBUG)
-      Debug::console('Load Controller '.get_class($this));
+      Log::debug('Load Controller '.get_class($this));
 
   }//end public function __construct */
 
@@ -655,7 +655,7 @@ abstract class Controller extends BaseChild
        } else {
            
          if (DEBUG) {
-           Debug::console($methodeName.' is not callable!' ,  $this->callAble);
+           Log::debug($methodeName.' is not callable!' ,  $this->callAble);
 
             $tmpMethodes = get_class_methods($this);
             $methodes = [];
@@ -1371,7 +1371,7 @@ abstract class Controller extends BaseChild
 
     if (DEBUG) {
       $caller = Debug::getCaller();
-      Debug::console('This Request was invalid for '.$caller);
+      Log::debug('This Request was invalid for '.$caller);
     }
 
     Message::addError($message);
@@ -1401,7 +1401,7 @@ abstract class Controller extends BaseChild
 
     if (DEBUG) {
       $caller = Debug::getCaller();
-      Debug::console('This Request was invalid for '.$caller);
+      Log::debug('This Request was invalid for '.$caller);
     }
 
     Message::addError($message);

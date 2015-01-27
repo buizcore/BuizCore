@@ -191,7 +191,7 @@ class LibFlow extends Base
       $this->request->addParam($map);
     }
 
-    Debug::console('$_GET' , $_GET);
+    Log::debug('$_GET' , $_GET);
 
   }//end  public function wakeup */
 
@@ -254,7 +254,7 @@ class LibFlow extends Base
     $classNameOld = 'Module'.$modName;
 
     if (BuizCore::classExists($className)) {
-      Debug::console('$module', $className);
+      Log::debug('$module', $className);
 
       $this->module = new $className();
       $this->module->init();
@@ -263,7 +263,7 @@ class LibFlow extends Base
       // everythin fine
       return true;
     } else  if (BuizCore::classExists($classNameOld)) {
-      Debug::console('$module', $classNameOld);
+      Log::debug('$module', $classNameOld);
 
       $this->module = new $classNameOld();
       $this->module->init();
@@ -527,7 +527,7 @@ class LibFlow extends Base
     }
 
     if (3 != count($tmp)) {
-      Debug::console('tried to forward to an invalid status '.$status);
+      Log::debug('tried to forward to an invalid status '.$status);
 
       return;
     }

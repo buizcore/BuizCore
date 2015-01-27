@@ -77,7 +77,7 @@ class LibSystemProcess
     }
 
     if (DEBUG)
-      Debug::console($command , $result);
+      Log::debug($command , $result);
 
     if ($actFolder)
       chdir($actFolder);
@@ -107,7 +107,7 @@ class LibSystemProcess
     }
 
     if (DEBUG)
-      Debug::console($command , $result);
+      Log::debug($command , $result);
 
     return $result;
 

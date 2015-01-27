@@ -189,7 +189,7 @@ SQL;
     }
 
     if (DEBUG)
-      Debug::console
+      Log::debug
       (
         'Load Roles'.__METHOD__.' areas'
           .(is_array($areas)?implode(',', $areas):$areas)
@@ -366,7 +366,7 @@ SQL;
     $num = $db->select($query)->getField('num');
 
     if (DEBUG)
-      Debug::console("found number of roles {$num} in loadRole: ".$roleCheck." areas: ".$areaKeys);
+      Log::debug("found number of roles {$num} in loadRole: ".$roleCheck." areas: ".$areaKeys);
 
     $this->rolesCache[$loadKey] = $num;
 
@@ -553,7 +553,7 @@ SQL;
 SQL;
 
       if (DEBUG)
-        Debug::console('COUNT AREA ROLES '.$query);
+        Log::debug('COUNT AREA ROLES '.$query);
 
       $db = $this->getDb();
 
@@ -583,7 +583,7 @@ SQL;
 SQL;
 
       if (DEBUG)
-        Debug::console('COUNT AREA ROLES '.$query);
+        Log::debug('COUNT AREA ROLES '.$query);
 
       $db = $this->getDb();
 
@@ -955,7 +955,7 @@ SQL;
     $num = $db->select($query)->getField('num');
 
     if (DEBUG)
-      Debug::console("hasRoleExplicit found num {$num}", $query  );
+      Log::debug("hasRoleExplicit found num {$num}", $query  );
 
     return $num;
 
@@ -1523,27 +1523,27 @@ SQL;
   {
 
     if (DEBUG)
-      Debug::console("loadAccessPathChildren(roles: ".implode(', ',$roles).", level: $level)");
+      Log::debug("loadAccessPathChildren(roles: ".implode(', ',$roles).", level: $level)");
 
     // der user muss mitglied in einer gruppe in relation zur secarea sein
     if (empty($roles)) {
 
       if (DEBUG)
-        Debug::console("User scheint in keiner gruppe mitglied zu sein?");
+        Log::debug("User scheint in keiner gruppe mitglied zu sein?");
 
       return [];
     }
 
     if (!$rootId = $this->getAreaNode($rootArea)) {
       if (DEBUG)
-        Debug::console("Keine Id für Area {$rootArea} bekommen");
+        Log::debug("Keine Id für Area {$rootArea} bekommen");
 
       return [];
     }
 
     if (!$areaId = $this->getAreaNode($actualArea)) {
       if (DEBUG)
-        Debug::console("Keine Id für Area {$actualArea} bekommen" , $actualArea);
+        Log::debug("Keine Id für Area {$actualArea} bekommen" , $actualArea);
 
       return [];
     }
@@ -1706,7 +1706,7 @@ SQL;
 
 
     if (DEBUG)
-      Debug::console("extractAreaAccessLevel ".implode(', ', $areas  ));
+      Log::debug("extractAreaAccessLevel ".implode(', ', $areas  ));
 
     if (!$areaPerm)
       return null;
@@ -1716,7 +1716,7 @@ SQL;
     $accessLevel = null;
 
     if (DEBUG)
-      Debug::console("GOT USER LEVEL ".$userLevel, $areaPerm  );
+      Log::debug("GOT USER LEVEL ".$userLevel, $areaPerm  );
 
     if ($userLevel >= $areaPerm['level_admin']) {
       $accessLevel = Acl::ADMIN;
@@ -1735,7 +1735,7 @@ SQL;
     }
 
     if (DEBUG)
-      Debug::console( "area access Level  $accessLevel");
+      Log::debug( "area access Level  $accessLevel");
 
     return $accessLevel;
 
@@ -1772,7 +1772,7 @@ SQL;
     }
 
     if (DEBUG)
-      Debug::console( "area ref access Level  $accessLevel");
+      Log::debug( "area ref access Level  $accessLevel");
 
     return $accessLevel;
 
@@ -2101,8 +2101,8 @@ SQL;
     $assign = $db->select($query2)->get();
 
     if (DEBUG) {
-      Debug::console('$level', $level);
-      Debug::console('$assign', $assign);
+      Log::debug('$level', $level);
+      Log::debug('$assign', $assign);
     }
 
     $assign['acl-level'] = $level;
@@ -2304,34 +2304,34 @@ SQL;
   {
 
     if (DEBUG)
-      Debug::console("loadAccessPathNode root: {$root}, rootId: $rootId, level: $level, parentKey: $parentKey, parentId: $parentId, nodeKey: $nodeKey ");
+      Log::debug("loadAccessPathNode root: {$root}, rootId: $rootId, level: $level, parentKey: $parentKey, parentId: $parentId, nodeKey: $nodeKey ");
 
     ///@todo fehler besser behandeln und i18n für das error handling
 
     if (empty($roles)) {
       if (DEBUG)
-        Debug::console("User scheint in keiner Gruppe Mitglied zu sein?");
+        Log::debug("User scheint in keiner Gruppe Mitglied zu sein?");
 
       return [];
     }
 
     if (!$rootId = $this->getAreaNode($root)) {
       if (DEBUG)
-        Debug::console("Keine Id für Area {$root} bekommen");
+        Log::debug("Keine Id für Area {$root} bekommen");
 
       return [];
     }
 
     if (!$parentId = $this->getAreaNode($parentKey)) {
       if (DEBUG)
-        Debug::console("Keine Id für Parent Area {$parentKey} bekommen");
+        Log::debug("Keine Id für Parent Area {$parentKey} bekommen");
 
       return [];
     }
 
     if (!$nodeId = $this->getAreaNode($nodeKey)) {
       if (DEBUG)
-        Debug::console("Keine Id für Area {$nodeKey} bekommen");
+        Log::debug("Keine Id für Area {$nodeKey} bekommen");
 
       return [];
     }
@@ -2378,7 +2378,7 @@ SQL;
 
         if ('' == trim($parentId->parent_key)) {
           if (DEBUG)
-            Debug::console("PARENT KEY WAR LEER $parentKey");
+            Log::debug("PARENT KEY WAR LEER $parentKey");
         }
 
         if ('mgmt' == substr($parentId->parent_key,0,4))
@@ -2395,7 +2395,7 @@ SQL;
     } else {
       if ('' == trim($nodeId->source_key)) {
         if (DEBUG)
-          Debug::console("Node Source Key war leer $nodeId");
+          Log::debug("Node Source Key war leer $nodeId");
       }
 
       // der hauptknoten verweißt auf entity, damit verweisen alle mit mgmt

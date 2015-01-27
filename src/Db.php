@@ -107,7 +107,7 @@ class Db
 
         if (!isset($conf['connection'][$conf['activ']])) {
             if (DEBUG) {
-                Debug::console('requested non existing database connection ' . $conf['activ'] . '!', $conf);
+                Log::debug('requested non existing database connection ' . $conf['activ'] . '!', $conf);
             }
 
             throw new LibDb_Exception(
@@ -231,7 +231,7 @@ class Db
 
             if (!isset($conf['connection'][$key])) {
                 if (DEBUG) {
-                    Debug::console('requested non existing database connection ' . $key . '!', $conf);
+                    Log::debug('requested non existing database connection ' . $key . '!', $conf);
                 }
 
                 throw new LibDb_Exception
@@ -286,7 +286,7 @@ class Db
                 throw new LibDb_Exception(I18n::s('requested non existing database connection'));
             }
 
-            Debug::console($key, $conf['connection']);
+            Log::debug($key, $conf['connection']);
 
             if (!isset($conf['connection'][$key])) {
                 Error::addVisualError('No Connection with the key: ' . $key . ' exists');

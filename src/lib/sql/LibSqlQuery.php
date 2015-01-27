@@ -238,7 +238,7 @@ abstract class LibSqlQuery implements Iterator, Countable
     $this->db = $db;
 
     if (DEBUG)
-      Debug::console('created new query '.get_class($this));
+      Log::debug('created new query '.get_class($this));
 
   }//end public function __construct */
 
@@ -427,7 +427,7 @@ abstract class LibSqlQuery implements Iterator, Countable
           if (!isset($tmp[Db::Q_SIZE])) {
 
             if (DEBUG)
-              Debug::console('got no Db::Q_SIZE');
+              Log::debug('got no Db::Q_SIZE');
 
             $this->sourceSize = 0;
           } else {
@@ -441,7 +441,7 @@ abstract class LibSqlQuery implements Iterator, Countable
 
           if (!isset($tmp[Db::Q_SIZE])) {
             if (DEBUG)
-              Debug::console('got no Db::Q_SIZE');
+              Log::debug('got no Db::Q_SIZE');
 
             $this->sourceSize = 0;
           } else {

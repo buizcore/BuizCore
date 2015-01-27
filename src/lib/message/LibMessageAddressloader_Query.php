@@ -493,7 +493,7 @@ SQL;
     $db = $this->getDb();
     $userData = $db->select($sql)->get();
 
-    Debug::console($sql, $userData);
+    Log::debug($sql, $userData);
 
     return $userData;
 

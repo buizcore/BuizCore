@@ -163,7 +163,7 @@ class LibDependency
     } elseif ($cutted == 0) {
       // tree still not empty bud we could not resolv any dependency? that's bad
       // the dependency is not resolvable
-      Debug::console('broken dependency in '. $this->keyName, array($this->tempTree));
+      Log::debug('broken dependency in '. $this->keyName, array($this->tempTree));
       throw new Lib_Exception('broken dependency : '.$this->keyName);
     } else {
       // ok everthing fine but we are not yet finished
@@ -183,7 +183,7 @@ class LibDependency
       while (!$this->cutLeafs()) {}
     } catch (Lib_Exception $e) {
       Message::addError($e->getMessage());
-      Debug::console('broken dependency '.$e->getMessage());
+      Log::debug('broken dependency '.$e->getMessage());
     }
 
     if ($this->reorganize) {

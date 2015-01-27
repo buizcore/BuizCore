@@ -200,7 +200,7 @@ class LibFlowCron extends Base
       $request->addParam($map);
     }
 
-    Debug::console('$_GET' , $_GET);
+    Log::debug('$_GET' , $_GET);
 
   }//end  public function wakeup */
 
@@ -222,7 +222,7 @@ class LibFlowCron extends Base
     $transaction = $this->transaction;
 
     $user = $this->getUser();
-    Debug::console('USER' , $user);
+    Log::debug('USER' , $user);
 
     if (!$sysClass = $httpRequest->param(Request::MOD, Validator::CNAME)) {
 
@@ -257,7 +257,7 @@ class LibFlowCron extends Base
     $classNameOld = 'Module'.$modName;
 
     if (BuizCore::classExists($className)) {
-      Debug::console('$module',$className);
+      Log::debug('$module',$className);
 
       $this->module = new $className($this);
       $this->module->init();
@@ -266,7 +266,7 @@ class LibFlowCron extends Base
       // everythin fine
       return true;
     } else  if (BuizCore::classExists($classNameOld)) {
-      Debug::console('$module',$classNameOld);
+      Log::debug('$module',$classNameOld);
 
       $this->module = new $classNameOld($this);
       $this->module->init();

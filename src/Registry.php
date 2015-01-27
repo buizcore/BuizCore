@@ -174,7 +174,7 @@ class Registry extends TArray
   public function offsetSet($offset, $value)
   {
 
-    Debug::console("Registry set ".$offset, $value);
+    Log::debug("Registry set ".$offset, $value);
 
     if (is_null($offset))
       $this->pool[] = $value;
@@ -189,7 +189,7 @@ class Registry extends TArray
   public function offsetGet($offset)
   {
 
-    Debug::console("Registry get ".$offset, (isset($this->pool[$offset])
+    Log::debug("Registry get ".$offset, (isset($this->pool[$offset])
       ? $this->pool[$offset]
       : null));
 

@@ -218,7 +218,7 @@ class LibFlowApachemod extends Base
       $request->addParam($map);
     }
 
-    Debug::console('$_GET' , $_GET);
+    Log::trace('$_GET' , $_GET);
 
   }//end  public function wakeup */
 
@@ -282,7 +282,7 @@ class LibFlowApachemod extends Base
 
     if (BuizCore::classExists($className)) {
         
-      Debug::console('$module',$className);
+      Log::debug('$module',$className);
       
       $this->module = new $className($this);
       $this->module->init();

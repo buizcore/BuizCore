@@ -917,7 +917,7 @@ abstract class Entity implements ArrayAccess
 
       if (!isset(static::$cols[$key])) {
 
-        Debug::console(get_class($this).'::'.$key, static::$cols);
+        Log::debug(get_class($this).'::'.$key, static::$cols);
 
         throw new LibDb_Exception('asked for wrong Validation data: '.$key.' in '.get_class($this));
       } else {
@@ -1168,7 +1168,7 @@ abstract class Entity implements ArrayAccess
   public function setId($id, $new = false)
   {
 
-    Debug::console('set id entity: '.$this->getTable().' id: '.$id, $id);
+    Log::debug('set id entity: '.$this->getTable().' id: '.$id, $id);
 
     if (! is_numeric($id)) {
       throw new LibDb_Exception(I18n::s('Got invalid error ID {@id@}', 'wbf.message', array (
@@ -1321,7 +1321,7 @@ abstract class Entity implements ArrayAccess
   public function followLink($key, $empty = false)
   {
 
-    Debug::console('FOLLOW link '.$key.' in '.static::$table);
+    Log::debug('FOLLOW link '.$key.' in '.static::$table);
 
     if (!isset(static::$links[$key])) {
       throw new LibDb_Exception('Tried fo follow nonexisting link '.$key);

@@ -92,7 +92,7 @@ class LibMessageChannelMessage extends LibMessageChannel
       }
 
 
-      Debug::console(
+      Log::debug(
         "try to send a mail: ".$envelop->subject."  to ".$receiver->id,
         $envelop->htmlContent
 

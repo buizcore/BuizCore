@@ -71,7 +71,7 @@ class LibDbPostgresqlPersistent extends LibDbPostgresql
         .' user='.$this->conf['dbuser']
         .' password=******************';
 
-      Debug::console('PG: Constring '.$pgsql_con_debug);
+        Log::config('PG: Constring '.$pgsql_con_debug);
     }
 
     if (Log::$levelConfig)

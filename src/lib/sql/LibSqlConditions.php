@@ -97,16 +97,16 @@ class LibSqlConditions
     foreach ($this->conditions as $cond) {
 
       if( !isset($cond->field) ) {
-        Debug::console('wrong field type ',$cond);
+        Log::debug('wrong field type ',$cond);
         continue;
       }
 
       if( !isset($this->fields[$cond->field]) ) {
-        Debug::console('missing field '.$cond->field);
+        Log::debug('missing field '.$cond->field);
         continue;
       }
 
-      Debug::console('in field '.$cond->field);
+      Log::debug('in field '.$cond->field);
 
       $fieldData = $this->fields[$cond->field];
 
@@ -138,7 +138,7 @@ class LibSqlConditions
     // inject into the criteria
     $criteria->where( $sql, ($first?'AND':'OR') );
 
-    Debug::console('ext search '.$sql);
+    Log::debug('ext search '.$sql);
 
   }//end public function inject */
 
@@ -220,7 +220,7 @@ class LibSqlConditions
       }
       default:{
 
-        Debug::console('invalid check type');
+        Log::debug('invalid check type');
 
       }
 
@@ -284,7 +284,7 @@ class LibSqlConditions
       }
       default:{
 
-        Debug::console('invalid check type '.$cond->cond);
+        Log::debug('invalid check type '.$cond->cond);
 
       }
 
@@ -318,7 +318,7 @@ class LibSqlConditions
       }
       default:{
 
-        Debug::console('invalid check type '.$cond->cond);
+        Log::debug('invalid check type '.$cond->cond);
 
       }
 
@@ -377,7 +377,7 @@ class LibSqlConditions
       }
       default:{
 
-        Debug::console('invalid check type '.$cond->cond);
+        Log::debug('invalid check type '.$cond->cond);
 
       }
 
@@ -446,7 +446,7 @@ class LibSqlConditions
       }
       default:{
 
-        Debug::console('invalid check type '.$cond->cond);
+        Log::debug('invalid check type '.$cond->cond);
 
       }
 
@@ -490,7 +490,7 @@ class LibSqlConditions
       }
       default:{
 
-        Debug::console('invalid check type '.$cond->cond);
+        Log::debug('invalid check type '.$cond->cond);
 
       }
 

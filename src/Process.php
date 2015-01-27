@@ -391,7 +391,7 @@ abstract class Process extends PBase
     if (!$this->activKey)
       throw new LibProcess_Exception("Process Status not yet loaded ".$this->debugData());
       
-    Debug::console('get active edges');
+    Log::debug('get active edges');
 
     /* @var $acl LibAclAdapter_Db */
     $acl = $this->getAcl();
@@ -459,7 +459,7 @@ abstract class Process extends PBase
               : null;
 
             if ($acl->hasRole($roles, $area, $id)) {
-              Debug::console( "edge: {$key} has role: ".implode(',',$roles).' a: '.$area.' id: '.$id );
+              Log::debug( "edge: {$key} has role: ".implode(',',$roles).' a: '.$area.' id: '.$id );
               $accessFlag = true;
             }
 
@@ -499,11 +499,11 @@ abstract class Process extends PBase
           if (!$this->access->checkEdgeAccess($this, $edge, $this->entity)) {
             continue;
           } else {
-            Debug::console("By checkEdgeAcess");
+            Log::debug("By checkEdgeAcess");
             $accessFlag = true;
           }
         } else {
-          Debug::console('Tried to checkEdgeAccess but the method not exists on '.get_class($this->access));
+          Log::debug('Tried to checkEdgeAccess but the method not exists on '.get_class($this->access));
           continue;
         }
 
@@ -511,7 +511,7 @@ abstract class Process extends PBase
 
       if ($accessFlag) {
         $edges[] = $edge;
-        Debug::console('added edge: '.$edge->label );
+        Log::debug('added edge: '.$edge->label );
       }
 
     }
@@ -545,7 +545,7 @@ abstract class Process extends PBase
         
       } else {
         
-        Debug::console("Missing Slice ".ucfirst($rawSlice['type']));
+        Log::debug("Missing Slice ".ucfirst($rawSlice['type']));
         $this->getResponse()->addWarning("Sorry an error happened, this page could not be displayed as originally planed");
       }
 
@@ -575,7 +575,7 @@ abstract class Process extends PBase
       if (isset($this->states[$key['name']]))
         $states[$key['name']] = $this->states[$key['name']];
       else
-        Debug::console("Missing phase {$key['name']}");
+        Log::debug("Missing phase {$key['name']}");
 
     }
 
@@ -590,7 +590,7 @@ abstract class Process extends PBase
   {
 
     if (!isset($this->nodes[$this->activKey]['responsible'])) {
-      Debug::console("Active Key {$this->activKey} has no responsible");
+      Log::debug("Active Key {$this->activKey} has no responsible");
 
       return [];
     }
@@ -603,7 +603,7 @@ abstract class Process extends PBase
     foreach ($dataResp as $resp) {
 
       if (!isset($resp['type'])) {
-        Debug::console('Missing type for responsible',  $resp);
+        Log::debug('Missing type for responsible',  $resp);
         continue;
       }
 
@@ -667,7 +667,7 @@ abstract class Process extends PBase
       }
     }
 
-    Debug::console("Load responsibles for active Key {$this->activKey} ".count($responsibles));
+    Log::debug("Load responsibles for active Key {$this->activKey} ".count($responsibles));
 
     $message = $this->getMessage();
 
@@ -978,7 +978,7 @@ abstract class Process extends PBase
 
       // schlägt auch dann fehl wenn es eine methode geben würde die
       // zum aufruf passt
-      Debug::console("no PATH this->edges[$this->oldKey][$this->newNode] ");
+      Log::debug("no PATH this->edges[$this->oldKey][$this->newNode] ");
 
       return null;
     }
@@ -993,13 +993,13 @@ abstract class Process extends PBase
 
       $action = 'action_'.SParserString::subToCamelCase($this->edges[$this->oldKey][$this->newNode]['actions'][$position]);
 
-      Debug::console("try to call  $action");
+      Log::debug("try to call  $action");
 
       // ok das sollte nicht passieren
       if (!method_exists($this, $action))
         throw new LibProcess_Exception('Called nonexisting action! '.$action.' '.$this->debugData());
 
-      Debug::console("call  $action");
+      Log::debug("call  $action");
 
       if ($error = $this->{$action}($params))
         return $error;
@@ -1015,7 +1015,7 @@ abstract class Process extends PBase
       else
         $tmp4 = 'for '.$position;
 
-      Debug::console("no action ".$tmp4);
+      Log::debug("no action ".$tmp4);
     }
 
     if ($changeStatus)
@@ -1095,7 +1095,7 @@ abstract class Process extends PBase
           null,
           $this->entity
         );
-        Debug::console('Missing Constraint '.$constraint);
+        Log::debug('Missing Constraint '.$constraint);
         continue;
       }
 
@@ -1136,7 +1136,7 @@ abstract class Process extends PBase
 
         /// TODO Error handling
         if (!method_exists($this, $action)) {
-          Debug::console('Missing Constraint Injector '.$constraint);
+          Log::debug('Missing Constraint Injector '.$constraint);
           continue;
         }
 
@@ -1154,7 +1154,7 @@ abstract class Process extends PBase
         if (isset($edge['constraints'])  ) {
           $constraints = $edge['constraints'];
 
-          Debug::console('GOT CONSTRAINTS '. implode(',', $edge['constraints']));
+          Log::debug('GOT CONSTRAINTS '. implode(',', $edge['constraints']));
 
           foreach ($constraints as  $constraint) {
 
@@ -1162,7 +1162,7 @@ abstract class Process extends PBase
 
             /// TODO Error handling
             if (!method_exists($this, $action)) {
-              Debug::console('Missing Constraint Injector '.$constraint);
+              Log::debug('Missing Constraint Injector '.$constraint);
               continue;
             }
 
@@ -1204,7 +1204,7 @@ abstract class Process extends PBase
       $params = new TFlag();
     }
 
-    Debug::console("Change from {$this->oldKey} to {$nodeKey} ");
+    Log::debug("Change from {$this->oldKey} to {$nodeKey} ");
 
     if (!isset($this->nodes[$nodeKey])  ) {
       throw new LibProcess_Exception('Invalid actual node '.$nodeKey.' in Process '.$this->debugData());
@@ -1218,7 +1218,7 @@ abstract class Process extends PBase
 
       // schlägt auch dann fehl wenn es eine methode geben würde die
       // zum aufruf passt
-      Debug::console("No PATH this->edges[$this->oldKey][$nodeKey] ");
+      Log::debug("No PATH this->edges[$this->oldKey][$nodeKey] ");
       if ($pathRequired) {
         throw new LibProcess_Exception(
           'Tried to change the status from '.$this->oldKey.' '.$nodeKey.' without path in Process '.$this->debugData()
@@ -1238,20 +1238,20 @@ abstract class Process extends PBase
 
       $action = 'action_'.SParserString::subToCamelCase($this->edges[$this->oldKey][$this->newNode]['actions'][$position]);
 
-      //Debug::console("try to call  $action");
+      //Log::debug("try to call  $action");
 
       // ok das sollte nicht passieren
       if (!method_exists($this, $action))
         throw new LibProcess_Exception('Called nonexisting action! '.$action.' in Process '. $this->debugData());
 
-      //Debug::console("call  $action");
+      //Log::debug("call  $action");
 
       // wenn ein fehler objekt zurückgegeben wird, wird der schritt abgebrochen
       if ($error = $this->{$action}($params))
         return $error;
 
     } else {
-      Debug::console("No action \$this->edges[$this->oldKey][$this->newNode]['actions'][$position] ");
+      Log::debug("No action \$this->edges[$this->oldKey][$this->newNode]['actions'][$position] ");
     }
 
     $this->model->changeStatus($nodeKey, $params);
@@ -1290,7 +1290,7 @@ abstract class Process extends PBase
   public function saveStates($states)
   {
 
-    Debug::console('$states$states', $states);
+    Log::debug('$states', $states);
 
     $states = (array) $states;
 
