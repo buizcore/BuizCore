@@ -19,7 +19,7 @@
  * Logappender für die Ausgabe der Logmeldung in die Console
  * @package net.buiz
  */
-class LobLogCli implements LibLogAdapter
+class LibLogCli implements LibLogAdapter
 {
 
   /**
@@ -31,5 +31,5 @@ class LobLogCli implements LibLogAdapter
     echo "$time\t$level\t$file\t$line\t$message".NL;
   } // end public function logline */
 
-} // end class LobLogCli
+} // end class LibLogCli
 
