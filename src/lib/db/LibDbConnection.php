@@ -45,7 +45,7 @@ abstract class LibDbConnection
 /*////////////////////////////////////////////////////////////////////////////*/
 
   /**
-   * The ORM Layer in the WebFrap Database Layer
+   * The ORM Layer in the BuizCore Database Layer
    * @var LibDbOrm
    */
   public $orm = null;
@@ -310,7 +310,7 @@ abstract class LibDbConnection
     }  else {
 
       throw new LibDb_Exception(
-        'Requested nonexisting Query: '.$defClassName.'. Please check the loadpath of WebFrap, or if this Class exists.'
+        'Requested nonexisting Query: '.$defClassName.'. Please check the loadpath of BuizCore, or if this Class exists.'
       );
 
     }
@@ -343,7 +343,7 @@ abstract class LibDbConnection
       /*
       throw new LibDb_Exception(
         'Requested nonexisting Filter: '.$defClassName.'. '
-        .'Please check the loadpath of WebFrap, or if this Class exists.'
+        .'Please check the loadpath of BuizCore, or if this Class exists.'
       );
       */
 

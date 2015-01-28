@@ -910,7 +910,7 @@ abstract class Controller extends BaseChild
    *   getSubView ist eine Adapter Methode welche versucht automatisch
    *   das passende ViewObjekt, basierende auf der Anfrage, zu erstellen
    *
-   * @see <a href="http://127.0.0.1/wbf/doc/de/index.php?page=architecture.gateway.interfaces" >Doku WebFrap Gateway Interfaces</a>
+   * @see <a href="http://127.0.0.1/wbf/doc/de/index.php?page=architecture.gateway.interfaces" >Doku BuizCore Gateway Interfaces</a>
    *
    * @example
    * <code>
@@ -1109,7 +1109,7 @@ abstract class Controller extends BaseChild
    *   getSubView ist eine Adapter Methode welche versucht automatisch
    *   das passende ViewObjekt, basierende auf der Anfrage, zu erstellen
    *
-   * @see <a href="http://127.0.0.1/wbf/doc/de/index.php?page=architecture.gateway.interfaces" >Doku WebFrap Gateway Interfaces</a>
+   * @see <a href="http://127.0.0.1/wbf/doc/de/index.php?page=architecture.gateway.interfaces" >Doku BuizCore Gateway Interfaces</a>
    *
    * @example
    * <code>

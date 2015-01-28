@@ -104,7 +104,7 @@ if (!defined('WEB_ICONS'))
     define( 'WEB_ICONS' , WEB_ROOT.'wgt/' );
 
 /**
- * ROOT path for the WebFrap Famework
+ * ROOT path for the BuizCore Famework
  * @var
  */
 if (!defined('WEB_WGT'))

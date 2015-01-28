@@ -39,7 +39,7 @@ if (DEBUG)
   BuizCore::$scriptStart = BuizCore::startMeasure();
 
 /**
- * Die Hautptklasse für WebFrap
+ * Die Hautptklasse für BuizCore
  * @package net.buiz
  * @author Dominik Bonsch <dominik.bonsch@buiz.net>
  */

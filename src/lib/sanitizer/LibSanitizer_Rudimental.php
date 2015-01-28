@@ -37,7 +37,7 @@ class LibSanitizer_Rudimental
   {
 
     Debug::console("Used unsecure Rudimental Sannitizer Plugin!");
-    Log::warn("Used unsecure Rudimental Sannitizer Plugin! Besser use the HTMLPurifier Adapter in WebFrap_Lib_Htmlpurifier");
+    Log::warn("Used unsecure Rudimental Sannitizer Plugin! Besser use the HTMLPurifier Adapter in BuizCore_Lib_Htmlpurifier");
 
     return strip_tags(
       $raw,

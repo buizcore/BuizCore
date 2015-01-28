@@ -220,7 +220,7 @@ class LibMessageMail
       $this->sender = $defSender;
     } else {
       //todo no server name in cli... has to be maintained in the conf
-      $this->sender = 'WebFrap Mail API <do_not_reply@'.$_SERVER['SERVER_NAME'].'>';
+      $this->sender = 'BuizCore Mail API <do_not_reply@'.$_SERVER['SERVER_NAME'].'>';
     }
 
     $this->logger = $logger;
@@ -579,7 +579,7 @@ class LibMessageMail
       $header .= 'Reply-To:'.htmlspecialchars_decode($this->replyTo).self::NL;
     }
 
-    $header .= 'User-Agent: WebFrap'.self::NL;
+    $header .= 'User-Agent: BuizCore'.self::NL;
 
     if ($this->returnPath) {
       $header .= 'Return-Path: <'.$this->returnPath.'>'.self::NL;

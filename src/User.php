@@ -290,7 +290,7 @@ class User extends BaseChild
   public $entity = null;
 
   /**
-   * @var WebFrapAuth_Model
+   * @var BuizCoreAuth_Model
    */
   public $model = null;
 

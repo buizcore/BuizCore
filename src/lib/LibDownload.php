@@ -17,7 +17,7 @@
 *******************************************************************************/
 
 /**
- * Download Klasse für WebFrap
+ * Download Klasse für BuizCore
  * 
  * @package net.buiz
  */

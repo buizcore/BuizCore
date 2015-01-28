@@ -15,7 +15,7 @@
 *
 *******************************************************************************/
 /**
- * Die Basis Exception in WebFrap
+ * Die Basis Exception in BuizCore
  * @package net.buiz
  *
  */

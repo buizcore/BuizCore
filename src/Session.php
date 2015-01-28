@@ -140,13 +140,13 @@ class Session
     }
 
     self::$sessionType = isset($sessionConf['type'])?$sessionConf['type']:'Php';
-    self::$name = isset($sessionConf['name'])?$sessionConf['name']:'WEBFRAP_SID';
+    self::$name = isset($sessionConf['name'])?$sessionConf['name']:'BUIZCORE_SID';
     self::$sessionSavePath = isset($sessionConf['path'])?$sessionConf['path']:null;
 
     self::start();
 
     // Session muss vorhanden sein
-    if (!isset($_SESSION['WBF_STATUS'])) {
+    if (!isset($_SESSION['BUIZ_STATUS'])) {
 
       if (!$confObj)
         $confObj = Conf::getActive();
@@ -158,7 +158,7 @@ class Session
       if (!isset($confObj->status['def_lang']))
         $confObj->status['def_lang'] = Conf::get('i18n','lang');
 
-      $_SESSION['WBF_STATUS'] = $confObj->status;
+      $_SESSION['BUIZ_STATUS'] = $confObj->status;
     } else {
       self::$session->wakeup = true;
     }
@@ -210,10 +210,10 @@ class Session
   {
 
     if (is_array($key))
-      $_SESSION['WBF_STATUS'] = array_merge($_SESSION['WBF_STATUS'] , $key);
+      $_SESSION['BUIZ_STATUS'] = array_merge($_SESSION['BUIZ_STATUS'] , $key);
 
     else
-      $_SESSION['WBF_STATUS'][$key] = $value;
+      $_SESSION['BUIZ_STATUS'][$key] = $value;
 
   }//end public static function setStatus */
 
@@ -225,11 +225,11 @@ class Session
   public static function status($key = null)
   {
 
-    if (!$key && isset($_SESSION['WBF_STATUS']))
-      return $_SESSION['WBF_STATUS'];
+    if (!$key && isset($_SESSION['BUIZ_STATUS']))
+      return $_SESSION['BUIZ_STATUS'];
 
-    elseif (isset($_SESSION['WBF_STATUS'][$key]))
-      return $_SESSION['WBF_STATUS'][$key];
+    elseif (isset($_SESSION['BUIZ_STATUS'][$key]))
+      return $_SESSION['BUIZ_STATUS'][$key];
 
     else
       return null;

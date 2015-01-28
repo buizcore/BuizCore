@@ -139,7 +139,7 @@ class LibDbOrm
 /*////////////////////////////////////////////////////////////////////////////*/
 
   /**
-   * Constructor for the WebFrap ORM Class
+   * Constructor for the BuizCore ORM Class
    *
    * @param LibDbConnection $db
    * @param string $dbType

@@ -17,7 +17,7 @@
 
 /**
  * @lang de:
- * Basis Klasse für die Access Controll Lists in WebFrap
+ * Basis Klasse für die Access Controll Lists in BuizCore
  * Die Basis Klasse enthält die Hauptinstanz des ACL Objektes für den jeweils
  * aktuellen request.
  *

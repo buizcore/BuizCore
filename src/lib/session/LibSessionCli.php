@@ -162,10 +162,10 @@ class LibSessionCli
   {
 
     if (is_array($key))
-      $_SESSION['WBF_STATUS'] = array_merge($_SESSION['WBF_STATUS'] , $key);
+      $_SESSION['BUIZ_STATUS'] = array_merge($_SESSION['BUIZ_STATUS'] , $key);
 
     else
-      $_SESSION['WBF_STATUS'][$key] = $value;
+      $_SESSION['BUIZ_STATUS'][$key] = $value;
 
   }//end public function setStatus($key , $value = null)
 
@@ -179,11 +179,11 @@ class LibSessionCli
   public function getStatus($key = null)
   {
 
-    if (!$key && isset($_SESSION['WBF_STATUS']))
-      return $_SESSION['WBF_STATUS'];
+    if (!$key && isset($_SESSION['BUIZ_STATUS']))
+      return $_SESSION['BUIZ_STATUS'];
 
-    elseif (isset($_SESSION['WBF_STATUS'][$key]))
-      return $_SESSION['WBF_STATUS'][$key];
+    elseif (isset($_SESSION['BUIZ_STATUS'][$key]))
+      return $_SESSION['BUIZ_STATUS'][$key];
 
     else
       return null;

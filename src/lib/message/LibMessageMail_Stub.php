@@ -63,7 +63,7 @@ class LibMessageMail_Stub extends LibMessageMail
       $header .= 'Reply-To:'.htmlspecialchars_decode($this->replyTo).self::NL;
     }
 
-    $header .= 'User-Agent: WebFrap'.self::NL;
+    $header .= 'User-Agent: BuizCore'.self::NL;
 
     if ($this->returnPath) {
       $header .= 'Return-Path: <'.$this->returnPath.'>'.self::NL;

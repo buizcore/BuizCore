@@ -431,8 +431,14 @@ class Log
           $message .= ' '.Debug::dumpToString($line);
       }
       
-      $file = $pos['file'];
-      $line = $pos['line'];
+      if(isset($pos['file'])){
+          $file = $pos['file'];
+          $line = $pos['line'];
+      } else {
+          $file = 0;
+          $line = 0;
+      }
+
     }
 
     if (!is_null(self::$instance)) {

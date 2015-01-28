@@ -303,7 +303,7 @@ class LibMessageMassMailer
           $this->sender = $defSender;
       } else {
           //todo no server name in cli... has to be maintained in the conf
-          $this->sender = 'WebFrap Mail API <do_not_reply@'.$_SERVER['SERVER_NAME'].'>';
+          $this->sender = 'BuizCore Mail API <do_not_reply@'.$_SERVER['SERVER_NAME'].'>';
       }
       
       $this->subject = $subject;
