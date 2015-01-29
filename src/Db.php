@@ -289,7 +289,7 @@ class Db
             Log::debug($key, $conf['connection']);
 
             if (!isset($conf['connection'][$key])) {
-                Error::addVisualError('No Connection with the key: ' . $key . ' exists');
+                Log::error('No Connection with the key: ' . $key . ' exists');
 
                 return null;
             }
