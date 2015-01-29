@@ -106,9 +106,6 @@ class LibDbPostgresqlResult extends LibDbResult
     while ($this->row = pg_fetch_assoc($this->result))
       $res[] = $this->row;
 
-    if (Log::$levelDebug)
-      Log::debug('Query: '.$this->numQuery.' dur:'.$this->duration.', '.$this->name, $res  );
-
     return $res;
 
   } // end public function getAll */

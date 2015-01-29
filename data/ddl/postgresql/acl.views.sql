@@ -1,7 +1,7 @@
 
 -- Activ Views
 
-CREATE OR REPLACE VIEW webfrap_acl_max_permission_view
+CREATE OR REPLACE VIEW buiz_acl_max_permission_view
 AS
   SELECT
     max(acl_access.access_level) as "acl-level",
@@ -31,7 +31,7 @@ AS
     acl_gu.partial 
 ;
 
-CREATE  OR REPLACE VIEW webfrap_acl_assigned_view
+CREATE  OR REPLACE VIEW buiz_acl_assigned_view
 AS
   SELECT
     max(acl_gu.partial)           as "assign-has-partial",
@@ -66,7 +66,7 @@ AS
 
 
 
-CREATE OR REPLACE VIEW webfrap_inject_acls_view
+CREATE OR REPLACE VIEW buiz_inject_acls_view
   AS 
   SELECT distinct
     max(acl_access.access_level)  as "acl-level",
@@ -114,7 +114,7 @@ CREATE OR REPLACE VIEW webfrap_inject_acls_view
 ;
 
 
-CREATE  OR REPLACE VIEW webfrap_has_arearole_view
+CREATE  OR REPLACE VIEW buiz_has_arearole_view
   AS 
   SELECT
     acl_area.access_key           as "acl-area",
@@ -160,7 +160,7 @@ CREATE  OR REPLACE VIEW webfrap_has_arearole_view
 -- Wird benötigt, da in diesem Fall keine relation zwischen group_user
 -- und der area besteht, daher muss die relation über den access_aufgebaut werden
 
-CREATE  OR REPLACE VIEW webfrap_acl_level_global_asgd_view
+CREATE  OR REPLACE VIEW buiz_acl_level_global_asgd_view
 AS
   SELECT
     max(acl_access.access_level)  as "acl-level",
@@ -188,7 +188,7 @@ AS
     acl_area.rowid
 ;
 
-CREATE  OR REPLACE VIEW webfrap_area_group_level_view
+CREATE  OR REPLACE VIEW buiz_area_group_level_view
 AS
   SELECT
 	  max(acl_access.access_level) AS "acl-level", 
@@ -209,7 +209,7 @@ AS
 	  acl_area.rowid;
 	  
 	  
-CREATE OR REPLACE VIEW webfrap_area_user_level_view
+CREATE OR REPLACE VIEW buiz_area_user_level_view
   AS 
   SELECT distinct
     max(acl_access.access_level)  as "acl-level",
@@ -256,7 +256,7 @@ CREATE OR REPLACE VIEW webfrap_area_user_level_view
 ;
 
 
-CREATE OR REPLACE VIEW webfrap_area_gruser_level_view
+CREATE OR REPLACE VIEW buiz_area_gruser_level_view
   AS 
   SELECT distinct
     max(acl_access.access_level)  as "acl-level",
@@ -312,7 +312,7 @@ CREATE OR REPLACE VIEW webfrap_area_gruser_level_view
 -- view welche das maximale level eines users in relation
 -- von ihm direkt zugewiesenen gruppen / area relations zurückgibt
 
-CREATE OR REPLACE VIEW webfrap_area_level_by_user_view
+CREATE OR REPLACE VIEW buiz_area_level_by_user_view
   AS 
   SELECT distinct
     max(acl_access.access_level) as max_level,
