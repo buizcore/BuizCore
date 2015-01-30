@@ -72,6 +72,7 @@ SQL;
 
     //// COMMENT daten löschen
 
+    if(BuizCore::classLoadable('BuizCommentRating_Entity')) {
     // comment ratings löschen
     $sql[] = <<<SQL
 DELETE FROM buiz_comment_rating where id_comment IN(
@@ -79,11 +80,15 @@ DELETE FROM buiz_comment_rating where id_comment IN(
 );
 SQL;
 
-    // comments
-    $sql[] = <<<SQL
+    }
+
+    if (BuizCore::classLoadable('BuizComment_Entity')) {
+        // comments
+        $sql[] = <<<SQL
 DELETE FROM buiz_comment where vid = {$id};
 SQL;
-
+    }
+    
     //// PROZESS bezogenen Daten löschen
     // Prozess history leeren
     $sql[] = <<<SQL
