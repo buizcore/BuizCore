@@ -898,18 +898,15 @@ class LibDbPostgresql extends LibDbConnection
         
         $this->databaseName = $this->conf['dbname'];
         
-        if (Log::$levelConfig)
-            Log::config('Db Verbindungsparameter: '.$pgsql_con_string);
         
         if (DEBUG) {
-            $pgsql_con_debug = 'host='.$this->conf['dbhost'].' port='.$this->conf['dbport'].' dbname='.$this->conf['dbname'].' user='.$this->conf['dbuser'].' password=******************';
+            $pgsql_con_debug = 'host='.$this->conf['dbhost'].' port='.$this->conf['dbport'].' dbname=****************** user=****************** password=******************';
             
             Log::debug('PG: Constring '.$pgsql_con_debug);
         }
         
         if (! $this->connectionRead = pg_connect($pgsql_con_string)) {
-            
-            Error::addError('Konnte Die Datenbank Verbindung nicht herstellen :'.pg_last_error(), 'LibDb_Exception', $pgsql_con_string);
+            throw new LibDb_Exception('Konnte Die Datenbank Verbindung nicht herstellen :'.pg_last_error());
         }
         
         $this->connectionWrite = $this->connectionRead;

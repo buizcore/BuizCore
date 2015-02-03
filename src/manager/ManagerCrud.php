@@ -118,6 +118,77 @@ class ManagerCrud extends Manager
         return $dset;
     
     }//end public function saveByArray */
+    
+    /**
+     * @param array $dsetFields
+     * @param int $dsetId
+     * @param array $checkExists
+     *
+     * @return Entity
+     */
+    public function insertByArray($dsetFields, $checkFields = [], $checkExists = [])
+    {
+    
+        $orm = $this->getOrm();
+    
+        if ($checkFields) {
+
+            $where = [];
+
+            foreach ($checkFields as $key) {
+                if (!isset($dsetFields[$key])) {
+                    $where[$key] = null;
+                } else {
+                    $where[$key] = $dsetFields[$key];
+                }
+            }
+
+
+            $dset = $orm->getWhere($this->domainKey, $where);
+
+            if ($dset) {
+                return $dset;
+            } else {
+                $dset = $orm->newEntity($this->domainKey);
+            }
+    
+        } else if($checkExists) {
+    
+    
+            $where = [];
+    
+            foreach ($checkExists as $key => $value) {
+    
+                if(is_null($value)){
+                    $where[] = " {$key} is null ";
+                } else {
+                    $where[] = " {$key} = '".$orm->escape($value)."' ";
+                }
+    
+            }
+    
+            $dset = $orm->getWhere($this->domainKey, implode(' AND ',$where) );
+    
+            if ($dset) {
+                return $dset;
+            } else {
+                $dset = $orm->newEntity($this->domainKey);
+            }
+    
+    
+        } else {
+    
+            $dset = $orm->newEntity($this->domainKey);
+        }
+    
+        $dset->addData($dsetFields);
+        $this->setDefaultData($dset);
+    
+        $orm->save($dset);
+    
+        return $dset;
+    
+    }//end public function insertByArray */
 
     /**
      * @param array $searchParams

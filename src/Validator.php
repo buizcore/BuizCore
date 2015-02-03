@@ -1237,7 +1237,7 @@ class Validator
 
     if ($maxSize) {
       if (mb_strlen($value) > $maxSize) {
-        $this->data[$key] = mb_substr(0, $value, $maxSize);
+        $this->data[$key] = mb_substr($value, 0, $maxSize);
         return 'max';
       } else {
         $this->data[$key] = $value;
