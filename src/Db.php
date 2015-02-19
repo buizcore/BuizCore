@@ -15,6 +15,9 @@
  *
  *******************************************************************************/
 
+
+defined('DEBUG_SQL')?:define('DEBUG_SQL',false);
+
 /**
  * class Db
  * Controller Klasse für die Datenbankabstraktionsebene

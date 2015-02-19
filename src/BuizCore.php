@@ -25,7 +25,6 @@ if (!defined('DEBUG'))
 if (!defined('BUIZ_DEVELOP_MODE'))
   define('BUIZ_DEVELOP_MODE',false);
 
-
 if (!defined('BUIZ_NO_LOGIN'))
   define('BUIZ_NO_LOGIN',false);
 
@@ -1333,6 +1332,19 @@ class BuizCore
     return str_replace('.','_', uniqid(mt_rand(), true)) ;
   }//end public static function tmpFile */
 
+  /**
+   * using a wrapper so you can write your own unique method
+   *
+   * @return string
+   */
+  public static function dataPath($dataKey, $repo)
+  {
+      $key = md5($dataKey);
+      
+      return PATH_GW.'app_data/'.$repo.'/'.substr($key, 0, 5).'/'.substr($key, 5, 5).'/'.substr($key, 10).'.data';
+      
+  }//end public static function dataPath */
+  
   /**
    * @param string $prefix
    */

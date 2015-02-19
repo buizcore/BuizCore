@@ -72,13 +72,13 @@ class LibDbPostgresql extends LibDbConnection
     public function roubstSelect($sql)
     {
         try {
-            if (DEBUG) {
+            if (DEBUG_SQL) {
                 $start = BuizCore::startMeasure();
             }
             
             $res = $this->select($sql);
             
-            if (DEBUG) {
+            if (DEBUG_SQL) {
                 $duration = BuizCore::getDuration($start);
                 $this->queryTime += $duration;
                 Log::debug('ROBUST SELECT SQL dur:'.$duration.' num:'.$this->counter.':  '.$sql);
@@ -114,7 +114,7 @@ class LibDbPostgresql extends LibDbConnection
         if ($this->protocol)
             $this->protocol->write($sql);
         
-        if (Log::$levelDebug)
+        if (DEBUG_SQL)
             Log::debug('SELECT SQL '.$this->counter.':  '.$sql);
         
         if (DEBUG) {
@@ -171,7 +171,7 @@ class LibDbPostgresql extends LibDbConnection
         if (Log::$levelDebug)
             Log::debug('INSERT SQL: '.$sql);
         
-        if (DEBUG) {
+        if (DEBUG_SQL) {
             $start = BuizCore::startMeasure();
         }
         
@@ -204,7 +204,7 @@ class LibDbPostgresql extends LibDbConnection
             throw new LibDb_Exception(I18n::s('wbf.error.DBFailedToGetNewId'));
         }
         
-        if (DEBUG) {
+        if (DEBUG_SQL) {
             $duration = BuizCore::getDuration($start);
             $this->queryTime += $duration;
             Log::debug('INSERT SQL dur:'.$duration.' num:'.$this->counter.':  '.$sql);
@@ -372,7 +372,7 @@ class LibDbPostgresql extends LibDbConnection
             throw new LibDb_Exception('incompatible parameters');
         }
         
-        if (Log::$levelDebug)
+        if (DEBUG_SQL)
             Log::debug('UPDATE SQL '.$this->counter.':  '.$sql);
         
         if ($this->protocol)
@@ -422,7 +422,7 @@ class LibDbPostgresql extends LibDbConnection
             throw new LibDb_Exception('Datenbank delete() hat inkompatible Parameter bekommen');
         }
         
-        if (Log::$levelDebug)
+        if (DEBUG_SQL)
             Log::debug('DELETE SQL '.$this->counter.':  '.$sql);
         
         if ($this->protocol)

@@ -1915,8 +1915,16 @@ abstract class Entity implements ArrayAccess
    */
   public function getBoolean($key)
   {
+      
+      if (!isset($this->data[$key])) {
+          return false;
+      }
+      
+      if (is_bool($this->data[$key])) {
+          return $this->data[$key];
+      }
 
-    if (isset($this->data[$key]) && ('f' !== $this->data[$key] && 'FALSE' !== $this->data[$key] && false !== $this->data[$key] && '0' != $this->data[$key]))
+    if (('f' !== $this->data[$key] && 'FALSE' !== $this->data[$key]  && '0' != $this->data[$key]))
       return true;
     else
       return false;
