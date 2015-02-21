@@ -117,7 +117,7 @@ class LibDbPostgresql extends LibDbConnection
         if (DEBUG_SQL)
             Log::debug('SELECT SQL '.$this->counter.':  '.$sql);
         
-        if (DEBUG) {
+        if (DEBUG_SQL) {
             $start = BuizCore::startMeasure();
         }
         
@@ -140,7 +140,7 @@ class LibDbPostgresql extends LibDbConnection
             );
         }
         
-        if (DEBUG) {
+        if (DEBUG_SQL) {
             $duration = BuizCore::getDuration($start);
             $this->queryTime += $duration;
             Log::debug('SELECT SQL num:'.$this->counter.' dur:'.$duration.' :  '.$sql, null, true);
@@ -168,7 +168,7 @@ class LibDbPostgresql extends LibDbConnection
             throw new LibDb_Exception('incompatible parameters');
         }
         
-        if (Log::$levelDebug)
+        if (DEBUG_SQL)
             Log::debug('INSERT SQL: '.$sql);
         
         if (DEBUG_SQL) {
@@ -335,7 +335,7 @@ class LibDbPostgresql extends LibDbConnection
         
         $sqlstring = $sql;
         
-        if (Log::$levelDebug)
+        if (DEBUG_SQL)
             Log::debug('CREATE SQL: '.$sqlstring);
         
         if ($this->protocol)
