@@ -1257,18 +1257,7 @@ SQL;
     $tableCols = $this->getTableCols($entityKey);
 
     if (is_array($where)) {
-    
-        $tmp = [];
-        foreach ($where as $key => $value) {
-            
-            if  (is_null($value)) {
-                $tmp[] = "{$key} is null ";
-            } else {
-                $tmp[] = "{$key} = '".$this->escape($value)."' ";
-            }
-            
-        }
-        $where = ' ( '.implode(' AND ', $tmp).' ) ';
+        $where = $this->arrayToWhere($where);
     }
     
     $criteria = $this->newCriteria();
@@ -1313,6 +1302,10 @@ SQL;
 
     if (!isset($params['order']))
       $params['order'] = 'rowid';
+    
+    if (is_array($where)) {
+        $where = $this->arrayToWhere($where);
+    }
 
     if (is_object($where)) {
 
@@ -1352,6 +1345,81 @@ SQL;
     }
 
   }//end public function getListWhere */
+  
+    /**
+     * @param array $where
+     * @return string
+     */
+    protected function arrayToWhere($where)
+    {
+      
+        $tmp = [];
+        foreach ($where as $key => $value) {
+            
+            $keyTmp = explode('|',$key);
+            
+            $key = $keyTmp[0];
+            $keyOp = isset($keyTmp[1])?$keyTmp[1]:null;
+        
+            if (is_array($value)) {
+            
+                $tmpTmp = [];
+                
+                if ($keyOp) {
+                    $tmpStr = " {$keyOp}({$key}) IN( ";
+                } else {
+                    $tmpStr = " {$key} IN( ";
+                }
+                
+                if($keyOp){
+                    foreach($value as $subVal){
+                        if  (!is_null($subVal)) {
+                            $tmpTmp[] = " {$keyOp}('".$this->escape($subVal)."') ";
+                        }
+                    }
+                } else {
+                    foreach($value as $subVal){
+                        if  (!is_null($subVal)) {
+                            $tmpTmp[] = " '".$this->escape($subVal)."' ";
+                        }
+                    }
+                }
+
+                
+                // wenn leer dan überspringen
+                if (!$tmpTmp) {
+                    continue;
+                }
+                
+                $tmpStr .= implode(',', $tmpTmp);
+                $tmpStr .= ' ) ';
+            
+                $tmp[] = $tmpStr;
+                
+                
+            } else {
+                if  (is_null($value)) {
+                    $tmp[] = "{$key} is null ";
+                } else {
+                    
+                    if ($keyOp) {
+                        $tmp[] = " {$keyOp}({$key}) = {$keyOp}('".$this->escape($value)."') ";
+                    } else {
+                        $tmp[] = "{$key} = '".$this->escape($value)."' ";
+                    }
+                    
+                    
+                }
+            }
+        
+        
+        
+        }
+        
+        
+        return ' ( '.implode(' AND ', $tmp).' ) ';
+      
+    }
   
     /**
     * get
@@ -1496,6 +1564,10 @@ SQL;
   {
 
     $criteria = $this->newCriteria();
+    
+    if (is_array($where)) {
+        $where = $this->arrayToWhere($where);
+    }
 
     $criteria->select('rowid')
       ->from($this->getTableName($entityKey))
@@ -1516,6 +1588,10 @@ SQL;
   {
   
       $criteria = $this->newCriteria();
+      
+      if (is_array($where)) {
+          $where = $this->arrayToWhere($where);
+      }
   
       $criteria->select(array('rowid','access_key'))
       ->from($this->getTableName($entityKey))
@@ -1592,6 +1668,10 @@ SQL;
   {
 
     $criteria = $this->newCriteria();
+    
+    if (is_array($where)) {
+        $where = $this->arrayToWhere($where);
+    }
 
     $criteria->select('rowid')
       ->from($this->getTableName($entityKey))
@@ -2360,6 +2440,11 @@ SQL;
    */
   public function deleteWhere($entityKey, $where)
   {
+      
+      if (is_array($where)) {
+          $where = $this->arrayToWhere($where);
+      }
+      
 
     $entities = $this->getListWhere($entityKey, $where);
 
