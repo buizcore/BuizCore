@@ -19,7 +19,7 @@
  *
  * @package net.buiz
  */
-class ModuleError extends Module
+class ModuleError extends MvcModule
 {
 
 /*////////////////////////////////////////////////////////////////////////////*/

@@ -20,7 +20,7 @@
  *
  * @package net.buiz
  */
-class LibUser_Model extends Model
+class LibUser_Model extends MvcModel
 {
 /*////////////////////////////////////////////////////////////////////////////*/
 // Attributes

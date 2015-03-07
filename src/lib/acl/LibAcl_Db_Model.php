@@ -20,7 +20,7 @@
  *
  * @package net.buiz
  */
-class LibAcl_Db_Model extends Model
+class LibAcl_Db_Model extends MvcModel
 {
 /*////////////////////////////////////////////////////////////////////////////*/
 // Attributes

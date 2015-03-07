@@ -20,7 +20,7 @@
  * @copyright Buiz Developer Network <contact@buiz.net>
  * @package net.buiz
  */
-class ModelBuizBase extends Model
+class ModelBuizBase extends MvcModel
 {
 
 } // end class ModelBuizBase

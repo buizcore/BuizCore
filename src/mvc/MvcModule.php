@@ -207,10 +207,8 @@ abstract class MvcModule extends BaseChild
 
     } catch (Exception $exc) {
 
-      Error::report
-      (
-        $response->i18n->l
-        (
+      Error::report(
+        $response->i18n->l(
           'Module Error: '.$exc->getMessage(),
           'wbf.message' ,
           array($exc->getMessage())
