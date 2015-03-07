@@ -149,7 +149,6 @@ abstract class MvcModule extends BaseChild
       $name = $this->defaultControllerName;
 
     $classname = $this->modName.ucfirst($name).BUIZ_CONTROLLER_PREFIX.'_Controller';
-    $classnameOld = 'Controller'.$this->modName.ucfirst($name);
 
     ///TODO den default model kram muss ich hier mal kicken
     /// der ist nur noch wegen kompatibilitäts problemen drin
@@ -158,20 +157,13 @@ abstract class MvcModule extends BaseChild
       $this->controller = new $classname($this);
       $this->controller->setDefaultModel($this->modName.ucfirst($name));
       $this->controllerName = $classname;
-    } else  if (BuizCore::classExists($classnameOld)) {
-
-      $classname = $classnameOld;
-      $this->controller = new $classname($this);
-      $this->controller->setDefaultModel($this->modName.ucfirst($name));
-      $this->controllerName = $classname;
+      
     } else {
 
       // Create a Error Page
-      $this->modulErrorPage
-      (
+      $this->modulErrorPage(
         'Modul Error',
-        $response->i18n->l
-        (
+        $response->i18n->l(
           'The requested resource not exists' ,
           'wbf.message'
         )
