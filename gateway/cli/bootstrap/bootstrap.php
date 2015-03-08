@@ -255,7 +255,10 @@ include PATH_FW.'src/lib/LibConf.php';
 include PATH_FW.'src/lib/cache/LibCacheAdapter.php';
 include PATH_FW.'src/lib/cache/LibCacheFile.php';
 
-include PATH_FW.'src/Model.php';
+include PATH_FW.'src/mvc/MvcModule.php';
+include PATH_FW.'src/mvc/MvcModel.php';
+include PATH_FW.'src/mvc/MvcController.php';
+include PATH_FW.'src/Manager.php';
 include PATH_FW.'src/Controller.php';
 
 // acl
