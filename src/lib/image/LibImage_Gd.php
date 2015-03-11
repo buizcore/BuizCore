@@ -124,7 +124,7 @@ class LibImage_Gd extends LibImageAdapter
   public function genThumb($thumbName, $thumbWidth, $thumbHeight, $quality = 90)
   {
 
-    $errorpic = View::$themeWeb."/images/wgt/not_available.png";
+    $errorpic = PATH_WGT.'themes/classic/ria/images/placeholder/not_available.png';
 
     if (file_exists($this->origName)) {
       $pic = $this->origName;

@@ -46,7 +46,7 @@ try {
   if ( file_exists( PATH_GW.'app_data/images/missing/'.$tmp[0].'-'.$tmp[1].'.png' ) ) {
     $errorpic = PATH_GW.'app_data/images/missing/'.$tmp[0].'-'.$tmp[1].'.png';
   } else {
-    $errorpic = View::$themeWeb."/images/wgt/not_available.png";
+    $errorpic = PATH_WGT.'themes/classic/ria/images/placeholder/not_available.png';
   }
 
   if ( file_exists( $fileName ) ) {
