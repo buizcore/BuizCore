@@ -85,7 +85,7 @@ class LibImageThumbGd extends LibImageThumbAdapter
      */
     public function genThumb()
     {
-        $errorpic = View::$themeWeb . "/images/wgt/not_available.png";
+        $errorpic = PATH_GW."/themes/classic/ria/images/placeholder/not_available.png";
         
         if (file_exists($this->origName)) {
             $pic = $this->origName;

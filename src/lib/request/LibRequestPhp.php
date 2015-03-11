@@ -1320,14 +1320,14 @@ class LibRequestPhp
 
           if (isset($messages[$key][$error])) {
             if ($state)
-              $state->addError($messages[$key][$error]);
+              $state->addError($messages[$key][$error].' '.$key);
             else
               $filter->addErrorMessage($messages[$key][$error]);
           } elseif (isset($messages[$key]['default'])) {
             if ($state)
-              $state->addError($messages[$key]['default']);
+              $state->addError($messages[$key]['default'].' '.$key);
             else
-              $filter->addErrorMessage($messages[$key]['default']);
+              $filter->addErrorMessage($messages[$key]['default'].' '.$key);
           } else {
             ///TODO missing i18n
             if ($state)
@@ -1368,14 +1368,14 @@ class LibRequestPhp
 
           if (isset($messages[$key][$error])) {
             if ($state)
-              $state->addError($messages[$key][$error]);
+              $state->addError($messages[$key][$error].' '.$key);
             else
               $filter->addErrorMessage($messages[$key][$error]);
           } elseif (isset($messages[$key]['default'])) {
             if ($state)
-              $state->addError($messages[$key]['default']);
+              $state->addError($messages[$key]['default'].' '.$key);
             else
-              $filter->addErrorMessage($messages[$key]['default']);
+              $filter->addErrorMessage($messages[$key]['default'].' '.$key);
           } else {
             ///TODO missing i18n
             if ($state)
@@ -1450,14 +1450,14 @@ class LibRequestPhp
           if ($error = $filter->$method($key , $data, false , $value[2] , $value[3])) {
             if (isset($messages[$key][$error])) {
               if ($state)
-                $state->addError($messages[$key][$error]);
+                $state->addError($messages[$key][$error].' '.$key);
               else
                 $response->addError($messages[$key][$error]);
             } elseif (isset($messages[$key]['default'])) {
               if ($state)
-                $state->addError($messages[$key]['default']);
+                $state->addError($messages[$key]['default'].' '.$key);
               else
-                $response->addError($messages[$key]['default']);
+                $response->addError($messages[$key]['default'].' '.$key);
             } else {
               if ($state)
                 $state->addError('Wrong data for '.$key);
@@ -1482,14 +1482,14 @@ class LibRequestPhp
         if ($error = $filter->$method($key , $data, false , $value[2] , $value[3])) {
           if (isset($messages[$key][$error])) {
             if ($state)
-              $state->addError($messages[$key][$error]);
+              $state->addError($messages[$key][$error].' '.$key);
             else
               $response->addError($messages[$key][$error]);
           } elseif (isset($messages[$key]['default'])) {
             if ($state)
-              $state->addError($messages[$key]['default']);
+              $state->addError($messages[$key]['default'].' '.$key);
             else
-              $response->addError($messages[$key]['default']);
+              $response->addError($messages[$key]['default'].' '.$key);
           } else {
             if ($state)
               $state->addError('Wrong data for '.$key);
@@ -1562,14 +1562,14 @@ class LibRequestPhp
         if ($error = $filter->$method($key , $data, $nullAble , $value[2] , $value[3])) {
           if (isset($messages[$key][$error])) {
             if ($state)
-              $state->addError($messages[$key][$error]);
+              $state->addError($messages[$key][$error].' '.$key);
             else
               $response->addError($messages[$key][$error]);
           } elseif (isset($messages[$key]['default'])) {
             if ($state)
-              $state->addError($messages[$key]['default']);
+              $state->addError($messages[$key]['default'].' '.$key);
             else
-              $response->addError($messages[$key]['default']);
+              $response->addError($messages[$key]['default'].' '.$key);
           } else {
             if ($state)
               $state->addError('Wrong data for '.$key);
@@ -1651,14 +1651,14 @@ class LibRequestPhp
         if ($error = $filter->$method($key, $data, $nullAble)) {
           if (isset($messages[$key][$error])) {
             if ($state)
-              $state->addError($messages[$key][$error]);
+              $state->addError($messages[$key][$error].' '.$key);
             else
               $response->addError($messages[$key][$error]);
           } elseif (isset($messages[$key]['default'])) {
             if ($state)
-              $state->addError($messages[$key]['default']);
+              $state->addError($messages[$key]['default'].' '.$key);
             else
-              $response->addError($messages[$key]['default']);
+              $response->addError($messages[$key]['default'].' '.$key);
           } else {
             if ($state)
               $state->addError('Wrong data for '.$key);

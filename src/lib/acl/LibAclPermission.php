@@ -545,6 +545,9 @@ class LibAclPermission
                 if ($this->level < (int) $level['acl-level'])
                     $this->level = (int) $level['acl-level'];
                 
+                if ($this->defLevel < (int) $level)
+                    $this->defLevel = (int) $level;
+                
                 if (isset($level['access-is-partial']) && (int) $level['access-is-partial'] == 1)
                     $this->isPartAccess = true;
                 
@@ -567,6 +570,7 @@ class LibAclPermission
                 if ($this->refBaseLevel < (int) $level['ref-level'])
                     $this->refBaseLevel = (int) $level['ref-level'];
             }
+            
         } else {
             
             if ($this->level < (int) $level)

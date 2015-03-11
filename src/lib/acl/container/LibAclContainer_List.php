@@ -395,8 +395,8 @@ class LibAclContainer_List extends LibAclPermission
             
             // da wir die zugriffsrechte mehr als nur einmal brauchen holen wir uns
             // direkt einen acl container
-            $acl->injectDsetLevel($this, $this->aclAreas, $this->roles, $entity, $this->loadReferences) // rechte für die referenzen mitladen
-;
+            $acl->injectDsetLevel($this, $this->aclAreas, $this->roles, $entity, $this->loadReferences); // rechte für die referenzen mitladen
+
         } else {
             
             $acl->injectDsetRootPermission(
