@@ -307,6 +307,16 @@ abstract class Entity implements ArrayAccess
     }
 
   } // end public function __construct */
+  
+  /**
+   * @return LibDbOrm
+   */
+  public function getOrm()
+  {
+
+      return $this->orm;
+      
+  }//end public function getOrm */
 
   /**
    *
