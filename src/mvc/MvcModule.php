@@ -155,7 +155,7 @@ abstract class MvcModule extends BaseChild
     if (BuizCore::classExists($classname)) {
 
       $this->controller = new $classname($this);
-      $this->controller->setDefaultModel($this->modName.ucfirst($name));
+      //$this->controller->setDefaultModel($this->modName.ucfirst($name));
       $this->controllerName = $classname;
       
     } else {
