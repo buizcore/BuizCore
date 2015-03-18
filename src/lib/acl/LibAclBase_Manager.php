@@ -25,7 +25,7 @@
  * @todo die queries müssen noch in query objekte ausgelagert werden
  *
  */
-class LibAclBase_Provider extends Manager
+class LibAclBase_Manager extends Manager
 {
 
     /**
@@ -165,9 +165,9 @@ SQL;
     public function keysToQuery($keys)
     {
     
-        return " UPPER(".implode($keys,"'), UPPER('")."') ";
+        return " UPPER('".implode($keys,"'), UPPER('")."') ";
  
     }//end public function keysToQuery */
 
-}//end class LibAclBase_Provider
+}//end class LibAclBase_Manager
 

@@ -25,8 +25,27 @@
  * @todo die queries müssen noch in query objekte ausgelagert werden
  *
  */
-class LibAcl_Provider extends LibAclBase_Provider
+class LibAcl_Manager extends LibAclBase_Manager
 {
+    
+    /**
+     * @param int $userId
+     * @param [] $roles
+     */
+    public function hasRole($userId, $roles) 
+    {
+        
+        $hasRoles = $this->getGlobalRoles($userId, $roles);
+        
+        foreach ($roles as $roleKey) {
+            if (isset($hasRoles[$roleKey])) {
+                return true;
+            }
+        }
+        
+        return false;
+        
+    }//end public function hasRole */
 
     /**
      * @param int $userId
@@ -42,14 +61,16 @@ class LibAcl_Provider extends LibAclBase_Provider
         $sql = <<<SQL
 SELECT 
     gu.id_group,
-    group.access_key
+    grole.access_key
 FROM 
     buiz_group_users gu
 JOIN
-    buiz_role_group group
-        ON group.rowid =  gu.id_group
+    buiz_role_group grole
+        ON grole.rowid =  gu.id_group
 WHERE
-      partial = 0 AND id_user = {$userId} and UPPER(group.access_key) IN({$roleKeys});
+      gu.partial = 0 AND 
+      gu.id_user = {$userId} AND 
+      UPPER(grole.access_key) IN({$roleKeys});
     
 SQL;
         

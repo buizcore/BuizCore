@@ -1556,6 +1556,8 @@ SQL;
         if ($this->disabled)
           return true;
         
+        $user = $this->getUser();
+        
         $model = $this->getModel();
         
         if ($keys) {
@@ -1565,10 +1567,21 @@ SQL;
             $keyData = $this->getAreaKey($keys);
           }
         } else {
-          $keyData = null;
+            $keyData = null;
         }
         
-        return $model->loadRole($roleKey, $keyData, $entity, $loadAllRoles);
+        if (!$keyData && !$entity) {
+            
+            /* @var $manager LibAcl_Manager */
+            $manager = Manager::get('LibAcl');
+            
+            return $manager->hasRole($user->getId(), $roleKey);
+            
+        } else {
+            return $model->loadRole($roleKey, $keyData, $entity, $loadAllRoles);
+        }
+        
+       
     
     }//end public function hasRole */
 

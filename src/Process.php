@@ -450,11 +450,14 @@ abstract class Process extends PBase
                 */
                 case Acl::ROLE: {
                 
-                    if (!isset($access['roles']))
-                      throw new LibProcess_Exception("Missing Roles in Role Check ".$this->debugData().' '.$edge->debugData());
+                    if (!isset($access['roles'])) {
+                        throw new LibProcess_Exception(
+                            "Missing Roles in Role Check ".$this->debugData().' '.$edge->debugData()
+                        );
+                    }
                     
                     $roles = $access['roles'];
-                    
+               
                     $area = (isset($access['area']) && isset($this->areas[$access['area']]))
                       ? $this->areas[$access['area']]
                       : null;
@@ -473,29 +476,29 @@ abstract class Process extends PBase
                     
                     break;
                 }
-          case Acl::ROLE_SOMEWHERE: {
-
-            if (!isset($access['roles']))
-              throw new LibProcess_Exception("Missing Roles in Role Somewhere Check ".$this->debugData().' '.$edge->debugData());
-
-            $roles = $access['roles'];
-
-            $area = isset($access['area']) && isset($this->areas[$access['area']])
-              ? $this->areas[$access['area']]
-              : null;
-
-            if ($acl->hasRoleSomewhere($roles, $area)) {
-              $accessFlag = true;
+                case Acl::ROLE_SOMEWHERE: {
+                
+                    if (!isset($access['roles']))
+                        throw new LibProcess_Exception("Missing Roles in Role Somewhere Check ".$this->debugData().' '.$edge->debugData());
+                    
+                    $roles = $access['roles'];
+                
+                    $area = isset($access['area']) && isset($this->areas[$access['area']])
+                      ? $this->areas[$access['area']]
+                      : null;
+                
+                    if ($acl->hasRoleSomewhere($roles, $area)) {
+                        $accessFlag = true;
+                    }
+                
+                    break;
+                }
+                default: {
+                
+                    throw new LibProcess_Exception("Got unsupported Access Check in ".$this->debugData().' '.$edge->debugData());
+                }
             }
-
-            break;
-          }
-          default: {
-            
-            throw new LibProcess_Exception("Got unsupported Access Check in ".$this->debugData().' '.$edge->debugData());
-          }
         }
-      }
 
       // so wenn die Standard Checks nicht ausreichen kann noch eine Access
       // check Object injected werde
