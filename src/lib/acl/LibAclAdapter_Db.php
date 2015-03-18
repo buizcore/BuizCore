@@ -1524,53 +1524,53 @@ SQL;
 
   }//end public function getPathPermission */
 
-  /**
-   * @lang en:
-   * check if the user has a given role
-   *
-   * this function should only be used for security checks, don't use roles
-   * to show diffrent ui elements
-   *
-   * therefore use the profiles
-   *
-   * @lang de:
-   * Methode zum prüfen ob ein User für eine bestimmten Context eine bestimmte
-   * Rolle hat.
-   *
-   * @param string/array $roleKey
-   *
-   * @param string $keys def: null,
-   *  Ein oder mehrere mit "/" getrennte Areas
-   *
-   * @param int/Entity $entity def: null,
-   *  Ein Entity Objekt oder eine Rowid wenn die Rolle relativ zu einer Area
-   *  ausgelesen werden soll
-   *
-   * @param boolean $loadAllRoles alle rollen laden, da es später mehr checks gibt
-   *
-   * @return boolean
-   */
-  public function hasRole($roleKey, $keys = null, $entity = null, $loadAllRoles = true)
-  {
-
-    if ($this->disabled)
-      return true;
-
-    $model = $this->getModel();
-
-    if ($keys) {
-      if (!ctype_digit($keys)) {
-        $keyData = $model->extractWeightedKeys($keys);
-      } else {
-        $keyData = $this->getAreaKey($keys);
-      }
-    } else {
-      $keyData = null;
-    }
-
-    return $model->loadRole($roleKey, $keyData, $entity, $loadAllRoles);
-
-  }//end public function hasRole */
+   /**
+    * @lang en:
+    * check if the user has a given role
+    *
+    * this function should only be used for security checks, don't use roles
+    * to show diffrent ui elements
+    *
+    * therefore use the profiles
+    *
+    * @lang de:
+    * Methode zum prüfen ob ein User für eine bestimmten Context eine bestimmte
+    * Rolle hat.
+    *
+    * @param string/array $roleKey
+    *
+    * @param string $keys def: null,
+    *  Ein oder mehrere mit "/" getrennte Areas
+    *
+    * @param int/Entity $entity def: null,
+    *  Ein Entity Objekt oder eine Rowid wenn die Rolle relativ zu einer Area
+    *  ausgelesen werden soll
+    *
+    * @param boolean $loadAllRoles alle rollen laden, da es später mehr checks gibt
+    *
+    * @return boolean
+    */
+    public function hasRole($roleKey, $keys = null, $entity = null, $loadAllRoles = true)
+    {
+    
+        if ($this->disabled)
+          return true;
+        
+        $model = $this->getModel();
+        
+        if ($keys) {
+          if (!ctype_digit($keys)) {
+            $keyData = $model->extractWeightedKeys($keys);
+          } else {
+            $keyData = $this->getAreaKey($keys);
+          }
+        } else {
+          $keyData = null;
+        }
+        
+        return $model->loadRole($roleKey, $keyData, $entity, $loadAllRoles);
+    
+    }//end public function hasRole */
 
 
   /**

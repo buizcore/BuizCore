@@ -3105,7 +3105,9 @@ SQL;
 
         $keysData[] = array($areas, $access);
       }
+      
     } else {
+        
       $tmp = explode(':', $keys);
 
       $areas = explode('/', $tmp[0]);

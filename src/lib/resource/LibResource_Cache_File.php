@@ -36,20 +36,20 @@ class LibResource_Cache_File implements LibResource_CacheAdapter
    */
   protected $groupIds = null;
 
-  /**
-   * @param string $areaKey
-   */
-  public function getAreaId($areaKey)
-  {
-
-    if(!isset($this->areaIds[$areaKey])){
-      $modKey = $this->extractKey($areaKey);
-      $this->loadAreaCache($modKey);
-    }
-
-    return isset($this->areaIds[$areaKey])?$this->areaIds[$areaKey]:null;
-
-  }//end public function getAreaId */
+    /**
+    * @param string $areaKey
+    */
+    public function getAreaId($areaKey)
+    {
+    
+        if (!isset($this->areaIds[$areaKey])) {
+            $modKey = $this->extractKey($areaKey);
+            $this->loadAreaCache($modKey);
+        }
+        
+        return isset($this->areaIds[$areaKey])?$this->areaIds[$areaKey]:null;
+    
+    }//end public function getAreaId */
 
 
   /**

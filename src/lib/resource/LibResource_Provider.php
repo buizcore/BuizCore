@@ -27,7 +27,7 @@ class LibResource_Provider extends Provider
   private static $default = null;
 
   /**
-   * @var LibResource_Cache_File
+   * @var LibCacheMemcache
    */
   protected $rCache = null;
 
@@ -52,7 +52,7 @@ class LibResource_Provider extends Provider
   {
 
     $this->env = $env?:BuizCore::$env;
-    $this->rCache = new LibResource_Cache_File();
+    $this->rCache = $this->env->getL1Cache();
 
   }//end public function __construct */
 
@@ -63,7 +63,7 @@ class LibResource_Provider extends Provider
   public function getAreaId($key)
   {
 
-    $areaId = $this->rCache->getAreaId($key);
+    $areaId = $this->rCache->get('areaid-'.$key);
 
     if (!$areaId) {
 
@@ -74,7 +74,7 @@ SQL;
       $areaId = $db->select($sql)->getField('rowid');
 
       if ($areaId) {
-        $this->rCache->addAreaId($key, $areaId);
+        $this->rCache->add('areaid-'.$key, $areaId);
       } else {
         Log::error('Missing the AreaId for key: '.$key);
       }
@@ -100,7 +100,7 @@ SQL;
 
     foreach ($keys as $key) {
 
-      $areaId = $this->getAreaId($key);
+      $areaId = $this->get('areaid-'.$key);
 
       if ($areaId)
        $areaIds[$key] = $areaId;
@@ -117,7 +117,7 @@ SQL;
   public function getGroupId($key)
   {
 
-    $groupId = $this->rCache->getGroupId($key);
+    $groupId = $this->rCache->get('group-'.$key);
 
     if (!$groupId) {
 
@@ -128,7 +128,7 @@ SQL;
       $groupId = $db->select($sql)->getField('rowid');
 
       if ($groupId)
-        $this->rCache->addGroupId($key, $groupId);
+        $this->rCache->add('group-'.$key, $groupId);
 
       // has a value or is null
       return $groupId;
@@ -151,9 +151,9 @@ SQL;
 
     foreach ($keys as $key) {
 
-      $groupId = $this->getGroupId($key);
+      $groupId = $this->rCache->get('group-'.$key);
       if ($groupId)
-        $groupIds[$key] = $this->getGroupId($key);
+        $groupIds[$key] = $groupId;
     }
 
     return $groupIds;

@@ -143,7 +143,7 @@ class LibDbPostgresql extends LibDbConnection
         if (DEBUG_SQL) {
             $duration = BuizCore::getDuration($start);
             $this->queryTime += $duration;
-            Log::debug('SELECT SQL num:'.$this->counter.' dur:'.$duration.' :  '.$sql, null, true);
+            Log::debug('SELECT SQL num:'.$this->counter.' dur:'.$duration.' :  ', null, true);
         }
         
         return new LibDbPostgresqlResult($this->result, $this, $sql, $this->counter, $duration);

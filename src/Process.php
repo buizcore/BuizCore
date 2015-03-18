@@ -380,91 +380,99 @@ abstract class Process extends PBase
     return new LibProcess_Node($this, $this->nodes[$key], $key);
   }//end public function getNode */
 
-  /**
-   * Laden der aktuell vorhandenen Edges
-   *
-   * @return array<LibProcess_Edge>
-   */
-  public function getActiveEdges()
-  {
+    /**
+    * Laden der aktuell vorhandenen Edges
+    *
+    * @return array<LibProcess_Edge>
+    */
+    public function getActiveEdges()
+    {
 
-    if (!$this->activKey)
-      throw new LibProcess_Exception("Process Status not yet loaded ".$this->debugData());
+        if (!$this->activKey)
+            throw new LibProcess_Exception("Process Status not yet loaded ".$this->debugData());
       
-    Log::debug('get active edges');
+        Log::debug('get active edges');
 
-    /* @var $acl LibAclAdapter_Db */
-    $acl = $this->getAcl();
-    $user = $this->getUser();
+        /* @var $acl LibAclAdapter_Db */
+        $acl = $this->getAcl();
+        $user = $this->getUser();
 
-    $profileName = $user->getProfileName();
+        $profileName = $user->getProfileName();
 
-    $edges = [];
+        $edges = [];
 
-    if (!isset($this->edges[$this->activKey]))
-      return [];
+        if (!isset($this->edges[$this->activKey]))
+            return [];
 
-    foreach ($this->edges[$this->activKey] as $key => $edgeNode) {
+        foreach ($this->edges[$this->activKey] as $key => $edgeNode) {
 
-      $edge = new LibProcess_Edge($key, $edgeNode);
+            $edge = new LibProcess_Edge($key, $edgeNode);
 
-      $accessFlag = false;
+            $accessFlag = false;
 
-      if (!$edge->hasProfile($profileName))
-        continue;
+            // checken auf das aktive profil... wollen wir das noch?
+            /*
+            if (!$edge->hasProfile($profileName))
+                continue;
+            */
 
-      if (!$edge->access) {
-        $accessFlag = true;
-      }
-
-      foreach ($edge->access as $access) {
-
-        // wenn die access flag auf true ist brauchen wir nicht weiter zu machen
-        if ($accessFlag)
-          break;
-
-        switch ($access['type']) {
-          case Acl::OWNER:
-          {
-            if ($this->entity->isOwner($user)) {
-              $accessFlag = true;
+            if (!$edge->access) {
+                $accessFlag = true;
             }
 
-            break;
-          }
-          case Acl::PROFILE: {
+            foreach ($edge->access as $access) {
 
-            if (!isset($access['profiles']))
-              throw new LibProcess_Exception("Missing Profiles in Profile Check ".$this->debugData().' '.$edge->debugData());
+            // wenn die access flag auf true ist brauchen wir nicht weiter zu machen
+            if ($accessFlag)
+                break;
 
-            if (in_array($profileName, $access['profiles'])) {
-              $accessFlag = true;
-            }
+            switch ($access['type']) {
+                case Acl::OWNER: {
+              
+                    if ($this->entity->isOwner($user)) {
+                        $accessFlag = true;
+                    }
 
-            break;
-          }
-          case Acl::ROLE: {
-
-            if (!isset($access['roles']))
-              throw new LibProcess_Exception("Missing Roles in Role Check ".$this->debugData().' '.$edge->debugData());
-
-            $roles = $access['roles'];
-
-            $area = (isset($access['area']) && isset($this->areas[$access['area']]))
-              ? $this->areas[$access['area']]
-              : null;
-
-            $id = (isset($access['id']) && isset($this->ids[$access['id']]))
-              ? $this->ids[$access['id']]
-              : null;
-
-            if ($acl->hasRole($roles, $area, $id)) {
-              Log::debug( "edge: {$key} has role: ".implode(',',$roles).' a: '.$area.' id: '.$id );
-              $accessFlag = true;
-            }
-
-            break;
-          }
+                    break;
+                }
+                /*
+                case Acl::PROFILE: {
+                
+                if (!isset($access['profiles']))
+                  throw new LibProcess_Exception("Missing Profiles in Profile Check ".$this->debugData().' '.$edge->debugData());
+                
+                if (in_array($profileName, $access['profiles'])) {
+                  $accessFlag = true;
+                }
+                
+                break;
+                }
+                */
+                case Acl::ROLE: {
+                
+                    if (!isset($access['roles']))
+                      throw new LibProcess_Exception("Missing Roles in Role Check ".$this->debugData().' '.$edge->debugData());
+                    
+                    $roles = $access['roles'];
+                    
+                    $area = (isset($access['area']) && isset($this->areas[$access['area']]))
+                      ? $this->areas[$access['area']]
+                      : null;
+                    
+                    $id = (isset($access['id']) && isset($this->ids[$access['id']]))
+                      ? $this->ids[$access['id']]
+                      : null;
+    
+                    
+                    if ($acl->hasRole($roles, $area, $id)) {
+                        Log::debug( "edge: {$key} has role: ".implode(',',$roles).' a: '.$area.' id: '.$id );
+                        $accessFlag = true;
+                    } else {
+                        Log::debug( 'has none of the roles '.implode($roles,', ') );
+                    }
+                    
+                    break;
+                }
           case Acl::ROLE_SOMEWHERE: {
 
             if (!isset($access['roles']))
