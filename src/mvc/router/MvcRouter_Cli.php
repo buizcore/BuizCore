@@ -48,21 +48,9 @@ class MvcRouter_Cli extends LibFlow
     }
 
     if ($command = $request->param('c', Validator::TEXT)) {
-      $tmp = explode('.',$command);
-
-      if (count($tmp) != 3) {
-        $this->getMessage()->addWarning("Got invalid command ".$command);
-
-        return;
-      }
-
-      $map = array
-      (
-        Request::MOD => $tmp[0],
-        Request::CON => $tmp[1],
-        Request::RUN => $tmp[2]
-      );
-      $request->addParam($map);
+        if ($map = Buizcore::getRouteMap($command)) {
+            $request->addParam($map);
+        }
     }
 
   }//end  public function init */

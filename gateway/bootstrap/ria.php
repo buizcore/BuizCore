@@ -120,11 +120,13 @@ I18n::$i18nPath[]           = PATH_FW.'i18n/'; // search path for i18n files
 Conf::$confPath[]           = PATH_FW.'conf/'; // search path for configuration files
 
 // load the activ indexes and class files from the conf
-if ( !isset( $_GET['c'] ) ) {
-  BuizCore::loadClassIndex( 'default' );
-} else {
-  BuizCore::loadClassIndex( $_GET['c'] );
+$routePath = Buizcore::getRouteKey();
+
+if ( !$routePath ) {
+    $routePath = 'default';
 }
+
+BuizCore::loadClassIndex( $routePath );
 
 // set custom handlers
 

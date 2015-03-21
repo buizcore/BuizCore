@@ -124,23 +124,13 @@ class MvcRouter_Apachemod extends Base
     $this->checkRedirect();
 
     if ($command = $request->param('c', Validator::TEXT)) {
-      $tmp = explode('.',$command);
-      $map = array
-      (
-        Request::MOD => $tmp[0],
-        Request::CON => $tmp[1],
-        Request::RUN => $tmp[2]
-      );
-      $request->addParam($map);
+        if ($map = Buizcore::getRouteMap($command)) {
+            $request->addParam($map);
+        }
     } elseif ($command = $request->data('c', Validator::TEXT)) {
-      $tmp = explode('.',$command);
-      $map = array
-      (
-        Request::MOD => $tmp[0],
-        Request::CON => $tmp[1],
-        Request::RUN => $tmp[2]
-      );
-      $request->addParam($map);
+        if ($map = Buizcore::getRouteMap($command)) {
+            $request->addParam($map);
+        }
     }
 
   }//end  public function init */
@@ -180,23 +170,13 @@ class MvcRouter_Apachemod extends Base
     $this->checkRedirect();
 
     if ($command = $request->param('c', Validator::TEXT  )) {
-      $tmp = explode('.',$command);
-      $map = array
-      (
-        Request::MOD => $tmp[0],
-        Request::CON => $tmp[1],
-        Request::RUN => $tmp[2]
-      );
-      $request->addParam($map);
+        if ($map = Buizcore::getRouteMap($command)) {
+            $request->addParam($map);
+        }
     } elseif ($command = $request->data('c', Validator::TEXT)) {
-      $tmp = explode('.',$command);
-      $map = array
-      (
-        Request::MOD => $tmp[0],
-        Request::CON => $tmp[1],
-        Request::RUN => $tmp[2]
-      );
-      $request->addParam($map);
+        if ($map = Buizcore::getRouteMap($command)) {
+            $request->addParam($map);
+        }
     }
 
     Debug::console('$_GET' , $_GET);

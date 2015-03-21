@@ -101,6 +101,7 @@ class LibProcess_Manager extends Manager
         $step = new BuizProcessStep_Entity(true);
         $step->id_to = $activStatus->id_actual_node;
         $step->id_process_instance = $activStatus;
+        $step->vid = $process->entity;
         $step->comment = 'Process was initialized';
     
         $orm->insert($step);

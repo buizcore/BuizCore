@@ -1229,6 +1229,83 @@ class BuizCore
   {
     return self::$instance->getActivMod()->getActivController();
   }//end public static function activMex */
+  
+  
+  /**
+   * @return []
+   */
+  public static function getRouteMap($cPath=null)
+  {
+      
+      if(!$cPath){
+          if (isset($_GET['c'])) {
+              $cPath = $_GET['c'];
+          } else if($_POST['c']) {
+              $cPath = $_POST['c'];
+          } else {
+              return null;
+          }
+      }
+
+      $tmp = explode('.',$cPath);
+      
+      if (count($tmp)==2) {
+          
+          $modKey = SParserString::getFirstHump($tmp[0]);
+          $conKey = substr($tmp[0], strlen($modKey));
+          
+          $map = [
+              Request::MOD => $modKey,
+              Request::CON => $conKey,
+              Request::RUN => $tmp[1]
+          ];
+      } else {
+          $map = [
+              Request::MOD => $tmp[0],
+              Request::CON => $tmp[1],
+              Request::RUN => $tmp[2]
+          ];
+      }
+      
+      return $map;
+      
+  }//end public static function getRouteMap */
+  
+  /**
+   * @return string
+   */
+  public static function getRouteKey($cPath= null)
+  {
+  
+      if(!$cPath){
+          if (isset($_GET['c'])) {
+              $cPath = $_GET['c'];
+          } else if($_POST['c']) {
+              $cPath = $_POST['c'];
+          } else {
+              return null;
+          }
+      }
+
+  
+      $tmp = explode('.',$cPath);
+  
+      if (count($tmp)==3) {
+        
+          return $cPath;
+        
+      } else if(count($tmp)==2) {
+  
+          // punkt einfach einbauen
+          $modKey = SParserString::getFirstHump($tmp[0]);
+          $conKey = substr($tmp[0], strlen($modKey));
+  
+          return $modKey.'.'.$conKey;
+      }
+  
+      return null;
+  
+  }//end public static function getRouteKey */
 
   /**
    * Ok irgendwas ist total schief gegangen, daher wird einfach nur

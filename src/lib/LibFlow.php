@@ -118,23 +118,13 @@ class LibFlow extends Base
     $this->checkRedirect();
 
     if ($command = $this->request->param('c', Validator::TEXT)) {
-      $tmp = explode('.',$command);
-      $map = array
-      (
-        Request::MOD => $tmp[0],
-        Request::CON => $tmp[1],
-        Request::RUN => $tmp[2]
-      );
-      $this->request->addParam($map);
+        if ($map = Buizcore::getRouteMap($command)) {
+            $request->addParam($map);
+        }
     } elseif ($command = $this->request->data('c', Validator::TEXT)) {
-      $tmp = explode('.',$command);
-      $map = array
-      (
-        Request::MOD => $tmp[0],
-        Request::CON => $tmp[1],
-        Request::RUN => $tmp[2]
-      );
-      $this->request->addParam($map);
+        if ($map = Buizcore::getRouteMap($command)) {
+            $request->addParam($map);
+        }
     }
 
   }//end  public function init */

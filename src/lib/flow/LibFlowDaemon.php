@@ -42,6 +42,7 @@ class LibFlowDaemon extends LibFlow
   {
 
     $request = $this->getRequest();
+    $response = $this->getResponse();
     $this->getUser();
     $this->getTplEngine();
 
@@ -52,21 +53,11 @@ class LibFlowDaemon extends LibFlow
     }
 
     if ($command = $request->param('c', Validator::TEXT)) {
-      $tmp = explode('.',$command);
-
-      if (count($tmp) != 3) {
-        $this->getMessage()->addWarning("Got invalid command ".$command);
-
-        return;
-      }
-
-      $map = array
-      (
-        Request::MOD => $tmp[0],
-        Request::CON => $tmp[1],
-        Request::RUN => $tmp[2]
-      );
-      $request->addParam($map);
+        if ($map = Buizcore::getRouteMap($command)) {
+            $request->addParam($map);
+        } else {
+            $response->addError('Invalid Comand syntax '.$command);
+        }
     }
 
   }//end  public function init */

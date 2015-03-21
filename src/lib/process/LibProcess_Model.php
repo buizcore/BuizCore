@@ -338,6 +338,7 @@ class LibProcess_Model extends PBase
     $step->id_to = $this->activStatus->id_actual_node;
 
     $step->id_process_instance = $this->activStatus;
+    $step->vid = $this->entity;
     $step->comment = 'Process was initialized';
 
     $this->db->orm->insert($step);
@@ -400,6 +401,7 @@ class LibProcess_Model extends PBase
     $step = $this->db->orm->newEntity('BuizProcessStep');
     $step->id_from = $this->activStatus->id_actual_node;
     $step->id_to = $newNode;
+    $step->vid = $this->entity;
 
     $step->id_process_instance = $this->activStatus;
     $step->comment = $this->getRequestComment();

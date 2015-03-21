@@ -110,61 +110,47 @@ class LibFlowApachemod extends Base
     $this->shutDownFunctions[$key] = $func;
   }//end public function registerShutdownFunction */
 
- /**
-  *
-  * @return void
-  */
-  public function init()
-  {
-
-    $request = $this->getRequest();
-    $response = $this->getResponse();
-    $this->getSession();
-    $this->getUser();
-
-    $response->tpl = $this->getTplEngine();
-
-    //make shure the system has language information
-    if ($lang = $request->param('lang', Validator::CNAME)) {
-      Conf::setStatus('lang',$lang);
-      I18n::changeLang($lang  );
-    }
-
-    if (defined('MODE_MAINTENANCE')) {
-      $map = array(
-        Request::MOD => 'Maintenance',
-        Request::CON => 'Base',
-        Request::RUN => 'message'
-      );
-      $request->addParam($map);
-
-      return;
-    }
-
-    $this->checkRedirect();
-
-    if ($command = $request->param('c', Validator::TEXT)) {
-
-      $tmp = explode('.',$command);
-      $map = array(
-        Request::MOD => $tmp[0],
-        Request::CON => $tmp[1],
-        Request::RUN => $tmp[2]
-      );
-      $request->addParam($map);
-
-    } elseif ($command = $request->data('c', Validator::TEXT)) {
-
-      $tmp = explode('.',$command);
-      $map = array(
-        Request::MOD => $tmp[0],
-        Request::CON => $tmp[1],
-        Request::RUN => $tmp[2]
-      );
-      $request->addParam($map);
-    }
-
-  }//end  public function init */
+    /**
+    *
+    * @return void
+    */
+    public function init()
+    {
+    
+        $request = $this->getRequest();
+        $response = $this->getResponse();
+        $this->getSession();
+        $this->getUser();
+        
+        $response->tpl = $this->getTplEngine();
+    
+        //make shure the system has language information
+        if ($lang = $request->param('lang', Validator::CNAME)) {
+            Conf::setStatus('lang',$lang);
+            I18n::changeLang($lang  );
+        }
+        
+        if (defined('MODE_MAINTENANCE')) {
+            $map = array(
+                Request::MOD => 'Maintenance',
+                Request::CON => 'Base',
+                Request::RUN => 'message'
+            );
+            $request->addParam($map);
+            
+            return;
+        }
+    
+        $this->checkRedirect();
+    
+        
+        if ($map = Buizcore::getRouteMap()) {
+            $request->addParam($map);
+        }
+        
+        
+    
+    }//end  public function init */
 
  /**
   *
@@ -201,21 +187,17 @@ class LibFlowApachemod extends Base
     $this->checkRedirect();
 
     if ($command = $request->param('c', Validator::TEXT  )) {
-      $tmp = explode('.',$command);
-      $map = array(
-        Request::MOD => $tmp[0],
-        Request::CON => $tmp[1],
-        Request::RUN => $tmp[2]
-      );
-      $request->addParam($map);
+        $map = Buizcore::getRouteMap($command);
+        
+        if ($map) {
+            $request->addParam($map);
+        }
     } elseif ($command = $request->data('c', Validator::TEXT)) {
-      $tmp = explode('.',$command);
-      $map = array(
-        Request::MOD => $tmp[0],
-        Request::CON => $tmp[1],
-        Request::RUN => $tmp[2]
-      );
-      $request->addParam($map);
+        $map = Buizcore::getRouteMap($command);
+        
+        if ($map) {
+            $request->addParam($map);
+        }
     }
 
     Log::trace('$_GET' , $_GET);

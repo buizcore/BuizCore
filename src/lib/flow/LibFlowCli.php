@@ -52,21 +52,13 @@ class LibFlowCli extends LibFlow
     }
 
     if ($command = $request->param('c', Validator::TEXT)) {
-      $tmp = explode('.',$command);
-
-      if (count($tmp) != 3) {
-        $this->getMessage()->addWarning("Got invalid command ".$command);
-
-        return;
-      }
-
-      $map = array
-      (
-        Request::MOD => $tmp[0],
-        Request::CON => $tmp[1],
-        Request::RUN => $tmp[2]
-      );
-      $request->addParam($map);
+        $map = Buizcore::getRouteMap($command);
+        
+        if ($map) {
+            $request->addParam($map);
+        } else {
+            throw new InvalidRequest_Exception('Invalid Command path');
+        }
     }
 
   }//end  public function init */
