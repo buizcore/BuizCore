@@ -1240,7 +1240,7 @@ class BuizCore
       if(!$cPath){
           if (isset($_GET['c'])) {
               $cPath = $_GET['c'];
-          } else if($_POST['c']) {
+          } else if(isset($_POST['c'])) {
               $cPath = $_POST['c'];
           } else {
               return null;
@@ -1280,7 +1280,7 @@ class BuizCore
       if(!$cPath){
           if (isset($_GET['c'])) {
               $cPath = $_GET['c'];
-          } else if($_POST['c']) {
+          } else if(isset($_POST['c'])) {
               $cPath = $_POST['c'];
           } else {
               return null;

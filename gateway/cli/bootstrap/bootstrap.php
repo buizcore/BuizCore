@@ -233,7 +233,7 @@ include PATH_FW.'src/lib/LibResponse.php';
 include PATH_FW.'src/lib/response/LibResponseHttp.php';
 include PATH_FW.'src/User.php';
 include PATH_WGT.'src/lib/LibTemplate.php';
-include PATH_WGT.'src/lib/template/LibTemplatePublisher.php';
+include PATH_WGT.'src/lib/template/LibTemplateCli.php';
 include PATH_FW.'src/lib/flow/LibFlowApachemod.php';
 include PATH_FW.'src/I18n.php';
 include PATH_FW.'src/lib/i18n/LibI18nPhp.php';
@@ -279,10 +279,7 @@ include PATH_FW.'src/lib/parser/sql/LibParserSqlAbstract.php';
 include PATH_FW.'src/lib/db/LibDbOrm.php';
 include PATH_FW.'src/lib/db/LibDbConnection.php';
 
-// templatesystem / view
-include PATH_WGT.'src/lib/template/LibTemplatePresenter.php';
-include PATH_WGT.'src/lib/template/LibTemplateHtml.php';
-include PATH_WGT.'src/lib/template/LibTemplateAjax.php';
+
 
 // register all used autoload methodes
 spl_autoload_register('BuizCore::indexAutoload');
@@ -322,7 +319,7 @@ Conf::$confPath[]           = PATH_FW.'conf/'; // search path for configuration 
 $routePath = Buizcore::getRouteKey();
 
 if ( !$routePath ) {
-    $routePath = 'default.cli';
+    $routePath = 'default';
 }
 
 BuizCore::loadClassIndex( $routePath );
