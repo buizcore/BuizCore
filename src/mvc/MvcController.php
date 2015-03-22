@@ -193,11 +193,12 @@ abstract class MvcController extends BaseChild
    *
    * @param string $modelKey
    * @param string $key
+   * @param array $injectKeys
    *
    * @return Model
    * @throws Controller_Exception wenn das angefragt Modell nicht existiert
    */
-  public function loadModel($modelKey, $key = null)
+  public function loadModel($modelKey, $key = null, $injectKeys = [])
   {
 
     if (is_array($key))
@@ -211,10 +212,14 @@ abstract class MvcController extends BaseChild
     if (!isset($this->models[$key]  )) {
       if (BuizCore::classExists($modelName)) {
         $model = new $modelName($this);
+        
+        foreach ($injectKeys as $injectKey) {
+            $model->{"set".$injectKey}($this->{"get".$injectKey}());
+        }
+        
         $this->models[$key] = $model;
       } else {
-        throw new Mvc_Exception
-        (
+        throw new Mvc_Exception(
           'Internal Error',
           'Failed to load Submodul: '.$modelName
         );
@@ -568,15 +573,18 @@ abstract class MvcController extends BaseChild
     $response->setMessage($this->getMessage());
     $response->setI18n($this->getI18n());
 
-    $tpl =  $this->getTplEngine();
-    $response->setTplEngine($tpl);
+    if (!defined('WBF_NO_VIEW')) {
+        $tpl =  $this->getTplEngine();
+        $response->setTplEngine($tpl);
+        
+        $tpl->setI18n($this->getI18n());
+        $tpl->setUser($this->getUser());
+        $tpl->setMessage($this->getMessage());
+        $tpl->setAcl($this->getAcl());
+        
+        $this->setView($tpl);
+    }
 
-    $tpl->setI18n($this->getI18n());
-    $tpl->setUser($this->getUser());
-    $tpl->setMessage($this->getMessage());
-    $tpl->setAcl($this->getAcl());
-
-    $this->setView($tpl);
 
     $this->init();
 
@@ -599,6 +607,11 @@ abstract class MvcController extends BaseChild
 /*////////////////////////////////////////////////////////////////////////////*/
 
 
+/*////////////////////////////////////////////////////////////////////////////*/
+// Methodes to overwrite
+/*////////////////////////////////////////////////////////////////////////////*/
+  
+  
   /**
    * Trigger the custom init method of this controller
    */
@@ -630,94 +643,49 @@ abstract class MvcController extends BaseChild
   public function errorPage($message, $errorCode = Response::INTERNAL_ERROR, $dump = null)
   {
 
-    if (is_object($message)) {
-      $messageText = $message->getMessage();
-      $errorCode = $message->getErrorKey();
+    if (is_string($message)) {
+      $error = new Error($message, $message, $errorCode, $dump );
     } else {
-      $messageText = $message;
+      $error = $message;
     }
-
-    $response = $this->getResponse();
-    $response->httpState = $errorCode;
-
-    // bei ajax request wird einfach eine fehlermeldung geworfen
-    if
-    (
-      $response->tpl->isType(View::MAINTAB)
-        || $response->tpl->isType(View::MODAL)
-        || $response->tpl->isType(View::AJAX)
-        || $response->tpl->isType(View::SERVICE)
-    )
-    {
-
-      $response->sendHeader("X-error-message: ".urlencode($messageText.' '.$errorCode));
-
-      $response->addError($messageText);
-    } elseif ($response->tpl->isType(View::DOCUMENT)) {
-
-      // Wenn ein dokument angefragt wurde das nicht bearbeitet werden kann
-      // wird eine html fehlermeldung zurückgegeben
-      // meist sinnvoller als irgendetwas in ein dokument zu pinseln
-      View::setType('Html');
-      View::rebase('Html');
-
-      // nach rebase wird die neue aktive templateengine geholt
-      $this->tplEngine = View::getActive();
-      BuizCore::getActive()->setTplEngine($this->tplEngine);
-
-      //TODO prüfen ob set index und html head in der form bleiben sollen
-      $conf = Conf::get('view');
-      /*
-      if ($this->user->getLogedIn()) {
-        $this->tplEngine->setIndex($conf['index.user']);
-      } else {
-        $this->tplEngine->setIndex($conf['index.annon']);
-      }
-      */
-
-      $this->tplEngine->setIndex('error/plain');
-
-      $this->tplEngine->contentType = View::CONTENT_TYPE_TEXT;
-
-      $this->tplEngine->setTitle($response->i18n->l('Error', 'wbf.label'));
-      $this->tplEngine->setTemplate('error/message'  );
-      $this->tplEngine->addVar('errorMessage' , $message);
-
-    } elseif ($response->tpl->isType(View::JSON)) {
-
-      $this->tplEngine->setDataBody('error: '.$message);
-
-    } else {
-
-      $view = $this->getView();
-
-      $view->setTitle($response->i18n->l('Error', 'wbf.label'));
-      $view->setTemplate('error/message'  );
-      $view->addVar('errorMessage', $message);
-
-
-    }
+    
+    $errorHandler = new LibFlowErrorHandler($this);
+    $errorHandler->handleError($this->getRequest(), $this->getResponse(), $error);
 
   }//end public function errorPage */
 
 
   /**
-   *
+   * @todo auslagern in eine eigene klasse
    */
   public function login()
   {
 
     $request = $this->getRequest();
     $orm = $this->getOrm();
+    
+    if(!$orm){
+        throw new InternalError_Exception("It's not possible to login when no default database connection is defined.");
+    }
 
-    ///TODO was sollte der check auf post?
-    if (!$request->method(Request::POST))
-      return false;
+    $loggedIn = false;
+    if ($request->serverExists('PHP_AUTH_USER')) {
 
-    $auth = new LibAuth($this, 'Httppost');
-    $response = $this->getResponse();
+        $auth = new LibAuth($this, 'Httpauth');
+        $response = $this->getResponse();
+        $loggedIn = $auth->login();
+    }
+    
+    if(!$loggedIn){
+        
+        if (!$request->method(Request::POST))
+          return false;
+        
+        $auth = new LibAuth($this, 'Httppost');
+        $loggedIn = $auth->login();
+    }
 
-    if ($auth->login()) {
+    if ($loggedIn) {
 
       $user = $this->getUser();
       $user->setDb($this->getDb());
@@ -725,18 +693,20 @@ abstract class MvcController extends BaseChild
       $userName = $auth->getUsername();
 
       try {
-        if (!$authRole = $orm->get('BuizRoleUser', "lower(name) = 'lower({$userName})'")) {
-          $response->addError('User '.$userName.' not exists');
 
+        $authRole = $orm->get('BuizRoleUser', "lower(name) = lower('{$userName}')");
+        
+        if (!$authRole) {
+          $response->addError('User '.$userName.' not exists ');
           return false;
         }
       } catch (LibDb_Exception $exc) {
-        $response->addError('Error in the query to fetch the data for user: '.$userName);
 
+        $response->addError('Error in the query to fetch the data for user: '.$userName);
         return false;
       }
 
-      if(
+      if (
         defined('WBF_AUTH_TYPE')
           && 2 == WBF_AUTH_TYPE && ($userName != 'admin')
           && !$authRole->non_cert_login
@@ -749,10 +719,11 @@ abstract class MvcController extends BaseChild
       }
 
       if ($user->login($authRole)) {
+
         return true;
       } else {
-        $response->addError('Failed to autologin User: '.$auth->getUsername());
 
+        $response->addError('Failed to autologin User: '.$auth->getUsername());
         return false;
       }
 
