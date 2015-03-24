@@ -511,7 +511,6 @@ class LibDbPostgresql extends LibDbConnection
             throw new LibDb_Exception('Query Failed: '.$error.' '.$sql. implode(' : ', $this->conf));
         }
         
-        return true;
     } // end public function exec */
     
     /**
