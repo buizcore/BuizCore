@@ -1556,7 +1556,9 @@ class BuizCore
         }
 
       }
+      
     } else {
+        
       foreach (View::$searchPathTemplate as $path) {
 
         $tmpPath = $path.'/'.$type.'/'.$file.'.tpl';
