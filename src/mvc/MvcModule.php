@@ -164,7 +164,7 @@ abstract class MvcModule extends BaseChild
       $this->modulErrorPage(
         'Modul Error',
         $response->i18n->l(
-          'The requested resource not exists' ,
+          'The requested resource '.$classname.' not exists' ,
           'wbf.message'
         )
       );
