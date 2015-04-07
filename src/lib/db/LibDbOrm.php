@@ -1536,10 +1536,14 @@ SQL;
     $criteria = $this->newCriteria();
     $criteria->select($fieldName)->from($tableName);
 
-    if (is_numeric($id))
+    if (is_numeric($id)) {
       $criteria->where('rowid = '.$id);
-    else
-      $criteria->where($id);
+    } else if (is_array($id)) {
+        $criteria->where( $this->arrayToWhere($id) );
+    } else {
+        $criteria->where($id);
+    }
+      
 
     if (!$result = $this->select($criteria))
       return null;
