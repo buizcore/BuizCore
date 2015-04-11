@@ -814,16 +814,30 @@ class LibDbOrm
    * to wich entity
    *
    */
-  public function select($criteria  )
+  public function select($criteria, $entityKey = null, $groupByKey = false)
   {
 
     try {
 
       if (!$this->db)
         throw new LibDb_Exception('DB object is missing!');
+      
+      if($entityKey){
+          $criteria->asEntity = true;
+      }
 
       $result = $this->db->select($this->sqlBuilder->buildSelect($criteria));
       $this->lastResult = $result;
+      
+      if ($entityKey) {
+          if ($groupByKey) {
+              return $this->fillObjects($entityKey.'_Entity', $result->getAll());
+          } else {
+              $tmp = $this->fillObjects($entityKey.'_Entity', $result->getAll());
+          
+              return array_values($tmp);
+          }
+      }
 
       return $result;
 

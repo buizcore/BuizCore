@@ -998,10 +998,20 @@ abstract class LibParserSqlAbstract
     */
 
     if (!$obj->cols) {
-      throw new LibDb_Exception(I18n::s('got no cols','wbf.message'));
+
+        if ($obj->asEntity) {
+            $sql .= ' * ';
+        } else {
+            throw new LibDb_Exception(I18n::s('got no cols','wbf.message'));
+        }
+        
+        
+    } else {
+        
+        $sql .= implode(', ', $obj->cols);
     }
 
-    $sql .= implode(', ', $obj->cols);
+    
 
     if (!$obj->table) {
 

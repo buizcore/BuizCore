@@ -57,6 +57,20 @@ class LibSqlCriteria implements ISqlParser
    * @var array
    */
   public $distinct = null;
+  
+  /**
+   * Flag ob die Query als Entities zurück gegeben werden sollen
+   * @var boolean
+   */
+  public $asEntity = false;
+  
+  /**
+   * Name des Entity Objekts
+   * 
+   * @todo checkn in wie weit man hier auch structures einbauen könnte etc
+   * @var string
+   */
+  public $entityKey = null;
 
   /**
    * Felder die abgefragt werden sollen
