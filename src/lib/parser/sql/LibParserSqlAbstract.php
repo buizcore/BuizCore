@@ -1000,7 +1000,17 @@ abstract class LibParserSqlAbstract
     if (!$obj->cols) {
 
         if ($obj->asEntity) {
-            $sql .= ' * ';
+            
+            if ($obj->as) {
+                
+                $sql .= $obj->as.'.* ';
+                
+            } else if($obj->table) {
+                
+                $sql .= $obj->table.'.* ';
+            }
+            
+            
         } else {
             throw new LibDb_Exception(I18n::s('got no cols','wbf.message'));
         }
