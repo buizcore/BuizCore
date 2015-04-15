@@ -1,7 +1,7 @@
 # BuizCore
 ## The Buiz Core
 
-## Copyright (c) 2012, BuizCore GmbH
+## Copyright (c) 2014, BuizCore GmbH
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
