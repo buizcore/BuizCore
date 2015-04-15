@@ -892,7 +892,7 @@ class LibDbOrm
 
     // check if the entity is allready loaded and in the pool
     if (ctype_digit($id) && $obj = $this->getFromPool($entityKey, $id)) {
-
+      Log::debug("got from pool {$entityKey}, {$id}");
       return $obj;
     } elseif (is_object($id)) {
 
@@ -1289,7 +1289,13 @@ SQL;
       $data = $this->fillObjects($entityKey.'_Entity', $result->getAll());
 
       if ($data)
-        return current($data);
+          // den ersten zurück geben
+        foreach($data as $entry){
+          return $entry;
+        }
+        // gibt den
+        // return current($data); 
+        
       else
         return null;
     } else {

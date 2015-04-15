@@ -218,8 +218,13 @@ class LibSqlCriteria implements ISqlParser
    *
    * @return void
    */
-  public function __construct($name, $db = null)
+  public function __construct($name = null, $db = null)
   {
+      
+      // tmp name für name
+      if (!$name) {
+          $name = time();
+      }
 
     $this->name = $name;
 
