@@ -7,7 +7,7 @@
 * @project     : BuizCore, The core business application plattform
 * @projectUrl  : http://buizcore.com
 *
-* @licence     : BuizCore.com internal only
+* @licence     : BSD License see: LICENCE/BSD Licence.txt
 *
 * @version: @package_version@  Revision: @package_revision@
 *
