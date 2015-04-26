@@ -524,6 +524,8 @@ abstract class Controller extends BaseChild
    */
   public function run($action = null)
   {
+      
+      
 
     // wenn ein klassenname für eine standard modell klasse definiert wurde
     // versucht der controller nun automatisch ein objekt dies modells zu erstellen
@@ -535,8 +537,11 @@ abstract class Controller extends BaseChild
         $this->model = new $modelClass($this);
     }
 
-    if (!$this->checkAction($action))
+    if (!$this->checkAction($action)) {
+        $response = $this->getResponse();
+        $response->setStatus(Response::FORBIDDEN);
       return;
+    }
 
     $this->runIfCallable($action);
 
@@ -632,6 +637,11 @@ abstract class Controller extends BaseChild
                }
              }
 
+           } else {
+               
+               ///@todo hier muss force metadata check code hin
+               /// default sollte force sein
+               
            }
 
            $this->$methodeName($request, $response);
@@ -847,31 +857,34 @@ abstract class Controller extends BaseChild
 // error page and messages
 /*////////////////////////////////////////////////////////////////////////////*/
 
-  /**
-   * de:
-   * {
-   *   Standard
-   * }
-   *
-   * @param string $message
-   * @param string $errorCode
-   * @param mixed $dump
-   *
-   * @return void
-   */
-  public function errorPage($message, $errorCode = Response::INTERNAL_ERROR, $dump = null)
-  {
-
-    if (is_string($message)) {
-      $error = new Error($message, $message, $errorCode, $dump );
-    } else {
-      $error = $message;
-    }
+    /**
+    * de:
+    * {
+    *   Standard
+    * }
+    *
+    * @param string $message
+    * @param string $errorCode
+    * @param mixed $dump
+    *
+    * @return void
+    */
+    public function errorPage($message, $errorCode = Response::INTERNAL_ERROR, $dump = null)
+    {
+      
+        $response = $this->getResponse();
+        $response->setStatus($errorCode);
+        
+        if (is_string($message)) {
+            $error = new Error($message, $message, $errorCode, $dump );
+        } else {
+            $error = $message;
+        }
     
-    $errorHandler = new LibFlowErrorHandler($this);
-    $errorHandler->handleError($this->getRequest(), $this->getResponse(), $error);
-
-  }//end public function errorPage */
+        $errorHandler = new LibFlowErrorHandler($this);
+        $errorHandler->handleError($this->getRequest(), $this->getResponse(), $error);
+    
+    }//end public function errorPage */
 
 
 
@@ -1330,6 +1343,8 @@ abstract class Controller extends BaseChild
   public function loadUi($uiName , $key = null)
   {
 
+      Log::error('Called loadUi from the controller!!');
+      
     if (!$key)
       $key = $uiName;
 

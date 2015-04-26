@@ -102,7 +102,7 @@ class LibDbEmptyResult extends LibDbResult
    * @param int $Mode
    * @return array
    */
-  public function getAll()
+  public function getAll($numIndex = false)
   {
     return [];
 

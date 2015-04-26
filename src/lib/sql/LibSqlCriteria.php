@@ -730,18 +730,96 @@ class LibSqlCriteria implements ISqlParser
    * @param string $connect
    * @return LibSqlCriteria
    */
-  public function where($where, $connect = 'AND')
+    public function where($where, $connect = 'AND')
+    {
+    
+        if (is_array($where)) {
+            $where = $this->arrayToWhere($where);
+        }
+    
+        if (!$this->where)
+          $this->where = $where;
+        else
+          $this->where .= ' '.$connect.' '.$where;
+        
+        return $this;
+    
+    } // end public function where */
+  
+  /**
+   * @param array $where
+   * @return string
+   */
+  protected function arrayToWhere($where)
   {
- 
-
-    if (!$this->where)
-      $this->where = $where;
-    else
-      $this->where .= ' '.$connect.' '.$where;
-
-    return $this;
-
-  } // end public function where */
+  
+      $tmp = [];
+      foreach ($where as $key => $value) {
+  
+          $keyTmp = explode('|',$key);
+  
+          $key = $keyTmp[0];
+          $keyOp = isset($keyTmp[1])?$keyTmp[1]:null;
+  
+          if (is_array($value)) {
+  
+              $tmpTmp = [];
+  
+              if ($keyOp) {
+                  $tmpStr = " {$keyOp}({$key}) IN( ";
+              } else {
+                  $tmpStr = " {$key} IN( ";
+              }
+  
+              if($keyOp){
+                  foreach($value as $subVal){
+                      if  (!is_null($subVal)) {
+                          $tmpTmp[] = " {$keyOp}('".$this->db->escape($subVal)."') ";
+                      }
+                  }
+              } else {
+                  foreach($value as $subVal){
+                      if  (!is_null($subVal)) {
+                          $tmpTmp[] = " '".$this->db->escape($subVal)."' ";
+                      }
+                  }
+              }
+  
+  
+              // wenn leer dan überspringen
+              if (!$tmpTmp) {
+                  continue;
+              }
+  
+              $tmpStr .= implode(',', $tmpTmp);
+              $tmpStr .= ' ) ';
+  
+              $tmp[] = $tmpStr;
+  
+  
+          } else {
+              if  (is_null($value)) {
+                  $tmp[] = "{$key} is null ";
+              } else {
+  
+                  if ($keyOp) {
+                      $tmp[] = " {$keyOp}({$key}) = {$keyOp}('".$this->db->escape($value)."') ";
+                  } else {
+                      $tmp[] = "{$key} = '".$this->db->escape($value)."' ";
+                  }
+  
+  
+              }
+          }
+  
+  
+  
+      }
+  
+  
+      return ' ( '.implode(' AND ', $tmp).' ) ';
+  
+  }
 
   /**
    *

@@ -26,6 +26,25 @@
  * @property $aclKey
  * @property $aclNode
  * @property $aclLevel
+ * 
+ * @property $subTab
+ * @property $contextMaskSwt
+ * @property $contextKey
+ * @property $context
+ * @property $ltype
+ * @property $refId
+ * @property $reload
+ * @property $viewType
+ * @property $viewId
+ * @property $mask
+ * @property $targetMask
+ * @property $target
+ * @property $targetId
+ * @property $publish wenn none, dann wird nichts zurück geschickt
+ * 
+ * 
+ * @property $maskRoot
+ * @property $parentMask 'pmsk'
  *          
  * @property string $subTab Key zum öffnen eines Subtabs
  *          
@@ -270,6 +289,7 @@ class ContextCrud extends Context
             $this->actionExt .= '&cntms='.$this->contextMaskSwt;
         
         return $this->actionExt;
+        
     } // end public function toActionExt */
     
 } // end class ContextCrud

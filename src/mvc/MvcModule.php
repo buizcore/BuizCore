@@ -192,7 +192,7 @@ abstract class MvcModule extends BaseChild
 
       // no controller? asume init allready reported an error
       if (!$this->controller)
-        return false;
+        throw new Buiz_Exception('Missing the Controller',null,Response::NOT_FOUND);
 
       // Initialisieren der Extention
       if (!$this->controller->initController())
@@ -211,7 +211,7 @@ abstract class MvcModule extends BaseChild
         $response->i18n->l(
           'Module Error: '.$exc->getMessage(),
           'wbf.message' ,
-          array($exc->getMessage())
+          [$exc->getMessage()]
         ),
         $exc
       );
@@ -220,8 +220,7 @@ abstract class MvcModule extends BaseChild
 
       if (Log::$levelDebug) {
         // Create a Error Page
-        $this->modulErrorPage
-        (
+        $this->modulErrorPage(
           $exc->getMessage(),
           '<pre>'.Debug::dumpToString($exc).'</pre>'
         );
@@ -230,8 +229,7 @@ abstract class MvcModule extends BaseChild
         switch ($type) {
           case 'Security_Exception':
           {
-            $this->modulErrorPage
-            (
+            $this->modulErrorPage(
               $response->i18n->l('Access Denied', 'wbf.message'  ),
               $response->i18n->l( 'Access Denied', 'wbf.message'  )
             );
@@ -241,14 +239,12 @@ abstract class MvcModule extends BaseChild
           {
 
             if (Log::$levelDebug) {
-              $this->modulErrorPage
-              (
+              $this->modulErrorPage(
                 'Exception '.$type.' not catched ',
                 Debug::dumpToString($exc)
               );
             } else {
-              $this->modulErrorPage
-              (
+              $this->modulErrorPage(
                 $response->i18n->l( 'Sorry Internal Error', 'wbf.message'  ),
                 $response->i18n->l( 'Sorry Internal Error', 'wbf.message'  )
               );
@@ -292,17 +288,13 @@ abstract class MvcModule extends BaseChild
     $response = $this->getResponse();
     $view = $this->getView();
 
-    $response->addError($errorTitle);
+    $response->addError($errorMessage);
 
     $view->setTemplate('error/message');
-    $view->addVar
-    (
-      array
-      (
+    $view->addVar([
         'errorMessage' => $errorMessage,
-        'errorTitle' => $errorTitle,
-      )
-    );
+        'errorTitle' => $errorTitle
+    ]);
 
   }//end protected function modulErrorPage */
 

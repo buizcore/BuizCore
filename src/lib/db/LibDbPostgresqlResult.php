@@ -97,14 +97,21 @@ class LibDbPostgresqlResult extends LibDbResult
    * Auslesen des letzten Abfrageergebnisses
    * @return array
    */
-  public function getAll()
+  public function getAll($numIndex = false)
   {
 
     $res = [];
     $this->pos = 0;
+    
+    if ($numIndex) {
+        while ($this->row = pg_fetch_row($this->result))
+            $res[] = $this->row;
+    } else {
+        while ($this->row = pg_fetch_assoc($this->result))
+            $res[] = $this->row;
+    }
 
-    while ($this->row = pg_fetch_assoc($this->result))
-      $res[] = $this->row;
+
 
     return $res;
 
