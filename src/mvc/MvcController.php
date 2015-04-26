@@ -524,8 +524,22 @@ abstract class MvcController extends BaseChild
       return true;
 
     $user = $this->getUser();
-    if ($user->getLogedIn())
-      return true;
+    if ($user){
+        
+        if ($user->getLogedIn()) {
+            return true;
+        }
+        
+    } else {
+        
+        // für cli brauchen wir erst mal keinen login
+        // wenn doch soll das der controller selbst handeln
+        if (strtolower(View::$type) == View::CLI) {
+            return true;
+        }
+        
+    }
+      
 
     // prüfen mit den options
     if (isset($this->options[$action]['public'])  ) {
@@ -664,7 +678,7 @@ abstract class MvcController extends BaseChild
     $request = $this->getRequest();
     $orm = $this->getOrm();
     
-    if(!$orm){
+    if (!$orm) {
         throw new InternalError_Exception("It's not possible to login when no default database connection is defined.");
     }
 

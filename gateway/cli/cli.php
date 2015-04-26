@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 /*******************************************************************************
 *
@@ -25,7 +24,7 @@ try {
   include PATH_FW.'gateway/cli/bootstrap/bootstrap.php';
 
 
-  View::setType('Cli');
+  View::setType(View::CLI);
 
   $buiz = BuizCore::init();
 

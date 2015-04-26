@@ -288,6 +288,7 @@ spl_autoload_register('BuizCore::pathAutoload');
 
 // Gateway Path
 BuizCore::$autoloadPath[]  = PATH_GW.'src/';
+BuizCore::$autoloadPath[]  = PATH_GW.'module/';
 View::$searchPathIndex[]    = PATH_GW.'templates/';
 View::$searchPathTemplate[] = PATH_GW.'templates/';
 I18n::$i18nPath[]         = PATH_GW.'i18n/';
@@ -298,9 +299,9 @@ Conf::$confPath[]         = PATH_GW.'conf/';
 BuizCore::loadModuleByPath('module');
 
 if (BUIZ_DEVELOP_MODE) {
+    
     BuizCore::$autoloadPath[]  = PATH_ROOT.'/BuizCore_Developer/src/';
     BuizCore::$autoloadPath[]  = PATH_ROOT.'/BuizCore_Developer/module/';
-    
     BuizCore::loadModuleByPath('develop_module');
 }
 

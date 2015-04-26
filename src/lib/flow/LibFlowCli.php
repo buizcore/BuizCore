@@ -96,8 +96,7 @@ class LibFlowCli extends LibFlow
       // everythin fine
       return true;
     } else {
-      $this->runController
-      (
+      $this->runController(
         $modName,
         ucfirst($httpRequest->param(Request::CON , Validator::CNAME))
       );
@@ -123,7 +122,7 @@ class LibFlowCli extends LibFlow
       if (BuizCore::classExists($classname)) {
 
         $this->controller = new $classname();
-        $this->controller->setDefaultModel($module.$controller);
+        //$this->controller->setDefaultModel($module.$controller);
         $this->controllerName = $classname;
 
         $action = $request->param(Request::RUN, Validator::CNAME);
@@ -144,10 +143,8 @@ class LibFlowCli extends LibFlow
 
     } catch (Exception $exc) {
 
-      Error::report
-      (
-        I18n::s
-        (
+      Error::report(
+        I18n::s(
           'Module Error: '.$exc->getMessage(),
           'wbf.error.caughtModulError' ,
           array($exc->getMessage())
@@ -193,8 +190,7 @@ class LibFlowCli extends LibFlow
   public function panikShutdown($file, $line, $lastMessage)
   {
 
-    Log::fatal
-    (
+    Log::fatal(
       'System got killed: '.$file.' Linie: '.$line .' reason: '.$lastMessage
     );
 
